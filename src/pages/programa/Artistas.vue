@@ -1,34 +1,37 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { Search } from 'lucide-vue-next'
+import { FilterBar } from '@/components/ui/filter'
 
 const router = useRouter()
 
-// Datos embebidos
+// Datos embebidos - mapeados con imágenes de assets
 const artists = [
-  { id: 'luna-valle', name: 'Luna Valle', day: 'Viernes 23', img: 'https://via.placeholder.com/400x400/16a0db/000000?text=Luna+Valle' },
-  { id: 'diamante-negro', name: 'Diamante Negro', day: 'Viernes 23', img: 'https://via.placeholder.com/400x400/7b4a9d/000000?text=Diamante+Negro' },
-  { id: 'tranquilorayo', name: 'TranquiloRayo', day: 'Sábado 24', img: 'https://via.placeholder.com/400x400/fff200/000000?text=TranquiloRayo' },
-  { id: 'garbi', name: 'Garbi', day: 'Sábado 24', img: 'https://via.placeholder.com/400x400/15a64b/000000?text=Garbi' },
-  { id: 'repion', name: 'Repion', day: 'Sábado 24', img: 'https://via.placeholder.com/400x400/16a0db/000000?text=Repion' },
-  { id: 'mr-kennedy', name: 'Mr.Kennedy', day: 'Domingo 25', img: 'https://via.placeholder.com/400x400/7b4a9d/000000?text=Mr.Kennedy' },
-  { id: 'nuevos-vicios', name: 'Nuevos Vicios', day: 'Domingo 25', img: 'https://via.placeholder.com/400x400/fff200/000000?text=Nuevos+Vicios' },
-  { id: 'bum-motion-club', name: 'Bum Motion Club', day: 'Domingo 25', img: 'https://via.placeholder.com/400x400/15a64b/000000?text=Bum+Motion+Club' },
+  { id: 'luna-valle', name: 'Luna Valle', day: 'Viernes 23', img: new URL('@/assets/lunavalle.jpg', import.meta.url).href },
+  { id: 'diamante-negro', name: 'Diamante Negro', day: 'Viernes 23', img: new URL('@/assets/diamanteNegro.jpg', import.meta.url).href },
+  { id: 'tranquilorayo', name: 'TranquiloRayo', day: 'Sábado 24', img: new URL('@/assets/tranquiloRayo.jfif', import.meta.url).href },
+  { id: 'garbi', name: 'Garbi', day: 'Sábado 24', img: new URL('@/assets/garbi.png', import.meta.url).href },
+  { id: 'repion', name: 'Repion', day: 'Sábado 24', img: new URL('@/assets/repion.jpg', import.meta.url).href },
+  { id: 'mr-kennedy', name: 'Mr.Kennedy', day: 'Domingo 25', img: new URL('@/assets/kennedy.jfif', import.meta.url).href },
+  { id: 'nuevos-vicios', name: 'Nuevos Vicios', day: 'Domingo 25', img: new URL('@/assets/nuevosVicios.jpg', import.meta.url).href },
+  { id: 'bum-motion-club', name: 'Bum Motion Club', day: 'Domingo 25', img: new URL('@/assets/bumMotionClub.jpg', import.meta.url).href },
 ]
 
 // Estado reactivo
-const selectedDay = ref('Todos')
-const searchQuery = ref('')
+const filteredArtists = ref<typeof artists>(artists)
 
-// Computed properties
-const filteredArtists = computed(() => {
-  return artists.filter(artist => {
-    const matchesDay = selectedDay.value === 'Todos' || artist.day === selectedDay.value
-    const matchesSearch = artist.name.toLowerCase().includes(searchQuery.value.toLowerCase())
-    return matchesDay && matchesSearch
-  })
+// Computed properties para opciones de filtro
+const filterOptions = computed(() => {
+  const days = new Set(artists.map(a => a.day))
+  return Array.from(days).map(day => ({
+    label: day,
+    value: day
+  }))
 })
+
+const handleFilter = (filtered: typeof artists) => {
+  filteredArtists.value = filtered
+}
 
 const navigateToArtist = (id: string) => {
   router.push(`/programa/artistas/${id}`)
@@ -47,51 +50,15 @@ const navigateToArtist = (id: string) => {
 
     <div class="container mx-auto px-4 md:px-8 mt-12">
       
-      <!-- Controles (Filtro + Buscador) -->
-      <div class="flex flex-col lg:flex-row justify-between items-center gap-6 mb-16 border-4 border-[#fff200] p-4 shadow-[8px_8px_0_0_#fff200]">
-        
-        <!-- Filtros por día -->
-        <div class="flex flex-wrap gap-2 md:gap-4">
-          <button 
-            @click="selectedDay = 'Todos'"
-            class="px-6 py-2 font-bold uppercase transition-colors border-2"
-            :class="selectedDay === 'Todos' ? 'bg-[#fff200] text-black border-[#fff200]' : 'bg-black text-[#fff200] border-[#fff200] hover:bg-white/10'"
-          >
-            Todos
-          </button>
-          <button 
-            @click="selectedDay = 'Viernes 23'"
-            class="px-6 py-2 font-bold uppercase transition-colors border-2"
-            :class="selectedDay === 'Viernes 23' ? 'bg-[#fff200] text-black border-[#fff200]' : 'bg-black text-[#fff200] border-[#fff200] hover:bg-white/10'"
-          >
-            Viernes 23
-          </button>
-          <button 
-            @click="selectedDay = 'Sábado 24'"
-            class="px-6 py-2 font-bold uppercase transition-colors border-2"
-            :class="selectedDay === 'Sábado 24' ? 'bg-[#fff200] text-black border-[#fff200]' : 'bg-black text-[#fff200] border-[#fff200] hover:bg-white/10'"
-          >
-            Sábado 24
-          </button>
-          <button 
-            @click="selectedDay = 'Domingo 25'"
-            class="px-6 py-2 font-bold uppercase transition-colors border-2"
-            :class="selectedDay === 'Domingo 25' ? 'bg-[#fff200] text-black border-[#fff200]' : 'bg-black text-[#fff200] border-[#fff200] hover:bg-white/10'"
-          >
-            Domingo 25
-          </button>
-        </div>
-
-        <!-- Buscador -->
-        <div class="relative w-full lg:w-72">
-          <input 
-            v-model="searchQuery" 
-            type="text" 
-            placeholder="Buscar artista..." 
-            class="w-full bg-black text-[#fff200] border-2 border-[#fff200] px-4 py-2 font-bold uppercase placeholder-[#fff200]/50 outline-none focus:bg-white/5"
-          />
-          <Search class="absolute right-3 top-1/2 -translate-y-1/2 text-[#fff200]" :size="20" />
-        </div>
+      <!-- Filter Bar -->
+      <div class="mb-16">
+        <FilterBar
+          :items="artists"
+          filter-key="day"
+          search-key="name"
+          :filter-options="filterOptions"
+          @filter="handleFilter"
+        />
       </div>
 
       <!-- Grid de Artistas -->

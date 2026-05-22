@@ -7,6 +7,7 @@ import ComoLlegar from "@/pages/como-llegar/ComoLlegar.vue";
 import Artistas from "@/pages/programa/Artistas.vue";
 import DetalleArtista from "@/pages/programa/DetalleArtista.vue";
 import Talleres from "@/pages/programa/Talleres.vue";
+import DetalleTaller from "@/pages/programa/DetalleTaller.vue";
 import Horarios from "@/pages/programa/Horarios.vue";
 
 // Subpáginas de Información
@@ -32,42 +33,57 @@ export const router = createRouter({
       name: 'como-llegar',
       component: ComoLlegar
     },
-    // Programa
+    // Programa - Nested Routes
     {
-      path: '/programa/artistas',
-      name: 'programa-artistas',
-      component: Artistas
+      path: '/programa',
+      children: [
+        {
+          path: 'artistas',
+          name: 'programa-artistas',
+          component: Artistas
+        },
+        {
+          path: 'artistas/:id',
+          name: 'detalle-artista',
+          component: DetalleArtista
+        },
+        {
+          path: 'talleres',
+          name: 'programa-talleres',
+          component: Talleres
+        },
+        {
+          path: 'talleres/:id',
+          name: 'detalle-taller',
+          component: DetalleTaller
+        },
+        {
+          path: 'horarios',
+          name: 'programa-horarios',
+          component: Horarios
+        }
+      ]
     },
+    // Información - Nested Routes
     {
-      path: '/programa/artistas/:id',
-      name: 'detalle-artista',
-      component: DetalleArtista
-    },
-    {
-      path: '/programa/talleres',
-      name: 'programa-talleres',
-      component: Talleres
-    },
-    {
-      path: '/programa/horarios',
-      name: 'programa-horarios',
-      component: Horarios
-    },
-    // Información
-    {
-      path: '/informacion/normas',
-      name: 'informacion-normas',
-      component: Normas
-    },
-    {
-      path: '/informacion/preguntas-frecuentes',
-      name: 'informacion-preguntas',
-      component: PreguntasFrecuentes
-    },
-    {
-      path: '/informacion/recinto',
-      name: 'informacion-recinto',
-      component: Recinto
+      path: '/informacion',
+      children: [
+        {
+          path: 'normas',
+          name: 'informacion-normas',
+          component: Normas
+        },
+        {
+          path: 'preguntas-frecuentes',
+          name: 'informacion-preguntas',
+          component: PreguntasFrecuentes
+        },
+        {
+          path: 'recinto',
+          name: 'informacion-recinto',
+          component: Recinto
+        }
+      ]
     },
     {
       path: '/:pathMatch(.*)*',

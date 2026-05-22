@@ -1,24 +1,71 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { ArrowRight } from 'lucide-vue-next'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel'
 
 const router = useRouter()
 
 const navigateToEntradas = () => {
   router.push('/entradas')
 }
+
+// 1. Añadimos el array de artistas con su slug para la URL y el nivel de tamaño
+const artistas = [
+  { name: 'Repion', slug: 'repion', size: 'text-6xl md:text-7xl mb-4', breakAfter: true },
+
+  { name: 'Bum Motion Club', slug: 'bum-motion-club', size: 'text-5xl md:text-6xl' },
+  { name: 'Diamante Negro', slug: 'diamante-negro', size: 'text-5xl md:text-6xl', breakAfter: true },
+  
+  { name: 'Garbi', slug: 'garbi', size: 'text-3xl md:text-[45px] mt-2' },
+  { name: 'Nuevos Vicios', slug: 'nuevos-vicios', size: 'text-3xl md:text-[45px] mt-2', breakAfter: true },
+  
+  { name: 'TranquiloRayo', slug: 'tranquilorayo', size: 'text-lg md:text-3xl mt-3' },
+  { name: 'Luna Valle', slug: 'luna-valle', size: 'text-lg md:text-3xl mt-3' },
+  { name: 'Mr.Kennedy', slug: 'mr-kennedy', size: 'text-lg md:text-3xl mt-3' }
+]
+
+const noTeLopierdas = [
+  {
+    id: 'artistas',
+    title: 'Descubre más de nuestros artistas',
+    color: '#16a0db',
+    action: () => router.push('/programa/artistas')
+  },
+  {
+    id: 'talleres',
+    title: 'Apúntate a nuestros talleres',
+    color: '#7b4a9d',
+    action: () => router.push('/programa/talleres')
+  },
+  {
+    id: 'informacion',
+    title: 'Accede a información útil',
+    color: '#15a64b',
+    action: () => router.push('/informacion/preguntas-frecuentes')
+  },
+  {
+    id: 'playlist',
+    title: 'Descubre nuestra playlist',
+    color: '#fff200',
+    action: () => window.open('https://open.spotify.com/playlist/2u7BSywQFZc1RFYALxf4bw', '_blank')
+  }
+]
 </script>
 
 <template>
   <div class="min-h-screen font-sans bg-black text-white pb-32 overflow-x-hidden">
     
-    <!-- Hero Section -->
     <section class="min-h-[80vh] flex flex-col items-center justify-center text-center px-4 relative mb-20">
       <h1 class="text-7xl md:text-9xl font-extrabold uppercase tracking-tighter mb-4">
         <span class="text-[#fff200]">ESC</span><span class="text-[#16a0db]">LAT</span>
       </h1>
-      <p class="text-2xl md:text-4xl text-gray-300 mb-10 font-medium">
-        consigue tus entradas ya
+      <p class="text-lg md:text-2xl text-gray-200 mb-10 font-medium">
+        Tal
       </p>
       <button 
         @click="navigateToEntradas"
@@ -28,7 +75,6 @@ const navigateToEntradas = () => {
       </button>
     </section>
 
-    <!-- Quienes Somos Section -->
     <section class="container mx-auto px-4 md:px-8 py-32 mb-32">
       <div class="flex flex-col md:flex-row gap-8 md:gap-16 items-start">
         <div class="w-full md:w-1/3">
@@ -36,7 +82,7 @@ const navigateToEntradas = () => {
         </div>
         <div class="w-full md:w-2/3 text-lg md:text-xl text-gray-300 space-y-6 leading-relaxed">
           <p>
-            ESCLAT es un festival que mezcla música, cultura y pensamiento crítico a través de la creatividad, la experimentación y la inclusión. Del 23 al 25 de octubre, Las Naves se convierten en un espacio donde distintas formas de expresión explotan y conviven, inspiradas en la idea del “estallido de la diversidad”.
+            ESCLAT es un festival que mezcla música, cultura y pensamiento crítico a través de la creatividad, la experimentación y la inclusión. Del 23 al 25 de octubre, Las Naves se convierten en un espacio donde distintas formas de expression explotan y conviven, inspiradas en la idea del “estallido de la diversidad”.
           </p>
           <p>
             Buscamos conectar con un público joven y crear una experiencia cultural única. Apostamos por la diversidad, la innovación y la participación colectiva como parte esencial del festival.
@@ -48,31 +94,27 @@ const navigateToEntradas = () => {
       </div>
     </section>
 
-    <!-- Preparate para Section -->
-    <section class="container mx-auto px-4 md:px-8 py-32 mb-32">
-      <h2 class="text-5xl md:text-7xl font-bold text-center text-[#fff200] uppercase mb-20">Prepárate para</h2>
+    <section class="container mx-auto px-4 md:px-8 py-20 mb-20">
+      <h2 class="text-5xl md:text-7xl font-bold text-center text-[#fff200] uppercase mb-16">Prepárate para</h2>
       
-      <!-- Artists Block -->
-      <div class="max-w-4xl mx-auto bg-[#16a0db] p-8 md:p-12 mb-20 shadow-[16px_16px_0_0_#fff200] transform -rotate-1 min-h-[400px] flex items-center justify-center">
-        <div class="flex flex-wrap justify-center items-center gap-x-6 gap-y-6 text-black font-extrabold uppercase text-center">
-          <!-- Nivel 1 -->
-          <span class="text-6xl md:text-8xl hover:scale-110 transition-transform cursor-default">Repion</span>
-          <span class="text-6xl md:text-8xl hover:scale-110 transition-transform cursor-default">Bum Motion Club</span>
-          <span class="text-6xl md:text-8xl hover:scale-110 transition-transform cursor-default">Diamante Negro</span>
+      <div class="max-w-5xl mx-auto bg-[#16a0db] p-6 md:p-12 mb-16 shadow-[16px_16px_0_0_#fff200] transform -rotate-1 min-h-[450px] flex items-center justify-center">
+        <div class="text-black font-extrabold uppercase text-center space-x-2 md:space-x-6 space-y-2">
           
-          <!-- Nivel 2 -->
-          <span class="text-4xl md:text-6xl hover:scale-110 transition-transform cursor-default mt-4">Garbi</span>
-          <span class="text-4xl md:text-6xl hover:scale-110 transition-transform cursor-default mt-4">Nuevos Vicios</span>
-          
-          <!-- Nivel 3 -->
-          <span class="text-2xl md:text-4xl hover:scale-110 transition-transform cursor-default mt-6">TranquiloRayo</span>
-          <span class="text-2xl md:text-4xl hover:scale-110 transition-transform cursor-default mt-6">Luna Valle</span>
-          <span class="text-2xl md:text-4xl hover:scale-110 transition-transform cursor-default mt-6">Mr.Kennedy</span>
+          <template v-for="artista in artistas" :key="artista.slug">
+            <span 
+              @click="() => router.push(`/programa/artistas/${artista.slug}`)" 
+              :class="[artista.size, 'inline-block hover:scale-110 transition-transform cursor-pointer hover:text-white']"
+            >
+              {{ artista.name }}
+            </span>
+
+            <br v-if="artista.breakAfter" />
+          </template>
+
         </div>
       </div>
 
-      <!-- Activities Blocks -->
-      <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+      <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div class="bg-[#7b4a9d] aspect-square flex items-center justify-center p-6 shadow-[10px_10px_0_0_#fff200] hover:-translate-y-1 hover:shadow-[14px_14px_0_0_#fff200] transition-all">
           <h3 class="text-2xl md:text-3xl font-bold uppercase text-white text-center">Charla sobre la vivienda</h3>
         </div>
@@ -94,41 +136,36 @@ const navigateToEntradas = () => {
       </div>
     </section>
 
-    <!-- No te lo pierdas Section -->
-    <section class="container mx-auto px-4 md:px-8 py-32">
-      <h2 class="text-5xl md:text-6xl font-bold text-white uppercase mb-20 text-center">No te lo pierdas</h2>
+    <section class="container mx-auto px-4 md:px-8 py-20">
+      <h2 class="text-5xl md:text-6xl font-bold text-white uppercase mb-16 text-center">No te lo pierdas</h2>
       
-      <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 justify-items-center">
-        <!-- Bloque 1 -->
-        <div class="bg-[#15a64b] w-full max-w-[300px] aspect-square p-8 flex flex-col justify-between shadow-[12px_12px_0_0_#16a0db] hover:-translate-y-1 hover:shadow-[16px_16px_0_0_#16a0db] transition-all cursor-pointer">
-          <h3 class="text-2xl font-bold text-black uppercase">Descubre más de nuestros artistas</h3>
-          <div class="flex justify-end mt-auto">
-            <div class="bg-black text-[#15a64b] rounded-full p-2">
-              <ArrowRight :size="32" />
+      <Carousel class="w-full max-w-4xl mx-auto">
+        <CarouselContent>
+          <CarouselItem v-for="item in noTeLopierdas" :key="item.id" class="md:basis-1/2 lg:basis-1/2">
+            <div 
+              @click="item.action"
+              :style="{ boxShadow: `12px 12px 0px 0px ${item.color}` }"
+              class="h-80 bg-white text-black p-8 flex flex-col justify-between cursor-pointer hover:-translate-y-1 transition-all group"
+            >
+              <h3 class="text-2xl md:text-3xl font-bold uppercase group-hover:text-white transition-colors">
+                {{ item.title }}
+              </h3>
+              <div class="flex justify-end mt-auto">
+                <div 
+                  :style="{ backgroundColor: item.color, color: 'white' }"
+                  class="rounded-full p-3 flex items-center justify-center"
+                >
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Bloque 2 -->
-        <div class="bg-[#16a0db] w-full max-w-[300px] aspect-square p-8 flex flex-col justify-between shadow-[12px_12px_0_0_#15a64b] hover:-translate-y-1 hover:shadow-[16px_16px_0_0_#15a64b] transition-all cursor-pointer">
-          <h3 class="text-2xl font-bold text-black uppercase">Apúntate a nuestros talleres</h3>
-          <div class="flex justify-end mt-auto">
-            <div class="bg-black text-[#16a0db] rounded-full p-2">
-              <ArrowRight :size="32" />
-            </div>
-          </div>
-        </div>
-
-        <!-- Bloque 3 -->
-        <div class="bg-gray-200 w-full max-w-[300px] aspect-square p-8 flex flex-col justify-between shadow-[12px_12px_0_0_#16a0db] hover:-translate-y-1 hover:shadow-[16px_16px_0_0_#16a0db] transition-all cursor-pointer">
-          <h3 class="text-2xl font-bold text-black uppercase">Descubre nuestra playlist</h3>
-          <div class="flex justify-end mt-auto">
-            <div class="bg-black text-gray-200 rounded-full p-2">
-              <ArrowRight :size="32" />
-            </div>
-          </div>
-        </div>
-      </div>
+          </CarouselItem>
+        </CarouselContent>
+        <CarouselPrevious class="left-0 border-white text-white hover:bg-white/10" />
+        <CarouselNext class="right-0 border-white text-white hover:bg-white/10" />
+      </Carousel>
     </section>
 
   </div>
