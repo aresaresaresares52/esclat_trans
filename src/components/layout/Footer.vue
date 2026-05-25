@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Github, Twitter, Linkedin, Instagram } from 'lucide-vue-next'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import logoHorizontal from '@/assets/logoHorizontal.png'
 
 const currentYear = new Date().getFullYear()
 
@@ -17,7 +18,7 @@ const socialLinks = [
     <div class="container mx-auto px-4">
       <div class="flex flex-col md:flex-row justify-between items-center gap-8">
         <div class="hidden md:block">
-          <h2 class="text-xl font-serif font-extrabold uppercase mb-2">ESC<span class="text-[#16a0db]">LAT</span></h2>
+          <img :src="logoHorizontal" alt="Esclat Logo" class="h-7 object-contain mb-2" />
           <p class="text-white/40 text-sm font-light">Festival de Música Independiente.</p>
         </div>
 
@@ -41,7 +42,7 @@ const socialLinks = [
         </div>
       </div>
 
-      <div class="mt-8 pt-8 border-t border-white/5 text-center text-xs text-white/40 tracking-widest font-serif font-normal">
+      <div class="mt-8 pt-8 border-t border-white/5 text-center text-xs text-white/40 tracking-widest font-sans font-normal">
         <p class="mb-2">Festival Esclat. Promoviendo la cultura independiente.</p>
         <p>&copy; {{ currentYear }} Todos los derechos reservados.</p>
       </div>

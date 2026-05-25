@@ -7,6 +7,7 @@ import {
   ChevronDown
 } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
+import logoHorizontal from '@/assets/logoHorizontal.png'
 
 const route = useRoute()
 const isMobileMenuOpen = ref(false)
@@ -26,12 +27,8 @@ const isActive = (path: string) => {
   <header class="fixed top-0 left-0 right-0 h-[54px] bg-black z-50 border-b border-white/10">
     <div class="container mx-auto h-full flex items-center justify-between px-4 md:px-6">
       <div class="flex items-center">
-        <router-link to="/">
-          <button class="flex items-center gap-1.5 font-bold transition-transform hover:scale-105 -ml-[4px] outline-none">
-            <span class="tracking-tight font-sans uppercase text-[22px] font-extrabold">
-              <span class="text-[#fff200]">ESC</span><span class="text-[#16a0db]">LAT</span>
-            </span>
-          </button>
+        <router-link to="/" class="outline-none">
+          <img :src="logoHorizontal" alt="Esclat Logo" class="h-12 md:h-14 object-contain transition-all duration-300 hover:scale-105" />
         </router-link>
       </div>
 

@@ -8,14 +8,14 @@ const router = useRouter()
 
 // Simulamos la base de datos de artistas
 const artistsData: Record<string, any> = {
-  'luna-valle': { name: 'Luna Valle', subtitle: 'Indie Pop Alternativo', day: 'Viernes 23', tags: ['Indie', 'Pop', 'Local'], img: 'https://via.placeholder.com/800x800/16a0db/000000?text=Luna+Valle' },
-  'diamante-negro': { name: 'Diamante Negro', subtitle: 'Post Punk / Noise', day: 'Viernes 23', tags: ['Punk', 'Noise', 'Rock'], img: 'https://via.placeholder.com/800x800/7b4a9d/000000?text=Diamante+Negro' },
-  'tranquilorayo': { name: 'TranquiloRayo', subtitle: 'Electrónica experimental', day: 'Sábado 24', tags: ['Electrónica', 'Live Set'], img: 'https://via.placeholder.com/800x800/fff200/000000?text=TranquiloRayo' },
-  'garbi': { name: 'Garbi', subtitle: 'Shoegaze ensoñador', day: 'Sábado 24', tags: ['Shoegaze', 'Dream Pop'], img: 'https://via.placeholder.com/800x800/15a64b/000000?text=Garbi' },
-  'repion': { name: 'Repion', subtitle: 'Rock Alternativo', day: 'Sábado 24', tags: ['Rock', 'Guitar'], img: 'https://via.placeholder.com/800x800/16a0db/000000?text=Repion' },
-  'mr-kennedy': { name: 'Mr.Kennedy', subtitle: 'Hip Hop / Urbana', day: 'Domingo 25', tags: ['Hip Hop', 'Rap'], img: 'https://via.placeholder.com/800x800/7b4a9d/000000?text=Mr.Kennedy' },
-  'nuevos-vicios': { name: 'Nuevos Vicios', subtitle: 'Garage Rock', day: 'Domingo 25', tags: ['Garage', 'Rock'], img: 'https://via.placeholder.com/800x800/fff200/000000?text=Nuevos+Vicios' },
-  'bum-motion-club': { name: 'Bum Motion Club', subtitle: 'Psicodelia y sintes', day: 'Domingo 25', tags: ['Psicodelia', 'Synth'], img: 'https://via.placeholder.com/800x800/15a64b/000000?text=Bum+Motion+Club' },
+  'luna-valle': { name: 'Luna Valle', subtitle: 'Indie Pop Alternativo', day: 'Viernes 23', tags: ['Indie', 'Pop', 'Local'], img: new URL('@/assets/lunavalle.jpg', import.meta.url).href },
+  'diamante-negro': { name: 'Diamante Negro', subtitle: 'Post Punk / Noise', day: 'Viernes 23', tags: ['Punk', 'Noise', 'Rock'], img: new URL('@/assets/diamanteNegro.jpg', import.meta.url).href },
+  'tranquilorayo': { name: 'TranquiloRayo', subtitle: 'Electrónica experimental', day: 'Sábado 24', tags: ['Electrónica', 'Live Set'], img: new URL('@/assets/tranquiloRayo.jfif', import.meta.url).href },
+  'garbi': { name: 'Garbi', subtitle: 'Shoegaze ensoñador', day: 'Sábado 24', tags: ['Shoegaze', 'Dream Pop'], img: new URL('@/assets/garbi.png', import.meta.url).href },
+  'repion': { name: 'Repion', subtitle: 'Rock Alternativo', day: 'Sábado 24', tags: ['Rock', 'Guitar'], img: new URL('@/assets/repion.jpg', import.meta.url).href },
+  'mr-kennedy': { name: 'Mr.Kennedy', subtitle: 'Hip Hop / Urbana', day: 'Domingo 25', tags: ['Hip Hop', 'Rap'], img: new URL('@/assets/kennedy.jfif', import.meta.url).href },
+  'nuevos-vicios': { name: 'Nuevos Vicios', subtitle: 'Garage Rock', day: 'Domingo 25', tags: ['Garage', 'Rock'], img: new URL('@/assets/nuevosVicios.jpg', import.meta.url).href },
+  'bum-motion-club': { name: 'Bum Motion Club', subtitle: 'Psicodelia y sintes', day: 'Domingo 25', tags: ['Psicodelia', 'Synth'], img: new URL('@/assets/bumMotionClub.jpg', import.meta.url).href },
 }
 
 const artistId = computed(() => route.params.id as string)
@@ -40,7 +40,7 @@ const goBack = () => {
 
       <div v-if="artist" class="flex flex-col md:flex-row gap-12 items-start">
         <!-- Foto -->
-        <div class="w-full md:w-1/2 aspect-square border-4 border-black shadow-[16px_16px_0_0_#7b4a9d] overflow-hidden">
+        <div class="w-full md:w-1/2 aspect-square border-4 border-black overflow-hidden">
           <img :src="artist.img" :alt="artist.name" class="w-full h-full object-cover" />
         </div>
 

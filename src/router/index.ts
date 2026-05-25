@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "@/pages/home/Home.vue";
 import Entradas from "@/pages/entradas/Entradas.vue";
+import Pasarela from "@/pages/entradas/Pasarela.vue";
 import ComoLlegar from "@/pages/como-llegar/ComoLlegar.vue";
 
 // Subpáginas de Programa
@@ -27,6 +28,11 @@ export const router = createRouter({
       path: '/entradas',
       name: 'entradas',
       component: Entradas
+    },
+    {
+      path: '/entradas/pasarela',
+      name: 'entradas-pasarela',
+      component: Pasarela
     },
     {
       path: '/como-llegar',

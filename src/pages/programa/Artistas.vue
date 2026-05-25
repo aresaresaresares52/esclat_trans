@@ -41,16 +41,14 @@ const navigateToArtist = (id: string) => {
 <template>
   <div class="min-h-screen font-sans bg-black text-white pb-32">
     
-    <!-- Banner Superior -->
     <div class="w-full bg-[#fff200] pt-24 pb-12 px-4 flex items-center justify-center border-b-8 border-black">
       <h1 class="text-4xl md:text-6xl font-extrabold text-black uppercase tracking-tighter text-center">
-        descubre más de nuestros artsitas
+        descubre más de nuestros artistas
       </h1>
     </div>
 
     <div class="container mx-auto px-4 md:px-8 mt-12">
       
-      <!-- Filter Bar -->
       <div class="mb-16">
         <FilterBar
           :items="artists"
@@ -61,18 +59,15 @@ const navigateToArtist = (id: string) => {
         />
       </div>
 
-      <!-- Grid de Artistas -->
       <div v-if="filteredArtists.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         <div 
           v-for="artist in filteredArtists" 
           :key="artist.id"
           @click="navigateToArtist(artist.id)"
-          class="aspect-square bg-gray-900 border-4 border-black shadow-[8px_8px_0_0_#16a0db] hover:shadow-[12px_12px_0_0_#16a0db] hover:-translate-y-2 transition-all cursor-pointer relative group overflow-hidden"
+          class="aspect-square bg-gray-900 border-4 border-black shadow-[4px_4px_0_0_#16a0db] hover:shadow-[8px_8px_0_0_#16a0db] hover:translate-x-[4px] hover:translate-y-[4px] transition-all cursor-pointer relative group overflow-hidden"
         >
-          <!-- Placeholder de Foto -->
           <img :src="artist.img" :alt="artist.name" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
           
-          <!-- Overlay Info -->
           <div class="absolute bottom-0 left-0 right-0 p-4 bg-black/80 backdrop-blur-sm border-t-2 border-[#16a0db] translate-y-full group-hover:translate-y-0 transition-transform">
             <h3 class="text-xl font-bold uppercase text-white">{{ artist.name }}</h3>
             <p class="text-[#16a0db] font-bold">{{ artist.day }}</p>

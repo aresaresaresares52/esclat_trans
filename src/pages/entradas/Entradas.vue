@@ -1,55 +1,193 @@
 <script setup lang="ts">
-import { Button } from '@/components/ui/button'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
+import { toast } from 'vue-sonner'
+
+const router = useRouter()
+
+const reservas = ref([
+  { id: '23', name: 'Pase para el día 23 de Octubre', count: 1 },
+  { id: '24', name: 'Pase para el día 24 de Octubre', count: 1 },
+  { id: '25', name: 'Pase para el día 25 de Octubre', count: 1 },
+  { id: 'abono', name: 'Abono Completo 3 Días', count: 1 }
+])
+
+const devoluciones = ref([
+  { id: '23', name: 'Devolver Pase para el día 23 de Octubre', count: 1 },
+  { id: '24', name: 'Devolver Pase para el día 24 de Octubre', count: 1 },
+  { id: '25', name: 'Devolver Pase para el día 25 de Octubre', count: 1 },
+  { id: 'abono', name: 'Devolver Abono Completo 3 Días', count: 1 }
+])
+
+const increment = (item: any) => {
+  if (item.count >= 4) {
+    toast.error('Máximo 4 entradas por usuario')
+  } else {
+    item.count++
+  }
+}
+
+const decrement = (item: any) => {
+  if (item.count > 1) {
+    item.count--
+  }
+}
+
+const handleReserva = (item: any) => {
+  const routeData = router.resolve({
+    name: 'entradas-pasarela',
+    query: {
+      tipo: 'compra',
+      nombre: item.name,
+      cantidad: item.count
+    }
+  })
+  window.open(routeData.href, '_blank')
+}
+
+const handleDevolucion = (item: any) => {
+  const routeData = router.resolve({
+    name: 'entradas-pasarela',
+    query: {
+      tipo: 'devolucion',
+      nombre: item.name,
+      cantidad: item.count
+    }
+  })
+  window.open(routeData.href, '_blank')
+}
 </script>
 
 <template>
-  <div class="min-h-screen pt-20 pb-24 px-4 md:px-8 max-w-5xl mx-auto font-sans">
-    <h1 class="text-4xl md:text-6xl font-extrabold text-[#16a0db] mb-8 uppercase tracking-tight">Entradas</h1>
+  <div class="min-h-screen pt-24 pb-32 px-4 md:px-8 max-w-5xl mx-auto font-sans text-white">
     
-    <section class="mb-16">
-      <h2 class="text-2xl font-bold text-[#fff200] mb-4">Información General</h2>
-      <p class="text-gray-300 leading-relaxed">
-        El Festival ESCLAT ofrece acceso gratuito a todos sus eventos mediante reserva previa. 
-        Asegúrate de obtener tu entrada para garantizar tu plaza, ya que el aforo es limitado.
+    <!-- SECCIÓN RESERVA -->
+    <header class="mb-12">
+      <h1 class="text-5xl md:text-7xl font-extrabold uppercase tracking-tighter text-[#16a0db] mb-2">
+        Entradas
+      </h1>
+      <p class="text-xl md:text-2xl text-[#fff200] font-bold uppercase tracking-wider">
+        Reserva tus entradas gratuitas
       </p>
-    </section>
+    </header>
 
-    <section class="mb-16">
-      <h2 class="text-2xl font-bold text-[#15a64b] mb-6">Reserva de Entradas</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        <div class="bg-white/5 border border-white/10 p-6 rounded-xl hover:border-[#16a0db] transition-colors">
-          <h3 class="text-xl font-bold text-white mb-2">23 de Octubre</h3>
-          <p class="text-gray-400 mb-4">Acceso a todas las actividades del primer día.</p>
-          <Button class="w-full bg-[#16a0db] hover:bg-[#16a0db]/80 text-black font-bold">Reservar Gratis</Button>
+    <div class="space-y-8 mb-20">
+      <div v-for="item in reservas" :key="item.id" class="space-y-4">
+        <!-- Fila de compra -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 py-2">
+          
+          <!-- Izquierda: Nombre -->
+          <div class="text-lg md:text-xl font-extrabold uppercase tracking-tight">
+            {{ item.name }}
+          </div>
+
+          <!-- Derecha: Selector y Botón -->
+          <div class="flex items-center gap-4 sm:gap-6 self-start sm:self-center">
+            
+            <!-- Selector de Cantidad -->
+            <div class="flex items-center border-2 border-[#fff200] bg-black text-white px-2 py-1 shadow-[4px_4px_0_0_#16a0db]">
+              <button 
+                @click="decrement(item)" 
+                class="p-1.5 hover:text-[#fff200] transition-colors cursor-pointer select-none"
+                :disabled="item.count <= 1"
+                :class="item.count <= 1 ? 'opacity-30 cursor-not-allowed' : ''"
+              >
+                <ChevronLeft :size="20" />
+              </button>
+              
+              <span class="w-8 text-center font-extrabold text-lg select-none">
+                {{ item.count }}
+              </span>
+              
+              <button 
+                @click="increment(item)" 
+                class="p-1.5 hover:text-[#fff200] transition-colors cursor-pointer select-none"
+              >
+                <ChevronRight :size="20" />
+              </button>
+            </div>
+
+            <!-- Botón Reservar -->
+            <button 
+              @click="handleReserva(item)"
+              class="bg-[#fff200] text-black font-extrabold text-sm md:text-base px-5 py-2.5 uppercase tracking-wider shadow-[4px_4px_0_0_#16a0db] hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#16a0db] active:translate-y-0.5 active:shadow-[2px_2px_0_0_#16a0db] transition-all cursor-pointer outline-none"
+            >
+              Reservar Entradas
+            </button>
+
+          </div>
+
         </div>
 
-        <div class="bg-white/5 border border-white/10 p-6 rounded-xl hover:border-[#7b4a9d] transition-colors">
-          <h3 class="text-xl font-bold text-white mb-2">24 de Octubre</h3>
-          <p class="text-gray-400 mb-4">Acceso a todas las actividades del segundo día.</p>
-          <Button class="w-full bg-[#7b4a9d] hover:bg-[#7b4a9d]/80 text-white font-bold">Reservar Gratis</Button>
-        </div>
-
-        <div class="bg-white/5 border border-white/10 p-6 rounded-xl hover:border-[#15a64b] transition-colors">
-          <h3 class="text-xl font-bold text-white mb-2">25 de Octubre</h3>
-          <p class="text-gray-400 mb-4">Acceso a todas las actividades del tercer día.</p>
-          <Button class="w-full bg-[#15a64b] hover:bg-[#15a64b]/80 text-white font-bold">Reservar Gratis</Button>
-        </div>
-
-        <div class="bg-[#fff200]/10 border border-[#fff200]/30 p-6 rounded-xl hover:border-[#fff200] transition-colors">
-          <h3 class="text-xl font-bold text-[#fff200] mb-2">Abono 3 Días</h3>
-          <p class="text-gray-300 mb-4">Acceso completo a todo el festival.</p>
-          <Button class="w-full bg-[#fff200] hover:bg-[#fff200]/80 text-black font-bold">Reservar Abono Completo</Button>
-        </div>
-
+        <!-- Línea horizontal amarilla -->
+        <div class="h-[2px] bg-[#fff200] w-full"></div>
       </div>
-    </section>
+    </div>
 
-    <section>
-      <h2 class="text-2xl font-bold text-[#7b4a9d] mb-4">Política de Devoluciones</h2>
-      <p class="text-gray-300 leading-relaxed">
-        Aunque las entradas son gratuitas, te pedimos que si finalmente no puedes asistir, canceles tu reserva para permitir que otra persona pueda disfrutar del evento. Puedes gestionar tus devoluciones desde el correo de confirmación.
+
+    <!-- SECCIÓN DEVOLUCIONES -->
+    <header class="mb-12 mt-20">
+      <h2 class="text-4xl md:text-6xl font-extrabold uppercase tracking-tighter text-[#7b4a9d] mb-2">
+        ¿No puedes asistir?
+      </h2>
+      <p class="text-lg md:text-xl text-gray-400 font-bold uppercase tracking-wider">
+        Sé responsable y devuelve tus entradas para que otros puedan ocupar tu lugar
       </p>
-    </section>
+    </header>
+
+    <div class="space-y-8">
+      <div v-for="item in devoluciones" :key="item.id" class="space-y-4">
+        <!-- Fila de devolución -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 py-2">
+          
+          <!-- Izquierda: Nombre de Devolución -->
+          <div class="text-lg md:text-xl font-extrabold uppercase tracking-tight font-sans">
+            {{ item.name }}
+          </div>
+
+          <!-- Derecha: Selector y Botón -->
+          <div class="flex items-center gap-4 sm:gap-6 self-start sm:self-center">
+            
+            <!-- Selector de Cantidad -->
+            <div class="flex items-center border-2 border-[#fff200] bg-black text-white px-2 py-1 shadow-[4px_4px_0_0_#16a0db]">
+              <button 
+                @click="decrement(item)" 
+                class="p-1.5 hover:text-[#fff200] transition-colors cursor-pointer select-none"
+                :disabled="item.count <= 1"
+                :class="item.count <= 1 ? 'opacity-30 cursor-not-allowed' : ''"
+              >
+                <ChevronLeft :size="20" />
+              </button>
+              
+              <span class="w-8 text-center font-extrabold text-lg select-none">
+                {{ item.count }}
+              </span>
+              
+              <button 
+                @click="increment(item)" 
+                class="p-1.5 hover:text-[#fff200] transition-colors cursor-pointer select-none"
+              >
+                <ChevronRight :size="20" />
+              </button>
+            </div>
+
+            <!-- Botón Devolver -->
+            <button 
+              @click="handleDevolucion(item)"
+              class="bg-[#fff200] text-black font-extrabold text-sm md:text-base px-5 py-2.5 uppercase tracking-wider shadow-[4px_4px_0_0_#16a0db] hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#16a0db] active:translate-y-0.5 active:shadow-[2px_2px_0_0_#16a0db] transition-all cursor-pointer outline-none"
+            >
+              Tramitar Devolución
+            </button>
+
+          </div>
+
+        </div>
+
+        <!-- Línea horizontal amarilla -->
+        <div class="h-[2px] bg-[#fff200] w-full"></div>
+      </div>
+    </div>
+
   </div>
 </template>
