@@ -22,7 +22,8 @@ export const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      meta: { fullWidth: true } // <-- HOME A PANTALLA COMPLETA
     },
     {
       path: '/entradas',
@@ -46,7 +47,8 @@ export const router = createRouter({
         {
           path: 'artistas',
           name: 'programa-artistas',
-          component: Artistas
+          component: Artistas,
+          meta: { fullWidth: true } // <-- ARTISTAS A PANTALLA COMPLETA 
         },
         {
           path: 'artistas/:id',

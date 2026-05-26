@@ -85,7 +85,7 @@ const goBack = () => {
       <!-- Botón Volver -->
       <button 
         @click="goBack" 
-        class="flex items-center gap-2 text-[#fff200] hover:text-white mb-12 transition-colors font-bold uppercase"
+        class="flex items-center gap-2 text-brand-yellow hover:text-white mb-12 transition-colors font-bold uppercase"
       >
         <ArrowLeft :size="24" /> Volver a Talleres
       </button>
@@ -99,7 +99,7 @@ const goBack = () => {
           <h2 class="text-2xl md:text-3xl text-gray-400 uppercase font-bold">{{ taller.subtitle }}</h2>
           
           <!-- Day Badge -->
-          <span class="inline-block bg-[#fff200] text-black px-4 py-2 font-bold uppercase text-lg">
+          <span class="inline-block bg-brand-yellow text-black px-4 py-2 font-bold uppercase text-lg">
             {{ taller.day }}
           </span>
         </div>
@@ -135,9 +135,9 @@ const goBack = () => {
         </div>
 
         <!-- Información sobre reservas -->
-        <div class="bg-[#7b4a9d]/10 border border-[#7b4a9d] p-6 rounded-none">
+        <div class="bg-brand-purple/10 border border-brand-purple p-6 rounded-none">
           <p class="text-gray-300 text-lg">
-            <span class="font-bold text-[#fff200]">Reservas:</span> Las reservas para acceder y participar en los talleres se gestionarán dentro del recinto 1h antes del comienzo de estos hasta completar aforo.
+            <span class="font-bold text-brand-yellow">Reservas:</span> Las reservas para acceder y participar en los talleres se gestionarán dentro del recinto 1h antes del comienzo de estos hasta completar aforo.
           </p>
         </div>
 
@@ -145,7 +145,7 @@ const goBack = () => {
         <div class="flex gap-4">
           <button 
             @click="goBack"
-            class="px-6 py-4 bg-[#fff200] text-black font-bold uppercase hover:bg-white transition-colors"
+            class="px-6 py-4 bg-brand-yellow text-black font-bold uppercase hover:bg-white transition-colors"
           >
             Volver al listado de talleres
           </button>

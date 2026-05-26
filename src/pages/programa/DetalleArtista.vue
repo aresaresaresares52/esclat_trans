@@ -33,7 +33,7 @@ const goBack = () => {
       <!-- Botón Volver -->
       <button 
         @click="goBack" 
-        class="flex items-center gap-2 text-[#fff200] hover:text-white mb-12 transition-colors font-bold uppercase"
+        class="flex items-center gap-2 text-brand-yellow hover:text-white mb-12 transition-colors font-bold uppercase"
       >
         <ArrowLeft :size="24" /> Volver a Artistas
       </button>
@@ -47,12 +47,12 @@ const goBack = () => {
         <!-- Info -->
         <div class="w-full md:w-1/2 space-y-8">
           <div>
-            <h1 class="text-5xl md:text-7xl font-extrabold uppercase text-[#16a0db] mb-2 tracking-tight">{{ artist.name }}</h1>
+            <h1 class="text-5xl md:text-7xl font-extrabold uppercase text-brand-blue mb-2 tracking-tight">{{ artist.name }}</h1>
             <h2 class="text-2xl text-gray-400 uppercase font-bold">{{ artist.subtitle }}</h2>
           </div>
 
           <div class="flex items-center gap-3">
-            <span class="bg-[#fff200] text-black px-4 py-1 font-bold uppercase text-sm border-2 border-black">
+            <span class="bg-brand-yellow text-black px-4 py-1 font-bold uppercase text-sm border-2 border-black">
               {{ artist.day }}
             </span>
           </div>
@@ -71,13 +71,13 @@ const goBack = () => {
 
           <!-- Redes Sociales -->
           <div class="flex gap-4 pt-4">
-            <a href="#" class="p-3 bg-white/5 hover:bg-[#16a0db] hover:text-black transition-colors rounded-full border border-white/10">
+            <a href="#" class="p-3 bg-white/5 hover:bg-brand-blue hover:text-black transition-colors rounded-full border border-white/10">
               <Instagram :size="24" />
             </a>
-            <a href="#" class="p-3 bg-white/5 hover:bg-[#16a0db] hover:text-black transition-colors rounded-full border border-white/10">
+            <a href="#" class="p-3 bg-white/5 hover:bg-brand-blue hover:text-black transition-colors rounded-full border border-white/10">
               <Twitter :size="24" />
             </a>
-            <a href="#" class="p-3 bg-white/5 hover:bg-[#16a0db] hover:text-black transition-colors rounded-full border border-white/10">
+            <a href="#" class="p-3 bg-white/5 hover:bg-brand-blue hover:text-black transition-colors rounded-full border border-white/10">
               <Music :size="24" />
             </a>
           </div>

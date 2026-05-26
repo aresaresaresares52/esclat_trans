@@ -9,14 +9,18 @@ import 'vue-sonner/style.css'
 <template>
   <TooltipProvider>
     <div class="min-h-screen flex flex-col bg-background text-foreground">
-      <!-- Toaster para notificaciones globales -->
       <Toaster position="top-center" expand richColors theme="dark" />
 
-      <!-- Header -->
       <Header />
 
-      <!-- Main Content Area: No fixed container to allow Hero/Portada to be full-width -->
-      <main class="flex-1 mt-16">
+      <main 
+        :class="[
+          'flex-1 mt-16 transition-all duration-300', 
+          $route.meta.fullWidth 
+            ? 'w-full' 
+            : 'pt-12 pb-20 px-4 md:px-8 max-w-7xl mx-auto w-full'
+        ]"
+      >
         <router-view v-slot="{ Component }">
           <transition 
             name="fade" 
@@ -29,7 +33,6 @@ import 'vue-sonner/style.css'
         </router-view>
       </main>
 
-      <!-- Footer -->
       <Footer />
     </div>
   </TooltipProvider>

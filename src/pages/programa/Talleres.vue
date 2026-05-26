@@ -133,15 +133,15 @@ const navigateToDetalle = (id: string) => {
           v-for="taller in filteredTalleres"
           :key="taller.id"
           @click="navigateToDetalle(taller.id)"
-          class="bg-gradient-to-br from-gray-900 to-black border border-gray-700 p-8 cursor-pointer hover:border-[#fff200] transition-all group hover:shadow-[0_0_30px_rgba(255,242,0,0.2)]"
+          class="bg-gradient-to-br from-gray-900 to-black border border-gray-700 p-8 cursor-pointer hover:border-brand-yellow transition-all group hover:shadow-[0_0_30px_rgba(242,221,32,0.2)]"
         >
           <!-- Day badge -->
-          <span class="inline-block bg-[#fff200] text-black text-xs font-extrabold px-3 py-1 mb-4 uppercase">
+          <span class="inline-block bg-brand-yellow text-black text-xs font-extrabold px-3 py-1 mb-4 uppercase">
             {{ taller.day }}
           </span>
 
           <!-- Title -->
-          <h3 class="text-2xl md:text-3xl font-bold uppercase text-white mb-2 group-hover:text-[#fff200] transition-colors">
+          <h3 class="text-2xl md:text-3xl font-bold uppercase text-white mb-2 group-hover:text-brand-yellow transition-colors">
             {{ taller.title }}
           </h3>
 
@@ -169,7 +169,7 @@ const navigateToDetalle = (id: string) => {
           </div>
 
           <!-- Arrow indicator -->
-          <div class="mt-6 text-[#fff200] opacity-0 group-hover:opacity-100 transition-opacity">
+          <div class="mt-6 text-brand-yellow opacity-0 group-hover:opacity-100 transition-opacity">
             →
           </div>
         </div>

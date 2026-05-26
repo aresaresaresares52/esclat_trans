@@ -5,7 +5,6 @@ import { FilterBar } from '@/components/ui/filter'
 
 const router = useRouter()
 
-// Datos embebidos - mapeados con imágenes de assets
 const artists = [
   { id: 'luna-valle', name: 'Luna Valle', day: 'Viernes 23', img: new URL('@/assets/lunavalle.jpg', import.meta.url).href },
   { id: 'diamante-negro', name: 'Diamante Negro', day: 'Viernes 23', img: new URL('@/assets/diamanteNegro.jpg', import.meta.url).href },
@@ -17,10 +16,8 @@ const artists = [
   { id: 'bum-motion-club', name: 'Bum Motion Club', day: 'Domingo 25', img: new URL('@/assets/bumMotionClub.jpg', import.meta.url).href },
 ]
 
-// Estado reactivo
 const filteredArtists = ref<typeof artists>(artists)
 
-// Computed properties para opciones de filtro
 const filterOptions = computed(() => {
   const days = new Set(artists.map(a => a.day))
   return Array.from(days).map(day => ({
@@ -39,15 +36,15 @@ const navigateToArtist = (id: string) => {
 </script>
 
 <template>
-  <div class="min-h-screen font-sans bg-black text-white pb-32">
+  <div class="min-h-screen font-sans bg-[#111111] text-white pb-32 w-full pt-0 px-0">
     
-    <div class="w-full bg-[#fff200] pt-24 pb-12 px-4 flex items-center justify-center border-b-8 border-black">
+    <div class="w-full bg-brand-yellow pt-24 pb-12 px-4 flex items-center justify-center border-b-8 border-black">
       <h1 class="text-4xl md:text-6xl font-extrabold text-black uppercase tracking-tighter text-center">
         descubre más de nuestros artistas
       </h1>
     </div>
 
-    <div class="container mx-auto px-4 md:px-8 mt-12">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 mt-12 w-full">
       
       <div class="mb-16">
         <FilterBar
@@ -64,13 +61,13 @@ const navigateToArtist = (id: string) => {
           v-for="artist in filteredArtists" 
           :key="artist.id"
           @click="navigateToArtist(artist.id)"
-          class="aspect-square bg-gray-900 border-4 border-black shadow-[4px_4px_0_0_#16a0db] hover:shadow-[8px_8px_0_0_#16a0db] hover:translate-x-[4px] hover:translate-y-[4px] transition-all cursor-pointer relative group overflow-hidden"
+          class="aspect-square bg-gray-900 border-4 border-black shadow-[4px_4px_0_0_theme(colors.brand.blue)] hover:shadow-[8px_8px_0_0_theme(colors.brand.blue)] hover:translate-x-[4px] hover:translate-y-[4px] transition-all cursor-pointer relative group overflow-hidden"
         >
           <img :src="artist.img" :alt="artist.name" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
           
-          <div class="absolute bottom-0 left-0 right-0 p-4 bg-black/80 backdrop-blur-sm border-t-2 border-[#16a0db] translate-y-full group-hover:translate-y-0 transition-transform">
+          <div class="absolute bottom-0 left-0 right-0 p-4 bg-black/80 backdrop-blur-sm border-t-2 border-brand-blue translate-y-full group-hover:translate-y-0 transition-transform">
             <h3 class="text-xl font-bold uppercase text-white">{{ artist.name }}</h3>
-            <p class="text-[#16a0db] font-bold">{{ artist.day }}</p>
+            <p class="text-brand-blue font-bold">{{ artist.day }}</p>
           </div>
         </div>
       </div>

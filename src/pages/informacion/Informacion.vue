@@ -4,12 +4,12 @@ import { Info, HelpCircle, Map as MapIcon } from 'lucide-vue-next'
 
 <template>
   <div class="min-h-screen pt-20 pb-24 px-4 md:px-8 max-w-5xl mx-auto font-sans">
-    <h1 class="text-4xl md:text-6xl font-extrabold text-[#15a64b] mb-8 uppercase tracking-tight">Información</h1>
+    <h1 class="text-4xl md:text-6xl font-extrabold text-brand-green mb-8 uppercase tracking-tight">Información</h1>
     
     <div class="space-y-16">
       <section>
-        <h2 class="text-2xl font-bold text-[#16a0db] mb-6 flex items-center gap-2">
-          <Info class="text-[#16a0db]" /> Normas del Recinto
+        <h2 class="text-2xl font-bold text-brand-blue mb-6 flex items-center gap-2">
+          <Info class="text-brand-blue" /> Normas del Recinto
         </h2>
         <div class="bg-white/5 border border-white/10 rounded-xl p-6">
           <ul class="list-disc list-inside space-y-3 text-gray-300">
@@ -23,8 +23,8 @@ import { Info, HelpCircle, Map as MapIcon } from 'lucide-vue-next'
       </section>
 
       <section>
-        <h2 class="text-2xl font-bold text-[#fff200] mb-6 flex items-center gap-2">
-          <HelpCircle class="text-[#fff200]" /> Preguntas Frecuentes
+        <h2 class="text-2xl font-bold text-brand-yellow mb-6 flex items-center gap-2">
+          <HelpCircle class="text-brand-yellow" /> Preguntas Frecuentes
         </h2>
         <div class="space-y-4">
           <div class="bg-white/5 border border-white/10 p-5 rounded-xl">
@@ -43,8 +43,8 @@ import { Info, HelpCircle, Map as MapIcon } from 'lucide-vue-next'
       </section>
 
       <section>
-        <h2 class="text-2xl font-bold text-[#7b4a9d] mb-6 flex items-center gap-2">
-          <MapIcon class="text-[#7b4a9d]" /> Mapa del Recinto
+        <h2 class="text-2xl font-bold text-brand-purple mb-6 flex items-center gap-2">
+          <MapIcon class="text-brand-purple" /> Mapa del Recinto
         </h2>
         <div class="bg-white/5 border border-white/10 rounded-xl p-8 flex items-center justify-center min-h-[300px]">
           <div class="text-center">

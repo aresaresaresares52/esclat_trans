@@ -60,8 +60,8 @@ const updateFilters = () => {
         :class="[
           'border-2 px-[21px] py-[13px] font-normal uppercase text-sm tracking-tight transition-all rounded-none',
           selectedFilter === '' 
-            ? 'bg-[#fff200] text-black border-[#fff200]' 
-            : 'border-[#fff200] text-[#fff200] hover:bg-[#fff200] hover:text-black'
+            ? 'bg-brand-yellow text-black border-brand-yellow' 
+            : 'border-brand-yellow text-brand-yellow hover:bg-brand-yellow hover:text-black'
         ]"
       >
         Todos
@@ -74,8 +74,8 @@ const updateFilters = () => {
         :class="[
           'border-2 px-[21px] py-[13px] font-normal uppercase text-sm tracking-tight transition-all rounded-none',
           selectedFilter === String(option.value) 
-            ? 'bg-[#fff200] text-black border-[#fff200]' 
-            : 'border-[#fff200] text-[#fff200] hover:bg-[#fff200] hover:text-black'
+            ? 'bg-brand-yellow text-black border-brand-yellow' 
+            : 'border-brand-yellow text-brand-yellow hover:bg-brand-yellow hover:text-black'
         ]"
       >
         {{ option.label }}
@@ -83,13 +83,13 @@ const updateFilters = () => {
     </div>
 
     <div class="relative w-full md:w-64">
-      <Search class="absolute right-4 top-1/2 -translate-y-1/2 text-[#fff200]" :size="18" />
+      <Search class="absolute right-4 top-1/2 -translate-y-1/2 text-brand-yellow" :size="18" />
       <input
         type="text"
         placeholder="Buscar..."
         :value="searchQuery"
         @input="handleSearch"
-        class="w-full pl-4 pr-11 py-[11px] bg-black border-2 border-[#fff200] text-[#fff200] placeholder-[#fff200]/50 font-normal uppercase focus:outline-none transition-colors rounded-none text-sm"
+        class="w-full pl-4 pr-11 py-[11px] bg-black border-2 border-brand-yellow text-brand-yellow placeholder-brand-yellow/50 font-normal uppercase focus:outline-none transition-colors rounded-none text-sm"
       />
     </div>
 

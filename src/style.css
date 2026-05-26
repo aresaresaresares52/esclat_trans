@@ -5,10 +5,10 @@
 
 @theme inline {
   --font-sans: "Inter", sans-serif;
-  --color-brand-blue: #16a0db;
-  --color-brand-purple: #7b4a9d;
-  --color-brand-yellow: #fff200;
-  --color-brand-green: #15a64b;
+  --color-brand-blue: #29abe2;
+  --color-brand-purple: #7b2fbf;
+  --color-brand-yellow: #f2dd20;
+  --color-brand-green: #58b61f;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -122,4 +122,7 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+@utility page-container {
+  @apply min-h-[calc(100vh-4rem)] bg-background text-foreground pt-12 pb-20 px-4 md:px-8 font-sans;
 }
