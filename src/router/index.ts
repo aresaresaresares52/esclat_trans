@@ -83,14 +83,14 @@ export const router = createRouter({
         {
           path: 'normas',
           name: 'informacion-normas',
-          component: Normas,
-          meta: { fullWidth: true } // <-- NORMAS A PANTALLA COMPLETA
+          component: Normas
           
         },
         {
           path: 'preguntas-frecuentes',
           name: 'informacion-preguntas',
-          component: PreguntasFrecuentes
+          component: PreguntasFrecuentes,
+          meta: { fullWidth: true } // <-- NORMAS A PANTALLA COMPLETA
         },
         {
           path: 'recinto',

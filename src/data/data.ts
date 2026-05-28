@@ -22,6 +22,7 @@ export interface Workshop {
   lugar: string
   aforo: number
   duracion: string
+  img: string
 }
 
 export interface AllowedItem {
@@ -162,13 +163,14 @@ export const workshops: Workshop[] = [
   {
     id: 'shodo',
     title: 'SHODŌ',
-    subtitle: 'Taller de escritura japonesa',
-    description: 'Un espacio para bajar el ritmo, desconectar del ruido y volver a crear con calma. Inspirado en la estética de la escritura tradicional japonesa, este taller propone una experiencia donde la paciencia, la sencillez y el detalle se convierten en parte del proceso creativo.\n\nJunto al artista Gabi descubrirás una forma más consciente y personal de expresarte, experimentando con trazos, composición y sensibilidad visual desde una mirada relajada y cercana.\n\nNo hace falta experiencia previa, solo ganas de probar algo diferente.\n\nY sí, el material lo ponemos nosotros.',
+    subtitle: 'Taller de escritura japonesa con Garbí',
+    description: 'Un espacio para bajar el ritmo, desconectar del ruido y volver a crear con calma. Inspirado en la estética de la escritura tradicional japonesa, este taller propone una experiencia donde la paciencia, la sencillez y el detalle se convierten en parte del proceso creativo.\n\nDe la mano de Carles Delgado, voz y guitarra de Garbí  descubrirás una forma más consciente y personal de expresarte, experimentando con trazos, composición y sensibilidad visual desde una mirada relajada y cercana.\n\nNo hace falta experiencia previa, solo ganas de probar algo diferente.\n\nY sí, el material lo ponemos nosotros.',
     day: 'Sábado 24',
-    horario: '18:00 - 19:0',
+    horario: '18:00 - 19:00',
     lugar: 'Sala Factoría',
     aforo: 30,
-    duracion: '1h'
+    duracion: '1h',
+    img: new URL('@/assets/shodo.jpg', import.meta.url).href
   },
   {
     id: 'charla-arte',
@@ -179,7 +181,8 @@ export const workshops: Workshop[] = [
     horario: '18:00 - 19:00',
     lugar: 'Sala Factoría',
     aforo: 100,
-    duracion: '1h'
+    duracion: '1h',
+    img: new URL('@/assets/lunavalletaller.png', import.meta.url).href
   },
   {
     id: 'charla-vivienda',
@@ -190,7 +193,8 @@ export const workshops: Workshop[] = [
     horario: '20:30 - 21:30',
     lugar: 'Sala Visual Room',
     aforo: 100,
-    duracion: '1'
+    duracion: '1h',
+    img: new URL('@/assets/charlavivienda.jpg', import.meta.url).href
   },
   {
     id: 'nostalgia-juego',
@@ -201,7 +205,8 @@ export const workshops: Workshop[] = [
     horario: '19:30 - 21:00',
     lugar: 'Sala la Polivalent',
     aforo: 40,
-    duracion: '2h'
+    duracion: '2h',
+    img: new URL('@/assets/mariokart.jpg', import.meta.url).href
   },
   {
     id: 'ultra-show',
@@ -210,9 +215,10 @@ export const workshops: Workshop[] = [
     description: 'Un escenario donde la actitud no se interpreta: se desborda. La performance de Ultraviolencia y Oxofobia llega para romper esquemas con una puesta en escena intensa, estética y cargada de mensaje.\n\nAmbas artistas forman parte de la escena drag contemporánea. Su trabajo explora la identidad, la provocación visual y la creación de personajes que juegan con lo teatral, lo corporal y lo simbólico, generando espectáculos que combinan energía, mensaje y estética sin concesiones.\n\nPrepárate para una experiencia sin filtros: potente, provocadora y completamente viva.',
     day: 'Sábado 24',
     horario: '19:45 - 20:45',
-    lugar: 'sala la Mutant',
+    lugar: 'Sala la Mutant',
     aforo: 500,
-    duracion: '1'
+    duracion: '1',
+    img: new URL('@/assets/drag.jpg', import.meta.url).href
   },
   {
     id: 'mercadillo',
@@ -223,7 +229,8 @@ export const workshops: Workshop[] = [
     horario: '18:00 - 21:30',
     lugar: 'Patio 1',
     aforo: 0,
-    duracion: 'Todo el día'
+    duracion: 'Todo el día',
+    img: new URL('@/assets/mercadillo.jpg', import.meta.url).href
   }
 ]
 
@@ -307,13 +314,6 @@ export const utilitySections: UtilitySection[] = [
     ]
   },
   {
-    title: 'POR FAVOR, DÉJALO EN CASA',
-    content: [
-      'Está prohibido introducir alcohol, dispositivos pirotécnicos, objetos de vidrio, paraguas, objetos o herramientas que containengan materiales explosivos, venenosos o inflamables (por ejemplo, utensilios de cocina accionados con gas), armas de fuego, cuchillos, cuchillos mariposa, navajas, sprays de gas, porras expandibles, cadenas metálicas de más de 50 cm de longitud, estrellas arrojadizas, resorteras y otros objetos que supongan una amenaza especial para la seguridad pública según lo definido en las leyes y normativas pertinentes. Estos productos deben entregarse al servicio de seguridad para su inspección en la entrada.',
-      'Consumir, vender o promocionar drogas está estrictamente prohibido en ESCLAT. No lleves ningún tipo de narcóticos a la zona del festival. Para más información, por favor lea la Política sobre Drogas: Tolerancia Cero en Salud y Seguridad.'
-    ]
-  },
-  {
     title: 'MASCOTAS EN EL FESTIVAL',
     content: [
       'Además de los perros de asistencia según lo definido por la ley, los perros guía y los perros policía, no está permitido llevar mascotas al festival por su propio bien, ya que no es un ambiente adecuado dado el alto nivel de ruido y la gran cantidad de gente que podrán encontrar.'
@@ -338,6 +338,12 @@ export const safetySections: SafetySection[] = [
       'Si has sufrido una situación incómoda, has presenciado una agresión, necesitas denunciar una actitud machista o LGTBIQ+fóbica, o simplemente buscas un espacio tranquilo para desahogarte y recibir apoyo, estamos aquí para ti. Puedes encontrarnos en varios puntos estratégicos de ESCLAT.',
       'En nuestro Punto Violeta te ofreceremos información, acompañamiento y orientación inmediata.',
       'Aquí no juzgamos a nadie: te escuchamos, te protegemos y te ayudamos. Si necesitas asistencia psicológica urgente o activar un protocolo de seguridad, dirígete directamente a nuestro Espacio de Cuidado y Crisis. Tu bienestar es nuestra prioridad.'
+    ]
+  },
+  {
+    title: 'POR FAVOR, DÉJALO EN CASA',
+    content: [
+      'Está prohibido introducir alcohol, dispositivos pirotécnicos, objetos de vidrio, paraguas, objetos o herramientas que containengan materiales explosivos, venenosos o inflamables (por ejemplo, utensilios de cocina accionados con gas), armas de fuego, cuchillos, cuchillos mariposa, navajas, sprays de gas, porras expandibles, cadenas metálicas de más de 50 cm de longitud, estrellas arrojadizas, resorteras y otros objetos que supongan una amenaza especial para la seguridad pública según lo definido en las leyes y normativas pertinentes. Estos productos deben entregarse al servicio de seguridad para su inspección en la entrada.'
     ]
   },
   {

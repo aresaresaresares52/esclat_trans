@@ -16,10 +16,9 @@ const goBack = () => {
 </script>
 
 <template>
-  <div class="min-h-screen font-sans bg-black text-white pt-24 pb-32">
-    <div class="container mx-auto px-4 md:px-8">
+  <div class="font-sans bg-black text-white">
+    <div class="container mx-auto">
       
-      <!-- Botón Volver -->
       <button 
         @click="goBack" 
         class="flex items-center gap-2 text-brand-yellow hover:text-white mb-12 transition-colors font-bold uppercase"
@@ -28,12 +27,10 @@ const goBack = () => {
       </button>
 
       <div v-if="artist" class="flex flex-col md:flex-row gap-12 items-start">
-        <!-- Foto -->
         <div class="w-full md:w-1/2 aspect-square border-4 border-black overflow-hidden">
           <img :src="artist.img" :alt="artist.name" class="w-full h-full object-cover" />
         </div>
 
-        <!-- Info -->
         <div class="w-full md:w-1/2 space-y-8">
           <div>
             <h1 class="text-5xl md:text-7xl font-extrabold uppercase text-brand-blue mb-2 tracking-tight">{{ artist.name }}</h1>
@@ -46,28 +43,25 @@ const goBack = () => {
             </span>
           </div>
 
-          <!-- Etiquetas -->
           <div class="flex flex-wrap gap-2">
             <span v-for="tag in artist.tags" :key="tag" class="px-3 py-1 border border-white/20 text-gray-300 text-sm uppercase font-bold">
               #{{ tag }}
             </span>
           </div>
 
-          <!-- Descripción -->
           <div class="text-gray-300 leading-relaxed text-lg whitespace-pre-wrap">
             {{ artist.description }}
           </div>
 
-          <!-- Redes Sociales -->
-          <div class="flex gap-4 pt-4">
-            <a href="#" class="p-3 bg-white/5 hover:bg-brand-blue hover:text-black transition-colors rounded-full border border-white/10">
-              <Instagram :size="24" />
+          <div class="flex gap-6 pt-4">
+            <a href="#" class="text-white hover:text-brand-blue transition-colors">
+              <Instagram :size="28" />
             </a>
-            <a href="#" class="p-3 bg-white/5 hover:bg-brand-blue hover:text-black transition-colors rounded-full border border-white/10">
-              <Twitter :size="24" />
+            <a href="#" class="text-white hover:text-brand-blue transition-colors">
+              <Twitter :size="28" />
             </a>
-            <a href="#" class="p-3 bg-white/5 hover:bg-brand-blue hover:text-black transition-colors rounded-full border border-white/10">
-              <Music :size="24" />
+            <a href="#" class="text-white hover:text-brand-blue transition-colors">
+              <Music :size="28" />
             </a>
           </div>
         </div>

@@ -97,7 +97,7 @@ const closeWindow = () => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-black text-white py-16 px-4 md:px-8 font-sans">
+  <div class="min-h-screen bg-background text-white py-16 px-4 md:px-8 font-sans">
     <div class="max-w-xl mx-auto bg-white text-black border-4 border-black p-6 md:p-10 shadow-[12px_12px_0_0_theme(colors.brand.blue)]">
       
       <!-- Logo Esclat Pasarela -->
@@ -107,7 +107,7 @@ const closeWindow = () => {
         </h1>
         <button 
           @click="closeWindow" 
-          class="text-sm font-bold uppercase border-2 border-black px-3 py-1.5 hover:bg-black hover:text-white transition-colors"
+          class="text-sm font-bold uppercase border-2 border-black px-3 py-1.5 hover:bg-background hover:text-white transition-colors"
         >
           Cerrar
         </button>
@@ -143,7 +143,7 @@ const closeWindow = () => {
           
           <button 
             @click="closeWindow" 
-            class="w-full bg-black text-white font-extrabold text-xl py-4 uppercase border-4 border-black hover:bg-brand-blue hover:text-black transition-colors shadow-[6px_6px_0_0_theme(colors.brand.yellow)]"
+            class="w-full bg-background text-white font-extrabold text-xl py-4 uppercase border-4 border-black hover:bg-brand-blue hover:text-black transition-colors shadow-[6px_6px_0_0_theme(colors.brand.yellow)]"
           >
             Finalizar y Cerrar
           </button>
@@ -249,7 +249,7 @@ const closeWindow = () => {
             <div class="bg-gray-100 border-2 border-black p-4 space-y-2">
               <label class="block text-xs font-black uppercase tracking-wider text-gray-700">Verificación Humana</label>
               <div class="flex items-center gap-4">
-                <span class="font-mono font-extrabold text-lg bg-black text-white px-3 py-1.5 border border-black">
+                <span class="font-mono font-extrabold text-lg bg-background text-white px-3 py-1.5 border border-black">
                   ¿Cuánto es {{ numA }} + {{ numB }}?
                 </span>
                 <input 
@@ -309,7 +309,7 @@ const closeWindow = () => {
           
           <button 
             @click="closeWindow" 
-            class="w-full bg-black text-white font-extrabold text-xl py-4 uppercase border-4 border-black hover:bg-brand-purple hover:text-white transition-colors shadow-[6px_6px_0_0_theme(colors.brand.yellow)]"
+            class="w-full bg-background text-white font-extrabold text-xl py-4 uppercase border-4 border-black hover:bg-brand-purple hover:text-white transition-colors shadow-[6px_6px_0_0_theme(colors.brand.yellow)]"
           >
             Finalizar y Cerrar
           </button>
@@ -346,7 +346,7 @@ const closeWindow = () => {
             
             <button 
               @click="handleReturnEmailSubmit" 
-              class="w-full bg-brand-purple text-white font-extrabold text-xl py-4 uppercase border-4 border-black hover:bg-black hover:text-brand-purple transition-all shadow-[6px_6px_0_0_theme(colors.brand.yellow)] hover:shadow-[3px_3px_0_0_theme(colors.brand.yellow)] hover:translate-x-[3px] hover:translate-y-[3px] cursor-pointer"
+              class="w-full bg-brand-purple text-white font-extrabold text-xl py-4 uppercase border-4 border-black hover:bg-background hover:text-brand-purple transition-all shadow-[6px_6px_0_0_theme(colors.brand.yellow)] hover:shadow-[3px_3px_0_0_theme(colors.brand.yellow)] hover:translate-x-[3px] hover:translate-y-[3px] cursor-pointer"
             >
               Enviar código de verificación
             </button>

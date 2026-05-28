@@ -58,7 +58,7 @@ const updateFilters = () => {
       <button
         @click="selectButtonFilter('')"
         :class="[
-          'border-2 px-[21px] py-[13px] font-normal uppercase text-sm tracking-tight transition-all rounded-none',
+          'border-2 px-[21px] py-[13px] font-bold uppercase text-sm tracking-tight transition-all rounded-none',
           selectedFilter === '' 
             ? 'bg-brand-yellow text-black border-brand-yellow' 
             : 'border-brand-yellow text-brand-yellow hover:bg-brand-yellow hover:text-black'
@@ -72,7 +72,7 @@ const updateFilters = () => {
         :key="option.value"
         @click="selectButtonFilter(option.value)"
         :class="[
-          'border-2 px-[21px] py-[13px] font-normal uppercase text-sm tracking-tight transition-all rounded-none',
+          'border-2 px-[21px] py-[13px] font-bold uppercase text-sm tracking-tight transition-all rounded-none',
           selectedFilter === String(option.value) 
             ? 'bg-brand-yellow text-black border-brand-yellow' 
             : 'border-brand-yellow text-brand-yellow hover:bg-brand-yellow hover:text-black'

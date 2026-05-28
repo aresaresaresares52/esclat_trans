@@ -14,7 +14,7 @@ const socialLinks = [
 </script>
 
 <template>
-  <footer class="bg-black border-t border-white/5 py-12">
+  <footer class="bg-background border-t border-white/5 py-12">
     <div class="container mx-auto px-4">
       <div class="flex flex-col md:flex-row justify-between items-center gap-8">
         <div class="hidden md:block">
@@ -35,7 +35,7 @@ const socialLinks = [
                 <component :is="link.icon" :size="20" />
               </a>
             </TooltipTrigger>
-            <TooltipContent class="bg-black border-[#00FF00] text-white text-[10px] uppercase tracking-widest font-bold">
+            <TooltipContent class="bg-background border-[#00FF00] text-white text-[10px] uppercase tracking-widest font-bold">
               <p>{{ link.name }}</p>
             </TooltipContent>
           </Tooltip>
