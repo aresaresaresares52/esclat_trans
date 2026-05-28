@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// Programa Component
+import { artists, specialEvents, programSchedule } from '@/data/data'
 </script>
 
 <template>
@@ -9,8 +9,8 @@
     <section class="mb-16">
       <h2 class="text-2xl font-bold text-brand-blue mb-6">Artistas</h2>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div v-for="i in 8" :key="i" class="bg-white/5 aspect-square rounded-lg flex items-center justify-center border border-white/10 hover:border-brand-purple transition-colors cursor-pointer">
-          <span class="text-gray-400 font-bold">Artista {{ i }}</span>
+        <div v-for="artist in artists" :key="artist.id" class="bg-white/5 aspect-square rounded-lg flex items-center justify-center border border-white/10 hover:border-brand-purple transition-colors cursor-pointer">
+          <span class="text-gray-400 font-bold text-center text-sm">{{ artist.name }}</span>
         </div>
       </div>
     </section>
@@ -18,13 +18,9 @@
     <section class="mb-16">
       <h2 class="text-2xl font-bold text-brand-yellow mb-6">Eventos Especiales</h2>
       <div class="space-y-4">
-        <div class="p-6 bg-white/5 border-l-4 border-brand-yellow rounded-r-lg">
-          <h3 class="text-xl font-bold text-white mb-2">Inauguración Oficial</h3>
-          <p class="text-gray-400">Apertura de puertas y bienvenida institucional.</p>
-        </div>
-        <div class="p-6 bg-white/5 border-l-4 border-brand-green rounded-r-lg">
-          <h3 class="text-xl font-bold text-white mb-2">Clausura y Fiesta Final</h3>
-          <p class="text-gray-400">Concierto de cierre y despedida del festival.</p>
+        <div v-for="event in specialEvents" :key="event.title" :class="`p-6 bg-white/5 border-l-4 rounded-r-lg border-brand-${event.color}`">
+          <h3 class="text-xl font-bold text-white mb-2">{{ event.title }}</h3>
+          <p class="text-gray-400">{{ event.description }}</p>
         </div>
       </div>
     </section>
@@ -33,46 +29,14 @@
       <h2 class="text-2xl font-bold text-brand-green mb-6">Programación por Días</h2>
       
       <div class="space-y-8">
-        <div>
-          <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
-            <span class="bg-brand-blue text-black px-3 py-1 rounded">23 OCT</span> Miércoles
+        <div v-for="day in programSchedule" :key="day.date" class="space-y-6">
+          <h3 :class="`text-xl font-bold text-white mb-4 flex items-center gap-2 bg-brand-${day.color} text-black px-3 py-1 rounded w-fit`">
+            <span class="px-3 py-1">{{ day.date }}</span> {{ day.dayLabel }}
           </h3>
           <div class="pl-4 border-l-2 border-white/10 space-y-4">
-            <div>
-              <p class="text-brand-blue font-bold">18:00 - 20:00</p>
-              <p class="text-gray-300">Apertura y primera actuación</p>
-            </div>
-            <div>
-              <p class="text-brand-blue font-bold">20:30 - 22:30</p>
-              <p class="text-gray-300">Concierto Principal</p>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
-            <span class="bg-brand-purple text-white px-3 py-1 rounded">24 OCT</span> Jueves
-          </h3>
-          <div class="pl-4 border-l-2 border-white/10 space-y-4">
-            <div>
-              <p class="text-brand-purple font-bold">17:00 - 19:00</p>
-              <p class="text-gray-300">Talleres interactivos</p>
-            </div>
-            <div>
-              <p class="text-brand-purple font-bold">19:30 - 23:00</p>
-              <p class="text-gray-300">Sesión de Djs</p>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
-            <span class="bg-brand-green text-white px-3 py-1 rounded">25 OCT</span> Viernes
-          </h3>
-          <div class="pl-4 border-l-2 border-white/10 space-y-4">
-            <div>
-              <p class="text-brand-green font-bold">18:00 - 00:00</p>
-              <p class="text-gray-300">Fiesta de Clausura</p>
+            <div v-for="event in day.events" :key="event.time">
+              <p :class="`text-brand-${day.color} font-bold`">{{ event.time }}</p>
+              <p class="text-gray-300">{{ event.title }}</p>
             </div>
           </div>
         </div>

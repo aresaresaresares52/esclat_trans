@@ -138,7 +138,7 @@ const enlaces = [
             <p class="text-sm text-gray-400">
               Estaciones de bicis prácticamente en la puerta
             </p>
-            <p class="text-brand-green font-bold text-sm">📍 {{ transporte.bici[0].distancia }}</p>
+            <p class="text-brand-green font-bold text-sm">📍 {{ transporte.bici[0]?.distancia }}</p>
           </div>
         </div>
 

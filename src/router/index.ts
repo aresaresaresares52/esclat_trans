@@ -18,6 +18,9 @@ import Recinto from "@/pages/informacion/Recinto.vue";
 
 export const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
+  scrollBehavior() {
+    return { top: 0 }
+  },
   routes: [
     {
       path: '/',
@@ -58,7 +61,8 @@ export const router = createRouter({
         {
           path: 'talleres',
           name: 'programa-talleres',
-          component: Talleres
+          component: Talleres,
+          meta: { fullWidth: true }
         },
         {
           path: 'talleres/:id',
@@ -79,7 +83,9 @@ export const router = createRouter({
         {
           path: 'normas',
           name: 'informacion-normas',
-          component: Normas
+          component: Normas,
+          meta: { fullWidth: true } // <-- NORMAS A PANTALLA COMPLETA
+          
         },
         {
           path: 'preguntas-frecuentes',

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Info, HelpCircle, Map as MapIcon } from 'lucide-vue-next'
+import { basicRules, faqs } from '@/data/data'
 </script>
 
 <template>
@@ -13,11 +14,7 @@ import { Info, HelpCircle, Map as MapIcon } from 'lucide-vue-next'
         </h2>
         <div class="bg-white/5 border border-white/10 rounded-xl p-6">
           <ul class="list-disc list-inside space-y-3 text-gray-300">
-            <li>No se permite la entrada de bebidas alcohólicas del exterior.</li>
-            <li>Se ruega mantener el respeto y el silencio durante las actuaciones.</li>
-            <li>Está prohibido fumar en los espacios cerrados.</li>
-            <li>La organización se reserva el derecho de admisión.</li>
-            <li>Sigue en todo momento las indicaciones del personal de seguridad.</li>
+            <li v-for="(rule, index) in basicRules" :key="index">{{ rule.text }}</li>
           </ul>
         </div>
       </section>
@@ -27,17 +24,9 @@ import { Info, HelpCircle, Map as MapIcon } from 'lucide-vue-next'
           <HelpCircle class="text-brand-yellow" /> Preguntas Frecuentes
         </h2>
         <div class="space-y-4">
-          <div class="bg-white/5 border border-white/10 p-5 rounded-xl">
-            <h3 class="font-bold text-white mb-2">¿Tengo que imprimir la entrada?</h3>
-            <p class="text-gray-400">No es necesario. Puedes mostrar el código QR de tu entrada directamente desde tu teléfono móvil.</p>
-          </div>
-          <div class="bg-white/5 border border-white/10 p-5 rounded-xl">
-            <h3 class="font-bold text-white mb-2">¿A qué hora abren las puertas?</h3>
-            <p class="text-gray-400">Las puertas se abrirán 30 minutos antes del inicio del primer evento de cada día.</p>
-          </div>
-          <div class="bg-white/5 border border-white/10 p-5 rounded-xl">
-            <h3 class="font-bold text-white mb-2">¿Hay acceso para personas con movilidad reducida?</h3>
-            <p class="text-gray-400">Sí, todas las instalaciones de Las Naves están adaptadas y son accesibles.</p>
+          <div v-for="(faq, index) in faqs" :key="index" class="bg-white/5 border border-white/10 p-5 rounded-xl">
+            <h3 class="font-bold text-white mb-2">{{ faq.question }}</h3>
+            <p class="text-gray-400">{{ faq.answer }}</p>
           </div>
         </div>
       </section>

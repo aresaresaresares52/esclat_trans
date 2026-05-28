@@ -2,19 +2,9 @@
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { FilterBar } from '@/components/ui/filter'
+import { artists } from '@/data/data'
 
 const router = useRouter()
-
-const artists = [
-  { id: 'luna-valle', name: 'Luna Valle', day: 'Viernes 23', img: new URL('@/assets/lunavalle.jpg', import.meta.url).href },
-  { id: 'diamante-negro', name: 'Diamante Negro', day: 'Viernes 23', img: new URL('@/assets/diamanteNegro.jpg', import.meta.url).href },
-  { id: 'tranquilorayo', name: 'TranquiloRayo', day: 'Sábado 24', img: new URL('@/assets/tranquiloRayo.jfif', import.meta.url).href },
-  { id: 'garbi', name: 'Garbi', day: 'Sábado 24', img: new URL('@/assets/garbi.png', import.meta.url).href },
-  { id: 'repion', name: 'Repion', day: 'Sábado 24', img: new URL('@/assets/repion.jpg', import.meta.url).href },
-  { id: 'mr-kennedy', name: 'Mr.Kennedy', day: 'Domingo 25', img: new URL('@/assets/kennedy.jfif', import.meta.url).href },
-  { id: 'nuevos-vicios', name: 'Nuevos Vicios', day: 'Domingo 25', img: new URL('@/assets/nuevosVicios.jpg', import.meta.url).href },
-  { id: 'bum-motion-club', name: 'Bum Motion Club', day: 'Domingo 25', img: new URL('@/assets/bumMotionClub.jpg', import.meta.url).href },
-]
 
 const filteredArtists = ref<typeof artists>(artists)
 
@@ -61,7 +51,7 @@ const navigateToArtist = (id: string) => {
           v-for="artist in filteredArtists" 
           :key="artist.id"
           @click="navigateToArtist(artist.id)"
-          class="aspect-square bg-gray-900 border-4 border-black shadow-[4px_4px_0_0_theme(colors.brand.blue)] hover:shadow-[8px_8px_0_0_theme(colors.brand.blue)] hover:translate-x-[4px] hover:translate-y-[4px] transition-all cursor-pointer relative group overflow-hidden"
+          class="aspect-square bg-gray-900 shadow-[8px_8px_0_0_theme(colors.brand.blue)] hover:shadow-[12px_12px_0_0_theme(colors.brand.blue)] hover:translate-x-[4px] hover:translate-y-[4px] transition-all cursor-pointer relative group overflow-hidden"
         >
           <img :src="artist.img" :alt="artist.name" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
           
