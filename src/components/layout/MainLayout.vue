@@ -15,7 +15,7 @@ import 'vue-sonner/style.css'
 
       <main 
         :class="[
-          'flex-1 mt-16 transition-all duration-300', 
+          'flex-1 transition-all duration-300', 
           $route.meta.fullWidth 
             ? 'w-full' 
             : 'pt-12 pb-20 px-4 md:px-8 max-w-7xl mx-auto w-full'
@@ -39,6 +39,13 @@ import 'vue-sonner/style.css'
 </template>
 
 <style scoped>
+:global(html) {
+  scrollbar-width: none;
+}
+
+:global(html::-webkit-scrollbar) {
+  display: none;
+}
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s ease;

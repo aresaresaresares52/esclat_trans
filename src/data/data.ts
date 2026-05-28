@@ -8,8 +8,8 @@ export interface Artist {
   genre: string
   description: string
   day: string
-  tags: string[]
   img: string
+  audio?: string
 }
 
 export interface Workshop {
@@ -83,8 +83,8 @@ export const artists: Artist[] = [
     genre: 'Dream pop / Indie pop',
     description: 'Luna Valle ha irrumpido en la escena valenciana construyendo un universo sonoro propio, donde la sensibilidad y la emoción conviven y crean letras que dejan huella.\n\nDe la mano de Tórtel en la producción, Luna Valle transforma experiencias íntimas en paisajes musicales envolventes, capaces de conectar con quien escucha desde el primer momento.\n\nAdemás de su actuación, participará el viernes en el debate "¿Es necesario venderte para tu arte?", una conversación abierta sobre creación e identidad.',
     day: 'Viernes 23',
-    tags: ['Dream Pop', 'Indie Pop', 'Local'],
-    img: new URL('@/assets/lunavalle.jpg', import.meta.url).href
+    img: new URL('@/assets/lunavalle.jpg', import.meta.url).href,
+    audio: '/audio/repioncancion.mp3'
   },
   {
     id: 'diamante-negro',
@@ -92,8 +92,8 @@ export const artists: Artist[] = [
     genre: 'Punk pop / Punk / Indie rock',
     description: 'Diamante Negro nace de la unión entre un fisioterapeuta, un enfermero y un técnico de sonido que se encontraron entre amistades, escenarios y las interminables noches de la escena barcelonesa.\n\nLa primera vez que tocaron juntos ni siquiera sabían qué era exactamente Diamante Negro. Y quizá todavía no lo sepan del todo. Pero precisamente ahí reside su esencia: una banda que huye de las etiquetas y convierte la libertad absoluta en su forma de hacer música.\n\nDiamante Negro llega dispuesto a convertir el caos en celebración.',
     day: 'Viernes 23',
-    tags: ['Punk Pop', 'Indie Rock', 'Barcelona'],
-    img: new URL('@/assets/diamanteNegro.jpg', import.meta.url).href
+    img: new URL('@/assets/diamanteNegro.jpg', import.meta.url).href,
+    audio: '/audio/diamantenegrocancion.mp3'
   },
   {
     id: 'tranquilorayo',
@@ -101,17 +101,17 @@ export const artists: Artist[] = [
     genre: 'Rock / Indie / Indie rock',
     description: 'Cinco hombres de mediana edad, mucho sentido del humor y una única misión: pasarlo bien haciendo música. TranquiloRayo! llega desde Murcia con un directo desenfadado, energético y lleno de personalidad.\n\nConvierten cada canción en una explosión de guitarras, ironía y buen rollo, demostrando que el indie también puede ser espontáneo, divertido y totalmente imprevisible.',
     day: 'Sábado 24',
-    tags: ['Rock', 'Indie', 'Murcia'],
-    img: new URL('@/assets/tranquiloRayo.jfif', import.meta.url).href
+    img: new URL('@/assets/tranquiloRayo.jfif', import.meta.url).href,
+    audio: '/audio/tranquilorayocancion.mp3'
   },
   {
     id: 'garbi',
     name: 'Garbi',
     genre: 'Alt rock / Emo / Post-todo',
-    description: 'Garbi nace de la unión de cuatro amigos de Valencia que hacen música desde la honestidad, sin normas ni etiquetas que limiten hacia dónde puede ir cada canción.\n\nEntre guitarras envolventes, sensibilidad emo y una mezcla constante de estilos, Garbi construye un sonido intenso y atmosférico que se mueve entre la nostalgia y la explosión emocional.\n\nAdemás de su actuación, participarán el sábado en el Taller de japonés.',
+    description: 'Garbi nace de la unión de cuatro amigos de Valencia que hacen música desde la honestidad, sin normas ni etiquetas que limiten hacia dónde puede ir cada canción.\n\nEntre guitarras envolventes, sensibilidad emo y una mezcla constante de estilos, Garbi construye un sonido intenso y atmosférico que se mueve entre la nostalgia y la explosión emocional.\n\nAdemás de su actuación, participarán el sábado en el Taller de escritura japonesa a las 16h.',
     day: 'Sábado 24',
-    tags: ['Alt Rock', 'Emo', 'Valencia'],
-    img: new URL('@/assets/garbi.png', import.meta.url).href
+    img: new URL('@/assets/garbi.png', import.meta.url).href,
+    audio: '/audio/garbicancion.mp3'
   },
   {
     id: 'repion',
@@ -119,8 +119,8 @@ export const artists: Artist[] = [
     genre: 'Rock alternativo / Grunge rock',
     description: 'Repion, formado por las hermanas Marina y Teresa Iñesta, se ha convertido en una de las propuestas más sólidas y enérgicas del panorama independiente nacional.\n\nCon una clara influencia del rock de los años 90, Repion combina melodías irresistibles con una fuerza arrolladora sobre el escenario, moviéndose entre la sensibilidad y la distorsión con total naturalidad.',
     day: 'Sábado 24',
-    tags: ['Rock Alternativo', 'Grunge', 'España'],
-    img: new URL('@/assets/repion.jpg', import.meta.url).href
+    img: new URL('@/assets/repion.jpg', import.meta.url).href,
+    audio: '/audio/repioncancion.mp3'
   },
   {
     id: 'mr-kennedy',
@@ -128,8 +128,8 @@ export const artists: Artist[] = [
     genre: 'Indie / Indie rock',
     description: 'Mr. Kennedy se ha convertido en una de las propuestas más frescas de la escena indie valenciana gracias a su energía sobre el escenario y a una identidad que solo puede entenderse viviéndola en persona.\n\nTras una gran cantidad de conciertos, su música sigue sin estar disponible en plataformas de streaming. No hay adelantos, algoritmos ni reproducción automática: Mr. Kennedy solo existe plenamente en directo.',
     day: 'Domingo 25',
-    tags: ['Indie', 'Indie Rock', 'Valencia'],
-    img: new URL('@/assets/kennedy.jfif', import.meta.url).href
+    img: new URL('@/assets/kennedy.jfif', import.meta.url).href,
+    audio: '/audio/mrkennedycancion.mp3'
   },
   {
     id: 'nuevos-vicios',
@@ -137,8 +137,9 @@ export const artists: Artist[] = [
     genre: 'Indie rock / Pop rock',
     description: 'Nuevos Vicios nace en Valencia a principios de 2023 fusionando la fuerza del rock alternativo de los 90 con la nueva ola del indie nacional.\n\nSu sonido combina guitarras intensas y enérgicas con estribillos inmediatos, melodías pop y letras que hablan de amor, frustración y malestar generacional, conectando con una escena que busca autenticidad y emoción sin filtros.\n\nCon la experiencia acumulada en proyectos anteriores, Nuevos Vicios lleva al directo una propuesta sólida, potente y hecha para dejar huella sobre el escenario.',
     day: 'Domingo 25',
-    tags: ['Indie Rock', 'Pop Rock', 'Valencia'],
-    img: new URL('@/assets/nuevosVicios.jpg', import.meta.url).href
+
+    img: new URL('@/assets/nuevosVicios.jpg', import.meta.url).href,
+    audio: '/audio/nuevosvicioscancion.mp3'
   },
   {
     id: 'bum-motion-club',
@@ -146,8 +147,8 @@ export const artists: Artist[] = [
     genre: 'Dream pop / Shoegaze',
     description: 'Bum Motion Club ha construido uno de los universos sonoros más personales de la escena independiente actual, moviéndose entre la delicadeza emocional y una contundencia cada vez más arrolladora.\n\nDesde Aranjuez, el proyecto ha evolucionado hasta convertirse en un auténtico secreto a voces dentro del panorama nacional, destacando por una propuesta donde conviven distorsiones afiladas, melodías adictivas y atmósferas soñadoras cargadas de tensión y sensibilidad.',
     day: 'Domingo 25',
-    tags: ['Dream Pop', 'Shoegaze', 'Aranjuez'],
-    img: new URL('@/assets/bumMotionClub.jpg', import.meta.url).href
+    img: new URL('@/assets/bumMotionClub.jpg', import.meta.url).href,
+    audio: '/audio/bummotionclubcancion.mp3'
   }
 ]
 

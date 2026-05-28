@@ -100,22 +100,21 @@ const noTeLopierdas = [
 <template>
   <div class="min-h-screen font-sans bg-[#111111] text-white pb-32 overflow-x-hidden w-full">
     
-    <section class="relative w-full flex flex-col items-center justify-center text-center px-4 mb-20" :style="{ backgroundImage: `url(${portada})`, backgroundSize: 'cover', backgroundPosition: 'center' }">
-      <div class="absolute inset-0 bg-black/40"></div>
-      <div class="relative z-10 py-32 flex flex-col items-center justify-center">
-        <img :src="logoHorizontal" alt="Esclat Logo" class="w-72 sm:w-96 md:w-[450px] lg:w-[550px] object-contain mb-8 max-w-full" />
-        <p class="text-lg md:text-2xl text-gray-200 mb-10 font-medium">
-          Festival de Música, Culture y Pensamiento Crítico
-        </p>
-        <button 
-          @click="navigateToEntradas"
-          class="bg-brand-yellow text-black font-extrabold text-xl md:text-2xl py-4 px-10 rounded-none uppercase transition-transform hover:scale-105 shadow-[8px_8px_0_0_theme(colors.brand.purple)] hover:shadow-[4px_4px_0_0_theme(colors.brand.purple)] cursor-pointer"
-        >
-          Consigue tu entrada
-        </button>
-      </div>
-    </section>
+<section class="relative w-full flex flex-col items-center justify-center text-center px-4 mb-20" :style="{ backgroundImage: `url(${portada})`, backgroundSize: '100% 100%', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', aspectRatio: '1920/1080' }">
 
+  <div class="relative z-10 py-32 flex flex-col items-center justify-center">
+    <img :src="logoHorizontal" alt="Esclat Logo" class="w-72 sm:w-96 md:w-[470px] lg:w-[550px] object-contain mb-8 max-w-full" />
+    <p class="text-[10px] md:text-2xl text-gray-200 mb-10 font-medium">
+      Festival de Música, Cultura y Pensamiento Crítico
+    </p>
+    <button 
+      @click="navigateToEntradas"
+      class="bg-brand-yellow text-black font-bold text-xl md:text-2xl py-4 px-10 rounded-none uppercase transition-transform hover:scale-105 shadow-[4px_4px_0_0_theme(colors.brand.purple)] hover:shadow-[6px_6px_0_0_theme(colors.brand.purple)] cursor-pointer"
+    >
+      Consigue tu entrada
+    </button>
+  </div>
+</section>
     <section class="max-w-7xl mx-auto px-4 md:px-8 py-20 mb-32 w-full bg-[#111111]">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 items-start relative">
         
