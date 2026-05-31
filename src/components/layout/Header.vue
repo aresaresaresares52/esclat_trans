@@ -24,7 +24,7 @@ const isActive = (path: string) => {
 </script>
 
 <template>
-  <header class="fixed top-0 left-0 right-0 h-[54px] bg-black z-50 border-b border-white/10">
+  <header class="fixed top-0 left-0 right-0 h-13.5 bg-background z-50 border-b border-white/10">
     <div class="container mx-auto h-full flex items-center justify-between px-4 md:px-6">
       <div class="flex items-center">
         <router-link to="/" class="outline-none">

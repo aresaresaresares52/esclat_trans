@@ -18,7 +18,11 @@ import Recinto from "@/pages/informacion/Recinto.vue";
 
 export const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
-  scrollBehavior() {
+  scrollBehavior(to) {
+    if (to.hash) {
+      return { el: to.hash, behavior: 'smooth' }
+    }
+
     return { top: 0 }
   },
   routes: [

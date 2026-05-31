@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
-import { ArrowLeft } from 'lucide-vue-next'
+import { ArrowDown, ArrowLeft, House } from 'lucide-vue-next'
 import { computed } from 'vue'
 import { getWorkshopById } from '@/data/data'
 
@@ -13,18 +13,33 @@ const taller = computed(() => getWorkshopById(tallerId.value))
 const goBack = () => {
   router.push('/programa/talleres')
 }
+
+const goHome = () => {
+  router.push({ path: '/', hash: '#home-talleres' })
+}
 </script>
 
 <template>
-  <div class="font-sans bg-black text-white">
-    <div class="container mx-auto">
+  <div class="font-sans bg-background text-white">
+    <div class="container mx-auto pt-8">
       
-      <button 
-        @click="goBack" 
-        class="flex items-center gap-2 text-brand-yellow hover:text-white mb-12 transition-colors font-bold uppercase"
-      >
-        <ArrowLeft :size="24" /> Volver a Talleres
-      </button>
+      <div class="flex items-center justify-between gap-4 mb-6">
+        <button
+          @click="goBack"
+          class="flex items-center gap-2 text-brand-yellow hover:text-white mb-6 transition-colors font-bold uppercase"
+        >
+          <ArrowLeft :size="24" /> Volver a Talleres
+        </button>
+
+        <button
+          @click="goHome"
+          class="text-brand-yellow hover:text-white mb-6 transition-colors"
+          aria-label="Ir al home"
+          title="Ir al home"
+        >
+          <House :size="30" />
+        </button>
+      </div>
 
       <div v-if="taller" class="flex flex-col gap-12">
         <div class="flex flex-col md:flex-row gap-12 items-start">
@@ -32,7 +47,7 @@ const goBack = () => {
             <img :src="taller.img" :alt="taller.title" class="w-full h-full object-cover" />
           </div>
 
-          <div class="w-full md:w-1/2 space-y-8">
+          <div class="relative w-full md:w-1/2 lg:self-stretch space-y-8">
             <div>
               <h1 class="text-5xl md:text-7xl font-extrabold uppercase text-brand-blue mb-2 tracking-tight">{{ taller.title }}</h1>
               <h2 class="text-2xl text-gray-400 uppercase font-bold">{{ taller.subtitle }}</h2>
@@ -61,6 +76,10 @@ const goBack = () => {
                 <p class="text-gray-500 text-xs uppercase font-bold mb-1">Aforo</p>
                 <p class="text-white text-lg font-semibold">{{ taller.aforo > 0 ? taller.aforo + ' personas' : 'Sin límite' }}</p>
               </div>
+            </div>
+
+            <div class="pointer-events-none absolute bottom-0 left-0 hidden text-brand-yellow lg:flex" aria-hidden="true">
+              <ArrowDown :size="34" class="animate-bounce" />
             </div>
           </div>
         </div>

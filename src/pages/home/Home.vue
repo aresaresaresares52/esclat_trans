@@ -12,6 +12,14 @@ import { ArrowRight, Play, ChevronDown } from 'lucide-vue-next'
 import logoHorizontal from '@/assets/logoHorizontal.png'
 import miniatura from '@/assets/miniatura.webp'
 import portada from '@/assets/portada.png'
+import charlabox from '@/assets/charlabox.png'
+import mercadillobox from '@/assets/mercadillobox.png'
+import shodobox from '@/assets/shodobox.png'
+import competibox from '@/assets/competibox.png'
+import debatebox from '@/assets/debatebox.png'
+import dragbox from '@/assets/dragbox.png'
+import forma1 from '@/data/forma1.png'
+import forma2 from '@/data/forma2.png'
 
 const router = useRouter()
 
@@ -46,7 +54,7 @@ const navigateToEntradas = () => {
 const artistas = [
   { name: 'Repion', slug: 'repion', size: 'text-6xl md:text-7xl mb-4', breakAfter: true },
   { name: 'Bum Motion Club', slug: 'bum-motion-club', size: 'text-5xl md:text-6xl' },
-  { name: 'Diamante Negro', slug: 'diamante-genero', size: 'text-5xl md:text-6xl', breakAfter: true },
+  { name: 'Diamante Negro', slug: 'diamante-negro', size: 'text-5xl md:text-6xl', breakAfter: true },
   
   { name: 'Garbi', slug: 'garbi', size: 'text-3xl md:text-[45px] mt-2' },
   { name: 'Nuevos Vicios', slug: 'nuevos-vicios', size: 'text-3xl md:text-[45px] mt-2', breakAfter: true },
@@ -64,6 +72,15 @@ const talleres = [
   { title: 'Debate sobre arte', id: 'charla-arte' },
   { title: 'Performance Drag', id: 'ultra-show' }
 ]
+
+const tallerImages: Record<string, string> = {
+  'charla-vivienda': charlabox,
+  mercadillo: mercadillobox,
+  shodo: shodobox,
+  'nostalgia-juego': competibox,
+  'charla-arte': debatebox,
+  'ultra-show': dragbox
+}
 
 const navigateToTaller = (tallerId: string) => {
   router.push(`/programa/talleres/${tallerId}`)
@@ -202,8 +219,11 @@ const noTeLopierdas = [
     <section class="max-w-7xl mx-auto px-4 md:px-8 py-20 mb-20 w-full bg-[#111111]">
       <h2 class="text-5xl md:text-7xl font-bold text-center text-brand-yellow uppercase mb-16">Prepárate para</h2>
       
-      <div class="max-w-5xl mx-auto bg-brand-blue p-6 md:p-12 mb-16 shadow-[16px_16px_0_0_theme(colors.brand.yellow)] transform -rotate-1 min-h-[450px] flex items-center justify-center">
-        <div class="text-black font-extrabold uppercase text-center space-x-2 md:space-x-6 space-y-2">
+      <div id="home-artistas" class="relative max-w-5xl mx-auto bg-brand-blue p-6 md:p-12 mb-16 shadow-[16px_16px_0_0_theme(colors.brand.yellow)] transform -rotate-1 min-h-[450px] flex items-center justify-center overflow-hidden scroll-mt-24">
+        <img :src="forma1" alt="" class="pointer-events-none absolute right-0 top-0 w-24 md:w-36 lg:w-44 z-0" aria-hidden="true" />
+        <img :src="forma2" alt="" class="pointer-events-none absolute left-0 top-1/2 w-20 md:w-32 lg:w-40 -translate-y-1/2 z-0" aria-hidden="true" />
+
+        <div class="relative z-10 text-black font-extrabold uppercase text-center space-x-2 md:space-x-6 space-y-2">
           <template v-for="artista in artistas" :key="artista.slug">
             <span 
               @click="() => router.push(`/programa/artistas/${artista.slug}`)" 
@@ -216,14 +236,14 @@ const noTeLopierdas = [
         </div>
       </div>
 
-      <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div id="home-talleres" class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 scroll-mt-24">
         <div 
           v-for="taller in talleres" 
           :key="taller.id"
           @click="navigateToTaller(taller.id)"
-          class="bg-brand-purple aspect-square flex items-center justify-center p-6 shadow-[10px_10px_0_0_theme(colors.brand.yellow)] hover:-translate-y-1 hover:shadow-[14px_14px_0_0_theme(colors.brand.yellow)] transition-all cursor-pointer"
+          class="aspect-square cursor-pointer overflow-hidden transition-all duration-300 hover:brightness-125"
         >
-          <h3 class="text-2xl md:text-3xl font-bold uppercase text-white text-center">{{ taller.title }}</h3>
+          <img :src="tallerImages[taller.id]" :alt="taller.title" class="w-full h-full object-cover" />
         </div>
       </div>
     </section>

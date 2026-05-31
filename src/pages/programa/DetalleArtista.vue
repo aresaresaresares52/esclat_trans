@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
-import { ArrowLeft, Instagram, Twitter, Music, Volume2, VolumeX } from 'lucide-vue-next'
+import { ArrowLeft, House, Instagram, Twitter, Music, Volume2, VolumeX } from 'lucide-vue-next'
 import { computed, ref, watch, onUnmounted } from 'vue'
 import { getArtistById } from '@/data/data'
 
@@ -57,18 +57,33 @@ onUnmounted(() => {
 const goBack = () => {
   router.push('/programa/artistas')
 }
+
+const goHome = () => {
+  router.push({ path: '/', hash: '#home-artistas' })
+}
 </script>
 
 <template>
   <div class="font-sans bg-background text-white">
     <div class="container mx-auto pt-8">
       
-      <button 
-        @click="goBack" 
-        class="flex items-center gap-2 text-brand-yellow hover:text-white  mb-6 transition-colors font-bold uppercase"
-      >
-        <ArrowLeft :size="24" /> Volver a Artistas
-      </button>
+      <div class="flex items-center justify-between gap-4 mb-6">
+        <button
+          @click="goBack"
+          class="flex items-center gap-2 text-brand-yellow hover:text-white mb-7 transition-colors font-bold uppercase"
+        >
+          <ArrowLeft :size="24" /> Volver a Artistas
+        </button>
+
+        <button
+          @click="goHome"
+          class="text-brand-yellow hover:text-white mb-7 transition-colors"
+          aria-label="Ir al home"
+          title="Ir al home"
+        >
+          <House :size="30" />
+        </button>
+      </div>
 
       <div v-if="artist" class="flex flex-col md:flex-row gap-12 items-start">
       <div class="w-full md:w-1/2 aspect-square border-4 border-black overflow-hidden">
