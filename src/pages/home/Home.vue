@@ -9,7 +9,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel'
 import { ArrowRight, Play, ChevronDown } from 'lucide-vue-next'
-import logoHorizontal from '@/assets/logoHorizontal.png'
+import LogoHorizontal from '@/components/LogoHorizontal.vue'
 import miniatura from '@/assets/miniatura.webp'
 import portada from '@/assets/portada.png'
 import charlabox from '@/assets/charlabox.png'
@@ -120,7 +120,7 @@ const noTeLopierdas = [
 <section class="relative w-full flex flex-col items-center justify-center text-center px-4" :style="{ backgroundImage: `url(${portada})`, backgroundSize: '100% 100%', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', aspectRatio: '1920/1080' }">
 
   <div class="relative z-10 pt-0 pb-32 flex flex-col items-center justify-center">
-    <img :src="logoHorizontal" alt="Esclat Logo" class="w-72 sm:w-96 md:w-[470px] lg:w-[550px] object-contain mb-8 max-w-full" />
+    <LogoHorizontal class="w-72 sm:w-96 md:w-[470px] lg:w-[550px] object-contain mb-8 max-w-full" />
     <p class="text-[10px] md:text-2xl text-gray-200 mb-10 font-medium">
       Festival de Música, Cultura y Pensamiento Crítico
     </p>
@@ -161,7 +161,7 @@ const noTeLopierdas = [
         <div class="w-full md:col-span-1 relative z-30">
           <button 
             @click="isQuienesSomosOpen = !isQuienesSomosOpen"
-            class="flex items-center justify-between w-full text-left font-bold uppercase text-white hover:text-brand-yellow transition-colors group cursor-pointer border-b-4 border-dashed border-neutral-800 pb-2"
+            class="flex items-center justify-between w-full text-left font-sans2 font-regular text-white hover:text-brand-yellow transition-colors group cursor-pointer border-b-4 border-dashed border-neutral-800 pb-2"
           >
             <h2 class="text-4xl md:text-5xl lg:text-6xl leading-tight select-none">¿Quiénes somos?</h2>
             <ChevronDown 
@@ -183,7 +183,7 @@ const noTeLopierdas = [
               >
                 <Play class="w-8 h-8 fill-white stroke-3 ml-1" /> 
               </button>
-              <span v-else class="z-10 text-brand-purple font-regular tracking-wider animate-pulse">
+              <span v-else class="z-10 text-brand-purple tracking-wider animate-pulse">
                 Cargando vídeo...
               </span>
             </div>
@@ -217,7 +217,7 @@ const noTeLopierdas = [
     </section>
 
     <section class="max-w-7xl mx-auto px-4 md:px-8 py-10 mb-20 w-full bg-[#111111]">
-      <h2 class="text-5xl md:text-7xl font-bold text-center text-brand-yellow uppercase mb-16">Prepárate para</h2>
+      <h2 class="text-5xl md:text-7xl font-sans2 font-regular text-center text-white mb-16">Prepárate para</h2>
       
       <div id="home-artistas" class="relative max-w-5xl mx-auto bg-brand-blue p-6 md:p-12 mb-16 shadow-[16px_16px_0_0_theme(colors.brand.yellow)] transform -rotate-1 min-h-[450px] flex items-center justify-center overflow-hidden scroll-mt-24">
         <img :src="forma1" alt="" class="pointer-events-none absolute right-0 top-0 w-24 md:w-36 lg:w-44 z-0" aria-hidden="true" />
@@ -249,7 +249,7 @@ const noTeLopierdas = [
     </section>
 
     <section class="max-w-7xl mx-auto px-4 md:px-8 py-20 w-full bg-[#111111]">
-      <h2 class="text-5xl md:text-6xl font-bold text-white uppercase mb-16 text-center">No te lo pierdas</h2>
+      <h2 class="text-5xl md:text-6xl font-sans2 font-regular text-white  mb-16 text-center">No te lo pierdas</h2>
       
       <Carousel class="w-full max-w-6xl mx-auto px-12">
         <CarouselContent class="-ml-6 pb-12 pt-6">

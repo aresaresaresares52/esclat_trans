@@ -1,49 +1,83 @@
 <script setup lang="ts">
-import { MapPin, Bus, Bike, Car } from 'lucide-vue-next'
-import { ref } from 'vue'
+import { MapPin, Bus, Bike, Car, TramFront, CircleParking, TriangleAlert } from 'lucide-vue-next'
+import { markRaw, ref } from 'vue'
+import type { Component } from 'vue'
+
+type TransportePublicoItem = {
+  
+  lineas?: string
+  texto?: string
+  distancia: string
+  descripcion?: string
+}
+
+type TransportePublico = {
+  id: string
+  titulo: string
+  icono: Component
+  titleClass: string
+  cardClass: string
+  items: TransportePublicoItem[]
+}
 
 // Datos embebidos para transporte público
-const transporte = ref({
-  metro: [
-    {
-      nombre: 'Marítim',
-      lineas: 'Metro 5 y 7 | Tranvía 6 y 8',
-      distancia: '5-7 minutos andando',
-      descripcion: 'La estación principal y más cercana'
-    },
-    {
-      nombre: 'Grau La Marina',
-      lineas: 'Tranvía 6 y 8',
-      distancia: '10 minutes a pie',
-      descripcion: null
-    }
-  ],
-  autobus: [
-    {
-      numeros: '4, 19, 30, 92, 94, 95, 99', 
-      distancia: 'Menos de 1 min hasta 3-4 mins',
-      descripcion: 'Las paradas más directas te dejan a menos de 1 minuto'
-    }
-  ],
-  bici: [
-    {
-      nombre: 'Valenbisi',
-      distancia: '1-4 minutos a pie',
-      descripcion: 'Estaciones de bicis prácticamente en la puerta'
-    }
-  ]
-})
+const transportePublico = ref<TransportePublico[]>([
+  {
+    id: 'metro',
+    titulo: 'Metro / Tranvía',
+    icono: markRaw(TramFront),
+    titleClass: 'text-brand-green',
+    cardClass: 'border-white/30 hover:border-white/60',
+    items: [
+      {
+        texto: 'Estación de Marítim',
+        lineas: 'Metro: líneas 5 y 7 | Tranvía: líneas 6 y 8.',
+        distancia: '6 minutos andando.',
+        descripcion: 'La estación principal y más cercana.'
+      }
+    ]
+  },
+  {
+    id: 'autobus',
+    titulo: 'Autobús (EMT)',
+    icono: markRaw(Bus),
+    titleClass: 'text-brand-green',
+    cardClass: 'border-white/30 hover:border-white/60',
+    items: [
+      {
+
+        texto: 'Las líneas 4, 19, 30, 92, 94, 95, 99 tienen paradas muy próximas.',
+        distancia: 'A menos de 300 metros.',
+        descripcion: 'La parada Joan Verdaguer - Isaac Peral te deja en la misma calle.'
+      }
+    ]
+  },
+  {
+    id: 'bici',
+    titulo: 'Valenbisi',
+    icono: markRaw(Bike),
+    titleClass: 'text-brand-green',
+    cardClass: 'border-white/30 hover:border-white/60',
+    items: [
+      {
+        texto: 'Estaciones de bicis prácticamente en la puerta.',
+        distancia: 'Muy cerca.',
+        descripcion: 'También disponemos de aparcamiento gratuito para bicis y patinetes.'
+      }
+    ]
+  }
+])
 
 const enlaces = [
   {
     titulo: 'Líneas de Autobús (EMT)',
     url: 'https://geoportal.emtvalencia.es/visor?lang=es',
-    icono: '🚌'
+    icono: Bus
   },
   {
     titulo: 'Mapa MetroValencia',
     url: 'https://www.redtransporte.com/valencia/metro-valencia/plano.html',
-    icono: '🚇'
+    icono: TramFront
   }
 ]
 </script>
@@ -69,9 +103,9 @@ const enlaces = [
               href="https://maps.app.goo.gl/jGXJi7pM7tWMZi3a7" 
               target="_blank" 
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 bg-brand-blue text-black font-extrabold px-6 py-3 uppercase text-sm hover:bg-brand-blue/80 transition-all hover:scale-105 w-fit"
+              class="inline-flex items-center gap-2 bg-brand-green text-background font-medium px-6 py-2.5  text-sm hover:bg-brand-green/80 transition-all hover:scale-105 w-fit"
             >
-              <MapPin :size="20" /> Abrir en Google Maps
+              <MapPin :size="17" /> Abrir en Google Maps
             </a>
           </div>
         </div>
@@ -94,66 +128,56 @@ const enlaces = [
 
     <section class="max-w-7xl mx-auto mb-24">
       <div class="mb-12">
-        <h2 class="text-3xl md:text-4xl font-extrabold text-brand-green mb-2 uppercase flex items-center gap-3">
+        <h2 class="text-3xl md:text-4xl font-bold text-brand-green mb-2 uppercase flex items-center gap-3">
           <Bus :size="32" /> Ven en Transporte Público
         </h2>
-        <p class="text-gray-300 text-lg">Múltiples opciones para llegar de forma fácil y sostenible</p>
+        <p class="text-gray-300 text-lg">Múltiples opciones para llegar de manera fácil y sostenible.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        
-        <div class="bg-gradient-to-br from-white/5 to-white/[0.02] border border-brand-blue/30 p-6 rounded-lg hover:border-brand-blue/60 transition-all">
-          <h3 class="text-2xl font-bold text-brand-blue mb-4 flex items-center gap-2">
-            <span>🚇</span> Metro / Tranvía
+        <div
+          v-for="transporte in transportePublico"
+          :key="transporte.id"
+          class="bg-gradient-to-br from-white/5 to-white/[0.02] border p-6 rounded-lg transition-all"
+          :class="transporte.cardClass"
+        >
+          <h3
+            class="text-2xl font-bold mb-4 flex items-center gap-2"
+            :class="transporte.titleClass"
+          >
+            <component :is="transporte.icono" class="w-6 h-6 shrink-0" />
+            {{ transporte.titulo }}
           </h3>
+
           <div class="space-y-5">
-            <div v-for="(metro, idx) in transporte.metro" :key="idx" class="space-y-2">
-              <p class="font-extrabold text-white text-lg">{{ metro.nombre }}</p>
-              <p class="text-sm text-gray-400">{{ metro.lineas }}</p>
-              <p class="text-brand-green font-bold text-sm">📍 {{ metro.distancia }}</p>
-              <p v-if="metro.descripcion" class="text-xs text-gray-400">{{ metro.descripcion }}</p>
-              <div v-if="idx < transporte.metro.length - 1" class="border-t border-white/10 mt-4 pt-4"></div>
+            <div
+              v-for="(item, idx) in transporte.items"
+              :key="`${transporte.id}-${idx}`"
+              class="space-y-2"
+            >
+              <p v-if="item.texto" class="text-md font-medium text-white">{{ item.texto }}</p>
+              <p v-if="item.lineas" class="text-md font-medium text-white">{{ item.lineas }}</p>
+        
+              <p class="flex items-center gap-1.5 text-sm text-brand-green font-regular">
+                {{ item.distancia }}
+              </p>
+              <p v-if="item.descripcion" class="text-sm text-white">{{ item.descripcion }}</p>
+              <div v-if="idx < transporte.items.length - 1" class="border-t border-white/10 mt-4 pt-4"></div>
             </div>
           </div>
         </div>
-
-        <div class="bg-gradient-to-br from-white/5 to-white/[0.02] border border-brand-yellow/30 p-6 rounded-lg hover:border-brand-yellow/60 transition-all">
-          <h3 class="text-2xl font-bold text-brand-yellow mb-4 flex items-center gap-2">
-            <span>🚌</span> Autobús (EMT)
-          </h3>
-          <div class="space-y-3">
-            <p class="text-sm text-gray-400">
-              Las líneas <span class="font-bold text-white">{{ transporte.autobus[0]?.numeros }}</span> tienen paradas muy próximas.
-            </p>
-            <p class="text-brand-green font-bold text-sm">📍 {{ transporte.autobus[0]?.distancia }}</p>
-            <p class="text-xs text-gray-400">{{ transporte.autobus[0]?.descripcion }}</p>
-          </div>
-        </div>
-
-        <div class="bg-gradient-to-br from-white/5 to-white/[0.02] border border-brand-purple/30 p-6 rounded-lg hover:border-brand-purple/60 transition-all">
-          <h3 class="text-2xl font-bold text-brand-purple mb-4 flex items-center gap-2">
-            <Bike :size="24" /> Valenbisi
-          </h3>
-          <div class="space-y-3">
-            <p class="text-sm text-gray-400">
-              Estaciones de bicis prácticamente en la puerta
-            </p>
-            <p class="text-brand-green font-bold text-sm">📍 {{ transporte.bici[0]?.distancia }}</p>
-          </div>
-        </div>
-
       </div>
 
-      <div class="flex flex-col sm:flex-row gap-4">
+      <div class="flex flex-col sm:flex-row gap-12">
         <a 
           v-for="enlace in enlaces"
           :key="enlace.url"
           :href="enlace.url"
           target="_blank"
           rel="noopener noreferrer"
-          class="flex-1 flex items-center justify-center gap-3 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 p-4 rounded-lg transition-all hover:scale-105 text-white font-bold uppercase text-sm"
+          class="flex-1 flex items-center justify-center gap-3 bg-white/10 hover:bg-brand-green border-white/20 hover:border-white/40 p-4 rounded-lg transition-all hover:scale-105  text-white font-medium uppercase text-sm"
         >
-          <span class="text-xl">{{ enlace.icono }}</span>
+          <component :is="enlace.icono" class="w-5 h-5 shrink-0" />
           {{ enlace.titulo }}
         </a>
       </div>
@@ -161,35 +185,38 @@ const enlaces = [
 
     <section class="max-w-7xl mx-auto">
       <div class="mb-12">
-        <h2 class="text-3xl md:text-4xl font-extrabold text-brand-yellow mb-2 uppercase flex items-center gap-3">
+        <h2 class="text-3xl md:text-4xl font-bold text-brand-green mb-2 uppercase flex items-center gap-3">
           <Car :size="32" /> Si Vienes en Coche
         </h2>
-        <p class="text-gray-300 text-lg">Sostenibilidad y seguridad en primer lugar</p>
       </div>
 
       <div class="space-y-6">
         
         <div class="bg-brand-green/10 border-l-4 border-brand-green p-6 rounded-r-lg">
           <p class="text-lg text-white leading-relaxed">
-            En <span class="font-bold">ESCLAT</span> cuidamos el planeta. Si no vienes en transporte público, <span class="font-bold">hazlo sosteniblemente:</span> ven en bici o patinete (tenemos aparcabicis justo al lado del recinto) o <span class="font-bold">comparte coche con tus amigos.</span>
+            En ESCLAT cuidamos el planeta. Si no vienes en transporte público, <span class="font-bold">hazlo sosteniblemente:</span> ven en bici o patinete, contamos con aparcabicis dentro del recinto, o comparte coche con tus amigos.
           </p>
         </div>
 
         <div class="bg-white/5 border border-white/10 p-6 rounded-lg">
-          <h3 class="text-xl font-bold text-white mb-4">📍 Aparcamiento</h3>
-          <p class="text-gray-300 leading-relaxed mb-4">
+          <h3 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+            <CircleParking class="w-6 h-6 shrink-0 text-brand-blue" />
+            Aparcamiento
+          </h3>
+          <p class="text-lg text-gray-300 leading-relaxed mb-4">
             Si tu única opción es acudir en coche, te recomendamos utilizar <span class="font-bold text-white">parking público o las zonas habilitadas cercanas al recinto</span>, ya que encontrar aparcamiento en la calle puede resultar complicado dependiendo de la hora y la afluencia de público.
           </p>
-          <p class="text-gray-300 leading-relaxed">
+          <p class="text-lg text-gray-300 leading-relaxed">
             El acceso en coche es sencillo desde distintos puntos de la ciudad, aunque <span class="font-bold text-white">recomendamos priorizar el transporte público</span> para evitar tráfico y facilitar la llegada al evento.
           </p>
         </div>
 
         <div class="bg-red-500/10 border border-red-500/30 p-6 rounded-lg">
-          <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
-            ⚠️ Importante
+          <h3 class="text-xl font-semibold text-white mb-3 flex items-center gap-2">
+            <TriangleAlert class="w-6 h-6 shrink-0 text-red-400" />
+            Importante
           </h3>
-          <p class="text-lg text-white font-bold leading-relaxed">
+          <p class="text-lg text-white leading-relaxed">
             Si bebes alcohol, <span class="text-red-400">no conduzcas.</span> Utiliza transporte público, taxi o comparte viaje con una persona que no haya consumido alcohol.
           </p>
         </div>

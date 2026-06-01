@@ -19,7 +19,7 @@ const cambiarBloque = (bloque: 'entradas' | 'comida_bebida' | 'util') => {
     <div class="relative max-w-6xl mx-auto pt-16 pb-24 px-4 md:px-0">
       
       <header class="text-center mb-16">
-        <h1 class="text-5xl md:text-7xl font-extrabold uppercase tracking-tighter text-white mb-4">
+        <h1 class="text-5xl md:text-7xl font-sans2 font-medium  tracking-tighter text-white mb-4">
           PREGUNTAS <span class="text-brand-yellow">FRECUENTES</span>
         </h1>
         <p class="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto">

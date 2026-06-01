@@ -1,10 +1,19 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@font-face {
+  font-family: "Righteous";
+  src: url("./assets/fonts/Righteous-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --font-sans: "Inter", sans-serif;
+  --font-sans2: "Righteous", sans-serif;
   --color-brand-blue: #29abe2;
   --color-brand-purple: #7b2fbf;
   --color-brand-yellow: #f2dd20;
@@ -123,6 +132,12 @@
     @apply bg-background text-foreground;
   }
 }
+
+@utility font-sans2 {
+  font-family: "Righteous", sans-serif;
+  letter-spacing: 0.01em;
+}
+
 @utility page-container {
   @apply min-h-[calc(100vh-4rem)] bg-background text-foreground pt-12 pb-20 px-4 md:px-8 font-sans;
 }

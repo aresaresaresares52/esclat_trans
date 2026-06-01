@@ -52,6 +52,24 @@ export interface SafetySection {
   content: string[]
 }
 
+export interface NormasSubsection {
+  id: string
+  title: string
+  content?: string[]
+  highlight?: string
+  allowedItems?: string[]
+  notAllowedItems?: string[]
+}
+
+export interface NormasSection {
+  id: string
+  title: string
+  icon: 'shield' | 'heart'
+  itemClass: string
+  contentClass: string
+  subsections: NormasSubsection[]
+}
+
 export interface ProgramEvent {
   title: string
   description: string
@@ -362,6 +380,103 @@ export const safetySections: SafetySection[] = [
       'En las entradas, un sistema de \'check-in\' ayuda a identificar si el usuario autorizado quiere entrar. El entretenimiento seguro lo proporcionan el personal de seguridad y médico, y trabajamos con la policía y el Centro Antiterrorista.',
       'Antes de salir de casa, deberías revisar la lista de artículos que pueden y no pueden llevarse al festival. En el control de seguridad de la entrada, los objetos que no puedan entrar serán filtrados por tu seguridad.',
       'Asegúrate de llevar un documento de identidad con foto al entrar, lo necesitarás para poder entrar.'
+    ]
+  }
+]
+
+export const normasSeguridadSections: NormasSection[] = [
+  {
+    id: 'normas-generales',
+    title: '1. Normas de seguridad y control de objetos',
+    icon: 'shield',
+    itemClass: 'bg-background',
+    contentClass: 'bg-background',
+    subsections: [
+      {
+        id: 'sub-objetos',
+        title: 'Lista de objetos permitidos y prohibidos',
+        allowedItems: [
+          'Mochilas pequeñas hasta 24 litros (52cm alto, 25 cm ancho, 22 cm profundidad máximo), bolsos, riñoneras.',
+          'Protector solar en crema pequeño tipo viaje (no aerosol).',
+          'Cámaras de foto compactas.'
+        ],
+        notAllowedItems: [
+          'Recipientes de vidrio o latas.',
+          'Objetos punzantes o peligrosos.',
+          'Objetos cortantes ni armas de ningún tipo.',
+          'Sillas de playa, sombrillas, hamacas.',
+          'Aerosoles (inflamables).',
+          'Bicicletas, patines, skates, cascos de moto.',
+          'Botellas, petacas, cantimploras.',
+          'Fuegos artificiales, bengalas, petardos.',
+          'Palo selfie, trípodes.',
+          'Punteros láser, linternas.',
+          'Cámaras profesionales de foto/vídeo.',
+          'Mochilas grandes y maletas.',
+          'Instrumentos musicales.',
+          'Animales.',
+          'Drogas ilegales.'
+        ]
+      },
+      {
+        id: 'sub-casa',
+        title: 'Por favor déjalo en casa',
+        content: [
+          'Está prohibido introducir alcohol, dispositivos pirotécnicos, objetos de vidrio, paraguas, objetos o herramientas que contengan materiales explosivos, venenosos o inflamables (por ejemplo, utensilios de cocina accionados con gas), armas de fuego, cuchillos, cuchillos mariposa, navajas, sprays de gas, porras expandibles, cadenas metálicas de más de 50 cm de longitud, estrellas arrojadizas, resorteras y otros objetos que supongan una amenaza especial para la seguridad pública según lo definido en las leyes y normativas pertinentes. Estos productos deben entregarse al servicio de seguridad para su inspección en la entrada.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'salud-bienestar',
+    title: '2. Salud, prevención y primeros auxilios',
+    icon: 'heart',
+    itemClass: 'bg-background',
+    contentClass: 'bg-background',
+    subsections: [
+      {
+        id: 'sub-cuidados',
+        title: 'Cuidados de ESCLAT',
+        content: [
+          'Nuestro programa Cuidados de ESCLAT ofrece una solución a cualquier problema que puedas tener durante el festival. Para que puedas sentirte seguro y cómodo. Si necesitas apoyo mental o una buena conversación, buscas ayuda con un problema médico especial o has pasado por algo desagradable, puedes encontrarnos en muchos lugares de ESCLAT. Nuestros Puntos de Atención y el Punto de Información en la entrada principal te ayudarán a encontrar la ayuda adecuada o a orientarte. Aquí, nuestro Punto de Atención Mental ofrece asesoramiento mental y charlas de apoyo y prevención. Si sientes que no puedes manejar tu carga mental, visita nuestro Punto de Crisis.'
+        ]
+      },
+      {
+        id: 'sub-violeta',
+        title: 'Punto Violeta',
+        content: [
+          'Dentro del programa de cuidados nace nuestro Punto Violeta para que disfrutes con total tranquilidad. Queremos que te sientas libre, segur@ y respetad@ en todo momento. Si has sufrido una situación incómoda, has presenciado una agresión, necesitas denunciar una actitud machista o LGTBIQ+fóbica, o simplemente buscas un espacio tranquilo para desahogarte y recibir apoyo, estamos aquí para ti. Puedes encontrarnos en varios puntos estratégicos de ESCLAT. En nuestro Punto Violeta te ofreceremos información, acompañamiento y orientación inmediata. Aquí no juzgamos a nadie: te escuchamos, te protegemos y te ayudamos. Si necesitas asistencia psicológica urgente o activar un protocolo de seguridad, dirígete directamente a nuestro Espacio de Cuidado y Crisis. Tu bienestar es nuestra prioridad.'
+        ]
+      },
+      {
+        id: 'sub-drogas',
+        title: 'Política sobre drogas: Tolerancia Cero',
+        highlight: 'Tolerancia cero',
+        content: [
+          'La posesión, consumo y venta de drogas, independientemente del tipo o la cantidad, son todos delitos penales. La ley no hace distinción entre las llamadas drogas blandas o duras, y las penas pueden ser severas, incluyendo prisión. El país aplica una política de tolerancia cero a todos en su territorio. Si te encuentras en posesión de sustancias ilegales, corres el riesgo de ser arrestado, procesado bajo la ley y graves consecuencias legales. No hay sistema de advertencia ni excepciones para turistas. Recomendamos encarecidamente a todos los visitantes: no traigan ni consuman drogas. Evita ponerte en riesgo a ti y a los demás, y ayúdanos a mantener el festival seguro y agradable para todos.'
+        ]
+      },
+      {
+        id: 'sub-seguridad-esclat',
+        title: 'Seguridad @ESCLAT',
+        content: [
+          'Prestamos especial atención a la seguridad de los visitantes. En las entradas, un sistema de check-in ayuda a identificar si el usuario autorizado quiere entrar. El entretenimiento seguro lo proporcionan el personal de seguridad y médico, y trabajamos con la policía y el Centro Antiterrorista. Antes de salir de casa, deberías revisar la lista de artículos que pueden y no pueden llevarse al festival. En el control de seguridad de la entrada, los objetos que no puedan entrar serán filtrados por tu seguridad. Asegúrate de llevar un documento de identidad con foto al entrar, lo necesitarás para poder entrar.'
+        ]
+      },
+      {
+        id: 'sub-auxilios',
+        title: 'Primeros Auxilios',
+        content: [
+          'En ESCLAT, nuestro Equipo de Primeros Auxilios de Ayuda, el Servicio Nacional de Ambulancias y el Centro Médico se encargan de tu salud y problemas médicos. Si necesitas atención médica, recurre a nuestro personal médico en el Centro Médico. El personal médico contactará con el hospital si es necesario. Si no puedes acudir al Centro Médico, busca el punto de atención más cercano, la patrulla de primeros auxilios, o pregunta a un guardia de seguridad o miembro del personal. Llamarán para pedir ayuda. Si tú o alguien resulta gravemente herido, llama al 112 y contacta con nosotros inmediatamente. El Centro Médico también te ofrece almacenamiento gratuito para tus medicamentos recetados y una sala de higiene para tus necesidades médicas especiales. Si tienes alguna pregunta relacionada con la salud, pregunta al Servicio de Atención al Cliente de la Zona de Bienestar. Seguro que sabrán la solución. ¡No dudes en preguntarles!'
+        ]
+      },
+      {
+        id: 'sub-covid',
+        title: 'Normativas COVID',
+        content: [
+          'La seguridad de nuestros asistentes y artistas es una prioridad máxima para nosotros. Monitorizamos de cerca la situación del COVID y seguiremos las normativas oficiales del gobierno. Así que no es necesario llevar mascarilla ni mostrar el pase verde COVID en el Festival. Sugerimos llevar gel desinfectante y lavarse las manos con frecuencia.'
+        ]
+      }
     ]
   }
 ]

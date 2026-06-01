@@ -70,7 +70,7 @@ const entradaSections = computed(() => [
   {
     id: 'reservas',
     title: 'Entradas',
-    subtitle: 'Reserva tus entradas gratuitas',
+    subtitle: 'Reserva tus entradas gratuitas.',
     titleClass: 'text-[#F9851F]',
     items: reservas.value,
     actionLabel: 'Reservar Entradas',
@@ -79,7 +79,7 @@ const entradaSections = computed(() => [
   {
     id: 'devoluciones',
     title: '¿No puedes asistir?',
-    subtitle: 'Sé responsable y devuelve tus entradas para que otros puedan ocupar tu lugar',
+    subtitle: 'Sé responsable y devuelve tus entradas para que otros puedan ocupar tu lugar.',
     titleClass: 'text-[#F9851F]',
     items: devoluciones.value,
     actionLabel: 'Tramitar Devolución',
@@ -93,12 +93,12 @@ const entradaSections = computed(() => [
     <section v-for="section in entradaSections" :key="section.id">
       <header class="mb-12">
         <h1
-          class="text-5xl md:text-7xl font-bold uppercase tracking-tighter mb-2"
+          class="text-5xl md:text-7xl font-medium font-sans2 mb-2"
           :class="section.titleClass"
         >
           {{ section.title }}
         </h1>
-        <p class="text-xl md:text-2xl text-white font-semibold uppercase tracking-wider">
+        <p class="text-xl md:text-2xl text-white/65 font-semibold tracking-wider">
           {{ section.subtitle }}
         </p>
       </header>

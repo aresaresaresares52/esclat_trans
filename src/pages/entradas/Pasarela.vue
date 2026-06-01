@@ -4,7 +4,7 @@ import { ref, computed } from 'vue'
 import { Ticket, CheckCircle2, RotateCcw } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 import { pasarelaConsentTexts, pasarelaDefaults, pasarelaMessages, pasarelaPersonalFields } from '@/data'
-import logoHorizontal from '@/assets/logoHorizontal.png'
+import LogoHorizontal from '@/components/LogoHorizontal.vue'
 
 const route = useRoute()
 
@@ -123,7 +123,7 @@ const closeWindow = () => {
       <!-- Logo Esclat -->
       <div class="flex items-center justify-between pb-6 mb-2">
         <h1 class="w-39 h-12 bg-background flex items-center justify-center">
-          <img :src="logoHorizontal" alt="ESCLAT" class="w-34 h-auto object-contain" />
+          <LogoHorizontal alt="ESCLAT" class="w-34 h-auto object-contain" />
         </h1>
         <button 
           @click="closeWindow" 
