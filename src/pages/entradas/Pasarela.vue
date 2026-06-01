@@ -3,16 +3,32 @@ import { useRoute } from 'vue-router'
 import { ref, computed } from 'vue'
 import { Ticket, CheckCircle2, RotateCcw } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
+import { pasarelaConsentTexts, pasarelaDefaults, pasarelaMessages, pasarelaPersonalFields } from '@/data'
+import logoHorizontal from '@/assets/logoHorizontal.png'
 
 const route = useRoute()
 
+type PurchaseForm = {
+  [key: string]: string | boolean
+  nombre: string
+  apellidos: string
+  ciudad: string
+  codigoPostal: string
+  telefono: string
+  email: string
+  confirmEmail: string
+  captchaAnswer: string
+  aceptarTerminos: boolean
+  necesitaServiciosAdaptados: boolean
+}
+
 // Query params reactivos
-const tipo = computed(() => (route.query.tipo as string) || 'compra')
-const ticketName = computed(() => (route.query.nombre as string) || 'Pase Festival')
-const ticketQty = computed(() => Number(route.query.cantidad) || 1)
+const tipo = computed(() => (route.query.tipo as string) || pasarelaDefaults.tipo)
+const ticketName = computed(() => (route.query.nombre as string) || pasarelaDefaults.ticketName)
+const ticketQty = computed(() => Number(route.query.cantidad) || pasarelaDefaults.ticketQty)
 
 // Datos del formulario de compra
-const form = ref({
+const form = ref<PurchaseForm>({
   nombre: '',
   apellidos: '',
   ciudad: '',
@@ -21,8 +37,12 @@ const form = ref({
   email: '',
   confirmEmail: '',
   captchaAnswer: '',
-  aceptarTerminos: false
+  aceptarTerminos: false,
+  necesitaServiciosAdaptados: false
 })
+
+const personalFieldLabelClass = 'block text-s font-semibold tracking-wider mb-1'
+const personalFieldInputClass = 'w-full border-2 border-black p-2.5 font-medium focus:bg-brand-yellow/10 focus:outline-none'
 
 // Respuestas del captcha inventado
 const numA = ref(Math.floor(Math.random() * 9) + 1)
@@ -44,51 +64,51 @@ const returnSubmitted = ref(false)
 const handleCompraSubmit = () => {
   // Validaciones
   if (!form.value.nombre || !form.value.apellidos || !form.value.ciudad || !form.value.codigoPostal || !form.value.telefono || !form.value.email || !form.value.confirmEmail) {
-    toast.error('Por favor, rellena todos los datos personales.')
+    toast.error(pasarelaMessages.missingPersonalData)
     return
   }
   
   if (form.value.email.toLowerCase() !== form.value.confirmEmail.toLowerCase()) {
-    toast.error('Los correos electrónicos no coinciden.')
+    toast.error(pasarelaMessages.emailMismatch)
     return
   }
 
   if (Number(form.value.captchaAnswer) !== captchaCorrectAnswer.value) {
-    toast.error('La verificación humana (captcha) es incorrecta.')
+    toast.error(pasarelaMessages.invalidCaptcha)
     return
   }
 
   if (!form.value.aceptarTerminos) {
-    toast.error('Debes aceptar los términos y condiciones del festival.')
+    toast.error(pasarelaMessages.missingTerms)
     return
   }
 
   // Éxito
   orderNumber.value = 'ESC-' + Math.floor(100000 + Math.random() * 900000)
   isSubmitted.value = true
-  toast.success('¡Entradas reservadas con éxito!')
+  toast.success(pasarelaMessages.successPurchase)
 }
 
 const handleReturnEmailSubmit = () => {
   if (!returnForm.value.email) {
-    toast.error('Por favor, introduce tu dirección de correo electrónico.')
+    toast.error(pasarelaMessages.missingReturnEmail)
     return
   }
   
   // Simulamos envío de código
   returnStep.value = 2
-  toast.success('Te hemos enviado un código de 6 dígitos a tu email.')
+  toast.success(pasarelaMessages.returnCodeSent)
 }
 
 const handleReturnCodeSubmit = () => {
   if (!returnForm.value.codigo || returnForm.value.codigo.length !== 6) {
-    toast.error('El código debe tener exactamente 6 dígitos.')
+    toast.error(pasarelaMessages.invalidReturnCode)
     return
   }
 
   // Éxito de devolución
   returnSubmitted.value = true
-  toast.success('Devolución procesada correctamente.')
+  toast.success(pasarelaMessages.successReturn)
 }
 
 const closeWindow = () => {
@@ -98,16 +118,16 @@ const closeWindow = () => {
 
 <template>
   <div class="min-h-screen bg-background text-white py-16 px-4 md:px-8 font-sans">
-    <div class="max-w-xl mx-auto bg-white text-black border-4 border-black p-6 md:p-10 shadow-[12px_12px_0_0_theme(colors.brand.blue)]">
+    <div class="max-w-xl mx-auto bg-white text-black p-6 md:p-10 shadow-[12px_12px_0_0_theme(colors.brand.blue)]">
       
-      <!-- Logo Esclat Pasarela -->
-      <div class="flex items-center justify-between border-b-4 border-black pb-6 mb-8">
-        <h1 class="text-3xl font-extrabold uppercase tracking-tight">
-          <span class="bg-brand-yellow px-2 py-1 border-2 border-black inline-block -rotate-2">ESCLAT</span> PASARELA
+      <!-- Logo Esclat -->
+      <div class="flex items-center justify-between pb-6 mb-2">
+        <h1 class="w-39 h-12 bg-background flex items-center justify-center">
+          <img :src="logoHorizontal" alt="ESCLAT" class="w-34 h-auto object-contain" />
         </h1>
         <button 
           @click="closeWindow" 
-          class="text-sm font-bold uppercase border-2 border-black px-3 py-1.5 hover:bg-background hover:text-white transition-colors"
+          class="text-sm font-medium uppercase border-2 border-black px-3 py-1.5 hover:bg-background hover:text-white transition-colors"
         >
           Cerrar
         </button>
@@ -117,13 +137,13 @@ const closeWindow = () => {
       <div v-if="tipo === 'compra'">
         
         <!-- Éxito Compra -->
-        <div v-if="isSubmitted" class="text-center py-6 space-y-6">
-          <div class="inline-flex items-center justify-center bg-brand-green border-4 border-black p-4 rounded-none -rotate-1">
-            <CheckCircle2 :size="48" class="text-white" />
-          </div>
-          <h2 class="text-3xl font-black uppercase text-brand-green">¡RESERVA COMPLETADA!</h2>
-          <div class="bg-brand-yellow border-4 border-black p-6 text-left space-y-3 font-mono shadow-[6px_6px_0_0_theme(colors.brand.purple)]">
-            <div class="flex justify-between font-bold border-b border-black/20 pb-2">
+        <div v-if="isSubmitted" class="text-center font-sans">
+          <h2 class="flex items-center justify-center gap-3 text-3xl font-extrabold uppercase text-brand-blue">
+            <CheckCircle2 :size="34" class="text-background shrink-0" />
+            ¡RESERVA COMPLETADA!
+          </h2>
+          <div class="mt-8 bg-brand-blue p-6 text-white text-left space-y-3 font-sans">
+            <div class="flex justify-between font-bold border-b border-white/20 pb-2">
               <span>LOCALIZADOR:</span>
               <span class="text-lg">{{ orderNumber }}</span>
             </div>
@@ -136,14 +156,17 @@ const closeWindow = () => {
             <div>
               <span class="font-bold">TITULAR:</span> {{ form.nombre }} {{ form.apellidos }}
             </div>
-            <div class="text-xs text-black/60 pt-4 border-t border-black/20">
+            <div v-if="form.necesitaServiciosAdaptados">
+              <span class="font-bold">SERVICIOS ADAPTADOS:</span> Solicitados
+            </div>
+            <div class="text-xs text-white/60 pt-4 border-t border-white/20">
               * Se ha enviado un correo con tus entradas en formato PDF a {{ form.email }}. Recuerda presentarlas en Las Naves.
             </div>
           </div>
           
           <button 
             @click="closeWindow" 
-            class="w-full bg-background text-white font-extrabold text-xl py-4 uppercase border-4 border-black hover:bg-brand-blue hover:text-black transition-colors shadow-[6px_6px_0_0_theme(colors.brand.yellow)]"
+            class="mt-8 w-full bg-background text-white font-bold text-xl py-4 uppercase hover:bg-brand-blue hover:text-black transition-colors"
           >
             Finalizar y Cerrar
           </button>
@@ -151,7 +174,7 @@ const closeWindow = () => {
 
         <!-- Formulario Compra -->
         <div v-else class="space-y-6">
-          <div class="bg-brand-yellow/10 border-2 border-black p-4 mb-4">
+          <div class="bg-brand-yellow/10 border-2 border-black p-4 mb-6">
             <div class="flex items-center gap-3">
               <Ticket :size="24" class="text-brand-yellow shrink-0" />
               <div>
@@ -161,93 +184,32 @@ const closeWindow = () => {
             </div>
           </div>
 
-          <h2 class="text-2xl font-black uppercase text-brand-blue border-b-2 border-black pb-2 mb-4">
+          <h2 class="text-2xl font-bold uppercase text-black border-b-2 border-black pb-1 mb-5">
             Datos Personales
           </h2>
 
           <form @submit.prevent="handleCompraSubmit" class="space-y-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-xs font-black uppercase tracking-wider mb-1">Nombre</label>
-                <input 
-                  v-model="form.nombre" 
-                  type="text" 
-                  class="w-full border-2 border-black p-2.5 font-bold focus:bg-brand-yellow/10 focus:outline-none" 
-                  placeholder="Ej: Laura"
-                  required
-                />
-              </div>
-              <div>
-                <label class="block text-xs font-black uppercase tracking-wider mb-1">Apellidos</label>
-                <input 
-                  v-model="form.apellidos" 
-                  type="text" 
-                  class="w-full border-2 border-black p-2.5 font-bold focus:bg-brand-yellow/10 focus:outline-none" 
-                  placeholder="Ej: García Martínez"
-                  required
-                />
-              </div>
-            </div>
-
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div class="md:col-span-2">
-                <label class="block text-xs font-black uppercase tracking-wider mb-1">Ciudad</label>
-                <input 
-                  v-model="form.ciudad" 
-                  type="text" 
-                  class="w-full border-2 border-black p-2.5 font-bold focus:bg-brand-yellow/10 focus:outline-none" 
-                  placeholder="Ej: Valencia"
+              <div
+                v-for="field in pasarelaPersonalFields"
+                :key="field.name"
+                :class="field.className"
+              >
+                <label :for="field.name" :class="personalFieldLabelClass">{{ field.label }}</label>
+                <input
+                  :id="field.name"
+                  :value="form[field.name]"
+                  :type="field.type"
+                  :class="personalFieldInputClass"
+                  :placeholder="field.placeholder"
                   required
-                />
-              </div>
-              <div>
-                <label class="block text-xs font-black uppercase tracking-wider mb-1">Cód. Postal</label>
-                <input 
-                  v-model="form.codigoPostal" 
-                  type="text" 
-                  class="w-full border-2 border-black p-2.5 font-bold focus:bg-brand-yellow/10 focus:outline-none" 
-                  placeholder="Ej: 46001"
-                  required
+                  @input="form[field.name] = ($event.target as HTMLInputElement).value"
                 />
               </div>
             </div>
-
-            <div>
-              <label class="block text-xs font-black uppercase tracking-wider mb-1">Teléfono</label>
-              <input 
-                v-model="form.telefono" 
-                type="tel" 
-                class="w-full border-2 border-black p-2.5 font-bold focus:bg-brand-yellow/10 focus:outline-none" 
-                placeholder="Ej: 600123456"
-                required
-              />
-            </div>
-
-            <div>
-              <label class="block text-xs font-black uppercase tracking-wider mb-1">Gmail / Email</label>
-              <input 
-                v-model="form.email" 
-                type="email" 
-                class="w-full border-2 border-black p-2.5 font-bold focus:bg-brand-yellow/10 focus:outline-none" 
-                placeholder="Ej: laura.garcia@gmail.com"
-                required
-              />
-            </div>
-
-            <div>
-              <label class="block text-xs font-black uppercase tracking-wider mb-1">Confirmar Gmail / Email</label>
-              <input 
-                v-model="form.confirmEmail" 
-                type="email" 
-                class="w-full border-2 border-black p-2.5 font-bold focus:bg-brand-yellow/10 focus:outline-none" 
-                placeholder="Repite tu correo"
-                required
-              />
-            </div>
-
             <!-- CAPTCHA INVENTADO -->
             <div class="bg-gray-100 border-2 border-black p-4 space-y-2">
-              <label class="block text-xs font-black uppercase tracking-wider text-gray-700">Verificación Humana</label>
+              <label class="block text-s font-medium tracking-wider text-black">Verificación Humana</label>
               <div class="flex items-center gap-4">
                 <span class="font-mono font-extrabold text-lg bg-background text-white px-3 py-1.5 border border-black">
                   ¿Cuánto es {{ numA }} + {{ numB }}?
@@ -268,17 +230,29 @@ const closeWindow = () => {
                 v-model="form.aceptarTerminos" 
                 type="checkbox" 
                 id="terminos" 
-                class="mt-1 w-5 h-5 accent-black border-2 border-black rounded-none cursor-pointer"
+                class="mt-1 size-5 shrink-0 accent-black border-2 border-black rounded-none cursor-pointer"
                 required
               />
-              <label for="terminos" class="text-xs font-bold uppercase leading-tight select-none cursor-pointer">
-                Acepto los términos y condiciones y doy mi consentimiento para el acceso gratuito al festival.
+              <label for="terminos" class="text-xs font-semibold uppercase leading-tight select-none cursor-pointer">
+                {{ pasarelaConsentTexts.terminos }}
+              </label>
+            </div>
+
+            <div class="flex items-center gap-2.5 pt-2">
+              <input
+                v-model="form.necesitaServiciosAdaptados"
+                type="checkbox"
+                id="servicios-adaptados"
+                class="size-5 shrink-0 accent-black border-2 border-black rounded-none cursor-pointer"
+              />
+              <label for="servicios-adaptados" class="text-xs font-semibold uppercase leading-tight select-none cursor-pointer">
+                {{ pasarelaConsentTexts.serviciosAdaptados }}
               </label>
             </div>
 
             <button 
               type="submit" 
-              class="w-full bg-brand-yellow text-black font-extrabold text-xl py-4 uppercase border-4 border-black hover:bg-brand-blue hover:text-black transition-all shadow-[6px_6px_0_0_theme(colors.brand.purple)] hover:shadow-[3px_3px_0_0_theme(colors.brand.purple)] hover:translate-x-[3px] hover:translate-y-[3px] cursor-pointer mt-4"
+              class="w-full bg-brand-yellow text-black font-bold text-xl py-4 uppercase border-4 border-black hover:bg-brand-blue hover:text-black transition-all hover:translate-x-[3px] hover:translate-y-[3px] cursor-pointer mt-4"
             >
               Completar Reserva Gratis
             </button>

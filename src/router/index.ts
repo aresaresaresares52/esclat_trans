@@ -40,7 +40,8 @@ export const router = createRouter({
     {
       path: '/entradas/pasarela',
       name: 'entradas-pasarela',
-      component: Pasarela
+      component: Pasarela,
+      meta: { fullWidth: true }
     },
     {
       path: '/como-llegar',

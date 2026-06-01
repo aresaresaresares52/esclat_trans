@@ -18,8 +18,8 @@ import shodobox from '@/assets/shodobox.png'
 import competibox from '@/assets/competibox.png'
 import debatebox from '@/assets/debatebox.png'
 import dragbox from '@/assets/dragbox.png'
-import forma1 from '@/data/forma1.png'
-import forma2 from '@/data/forma2.png'
+import forma1 from '@/assets/forma1.png'
+import forma2 from '@/assets/forma2.png'
 
 const router = useRouter()
 
@@ -117,9 +117,9 @@ const noTeLopierdas = [
 <template>
   <div class="min-h-screen font-sans bg-[#111111] text-white pb-32 overflow-x-hidden w-full">
     
-<section class="relative w-full flex flex-col items-center justify-center text-center px-4 mb-20" :style="{ backgroundImage: `url(${portada})`, backgroundSize: '100% 100%', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', aspectRatio: '1920/1080' }">
+<section class="relative w-full flex flex-col items-center justify-center text-center px-4" :style="{ backgroundImage: `url(${portada})`, backgroundSize: '100% 100%', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', aspectRatio: '1920/1080' }">
 
-  <div class="relative z-10 py-32 flex flex-col items-center justify-center">
+  <div class="relative z-10 pt-0 pb-32 flex flex-col items-center justify-center">
     <img :src="logoHorizontal" alt="Esclat Logo" class="w-72 sm:w-96 md:w-[470px] lg:w-[550px] object-contain mb-8 max-w-full" />
     <p class="text-[10px] md:text-2xl text-gray-200 mb-10 font-medium">
       Festival de Música, Cultura y Pensamiento Crítico
@@ -132,7 +132,7 @@ const noTeLopierdas = [
     </button>
   </div>
 </section>
-    <section class="max-w-7xl mx-auto px-4 md:px-8 py-20 mb-32 w-full bg-[#111111]">
+    <section class="max-w-7xl mx-auto px-4 md:px-8 pt-0 pb-20 mb-32 w-full bg-[#111111]">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 items-start relative">
         
         <svg 
@@ -216,7 +216,7 @@ const noTeLopierdas = [
       </div>
     </section>
 
-    <section class="max-w-7xl mx-auto px-4 md:px-8 py-20 mb-20 w-full bg-[#111111]">
+    <section class="max-w-7xl mx-auto px-4 md:px-8 py-10 mb-20 w-full bg-[#111111]">
       <h2 class="text-5xl md:text-7xl font-bold text-center text-brand-yellow uppercase mb-16">Prepárate para</h2>
       
       <div id="home-artistas" class="relative max-w-5xl mx-auto bg-brand-blue p-6 md:p-12 mb-16 shadow-[16px_16px_0_0_theme(colors.brand.yellow)] transform -rotate-1 min-h-[450px] flex items-center justify-center overflow-hidden scroll-mt-24">

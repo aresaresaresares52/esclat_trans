@@ -18,7 +18,7 @@ import 'vue-sonner/style.css'
           'flex-1 transition-all duration-300', 
           $route.meta.fullWidth 
             ? 'w-full' 
-            : 'pt-12 pb-20 px-4 md:px-8 max-w-7xl mx-auto w-full'
+            : 'w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-24 md:pt-26 pb-20'
         ]"
       >
         <router-view v-slot="{ Component }">

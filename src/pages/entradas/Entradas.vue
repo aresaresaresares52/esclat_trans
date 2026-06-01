@@ -1,26 +1,34 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 
+type EntradaItem = {
+  id: string
+  name: string
+  count: number
+  cardClass: string
+  textClass: string
+}
+
 const router = useRouter()
 
-const reservas = ref([
-  { id: '23', name: 'Pase para el día 23 de Octubre', count: 1 },
-  { id: '24', name: 'Pase para el día 24 de Octubre', count: 1 },
-  { id: '25', name: 'Pase para el día 25 de Octubre', count: 1 },
-  { id: 'abono', name: 'Abono Completo 3 Días', count: 1 }
+const reservas = ref<EntradaItem[]>([
+  { id: '23', name: 'Pase para el día 23 de Octubre', count: 1, cardClass: 'bg-brand-green', textClass: 'text-white' },
+  { id: '24', name: 'Pase para el día 24 de Octubre', count: 1, cardClass: 'bg-[#F9851F]', textClass: 'text-white' },
+  { id: '25', name: 'Pase para el día 25 de Octubre', count: 1, cardClass: 'bg-brand-blue', textClass: 'text-white' },
+  { id: 'abono', name: 'Abono Completo 3 Días', count: 1, cardClass: 'bg-brand-purple', textClass: 'text-white' }
 ])
 
-const devoluciones = ref([
-  { id: '23', name: 'Devolver Pase para el día 23 de Octubre', count: 1 },
-  { id: '24', name: 'Devolver Pase para el día 24 de Octubre', count: 1 },
-  { id: '25', name: 'Devolver Pase para el día 25 de Octubre', count: 1 },
-  { id: 'abono', name: 'Devolver Abono Completo 3 Días', count: 1 }
+const devoluciones = ref<EntradaItem[]>([
+  { id: '23', name: 'Devolver Pase para el día 23 de Octubre', count: 1, cardClass: 'bg-brand-green', textClass: 'text-white' },
+  { id: '24', name: 'Devolver Pase para el día 24 de Octubre', count: 1, cardClass: 'bg-[#F9851F]', textClass: 'text-white' },
+  { id: '25', name: 'Devolver Pase para el día 25 de Octubre', count: 1, cardClass: 'bg-brand-blue', textClass: 'text-white' },
+  { id: 'abono', name: 'Devolver Abono Completo 3 Días', count: 1, cardClass: 'bg-brand-purple', textClass: 'text-white' }
 ])
 
-const increment = (item: any) => {
+const increment = (item: EntradaItem) => {
   if (item.count >= 4) {
     toast.error('Máximo 4 entradas por usuario')
   } else {
@@ -28,13 +36,13 @@ const increment = (item: any) => {
   }
 }
 
-const decrement = (item: any) => {
+const decrement = (item: EntradaItem) => {
   if (item.count > 1) {
     item.count--
   }
 }
 
-const handleReserva = (item: any) => {
+const handleReserva = (item: EntradaItem) => {
   const routeData = router.resolve({
     name: 'entradas-pasarela',
     query: {
@@ -46,7 +54,7 @@ const handleReserva = (item: any) => {
   window.open(routeData.href, '_blank')
 }
 
-const handleDevolucion = (item: any) => {
+const handleDevolucion = (item: EntradaItem) => {
   const routeData = router.resolve({
     name: 'entradas-pasarela',
     query: {
@@ -57,123 +65,87 @@ const handleDevolucion = (item: any) => {
   })
   window.open(routeData.href, '_blank')
 }
+
+const entradaSections = computed(() => [
+  {
+    id: 'reservas',
+    title: 'Entradas',
+    subtitle: 'Reserva tus entradas gratuitas',
+    titleClass: 'text-[#F9851F]',
+    items: reservas.value,
+    actionLabel: 'Reservar Entradas',
+    action: handleReserva
+  },
+  {
+    id: 'devoluciones',
+    title: '¿No puedes asistir?',
+    subtitle: 'Sé responsable y devuelve tus entradas para que otros puedan ocupar tu lugar',
+    titleClass: 'text-[#F9851F]',
+    items: devoluciones.value,
+    actionLabel: 'Tramitar Devolución',
+    action: handleDevolucion
+  }
+])
 </script>
 
 <template>
-  <div>
-    
-    <header class="mb-12">
-      <h1 class="text-5xl md:text-7xl font-extrabold uppercase tracking-tighter text-brand-blue mb-2">
-        Entradas
-      </h1>
-      <p class="text-xl md:text-2xl text-brand-yellow font-bold uppercase tracking-wider">
-        Reserva tus entradas gratuitas
-      </p>
-    </header>
+  <div class="w-full space-y-20">
+    <section v-for="section in entradaSections" :key="section.id">
+      <header class="mb-12">
+        <h1
+          class="text-5xl md:text-7xl font-bold uppercase tracking-tighter mb-2"
+          :class="section.titleClass"
+        >
+          {{ section.title }}
+        </h1>
+        <p class="text-xl md:text-2xl text-white font-semibold uppercase tracking-wider">
+          {{ section.subtitle }}
+        </p>
+      </header>
 
-    <div class="space-y-8 mb-20">
-      <div v-for="item in reservas" :key="item.id" class="space-y-4">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 py-2">
-          
-          <div class="text-lg md:text-xl font-extrabold uppercase tracking-tight">
+      <div class="space-y-2.5">
+        <article
+          v-for="item in section.items"
+          :key="item.id"
+          class="p-4 md:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
+          :class="[item.cardClass, item.textClass]"
+        >
+          <div class="text-lg md:text-xl font-bold uppercase tracking-tight">
             {{ item.name }}
           </div>
 
           <div class="flex items-center gap-4 sm:gap-6 self-start sm:self-center">
-            
-            <div class="flex items-center border-2 border-brand-yellow bg-black text-white px-2 py-1 shadow-[4px_4px_0_0_theme(colors.brand.blue)]">
-              <button 
-                @click="decrement(item)" 
+            <div class="flex items-center border-2 border-white  text-white px-2 py-1">
+              <button
+                @click="decrement(item)"
                 class="p-1.5 hover:text-brand-yellow transition-colors cursor-pointer select-none"
                 :disabled="item.count <= 1"
                 :class="item.count <= 1 ? 'opacity-30 cursor-not-allowed' : ''"
               >
                 <ChevronLeft :size="20" />
               </button>
-              
+
               <span class="w-8 text-center font-extrabold text-lg select-none">
                 {{ item.count }}
               </span>
-              
-              <button 
-                @click="increment(item)" 
+
+              <button
+                @click="increment(item)"
                 class="p-1.5 hover:text-brand-yellow transition-colors cursor-pointer select-none"
               >
                 <ChevronRight :size="20" />
               </button>
             </div>
 
-            <button 
-              @click="handleReserva(item)"
-              class="bg-brand-yellow text-black font-extrabold text-sm md:text-base px-5 py-2.5 uppercase tracking-wider shadow-[4px_4px_0_0_theme(colors.brand.blue)] hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_theme(colors.brand.blue)] active:translate-y-0.5 active:shadow-[2px_2px_0_0_theme(colors.brand.blue)] transition-all cursor-pointer outline-none"
+            <button
+              @click="section.action(item)"
+              class="border-2 border-white text-white font-bold text-sm md:text-base px-5 py-2.5 uppercase  tracking-wider hover:-translate-y-0.5 active:translate-y-0.5 transition-all cursor-pointer outline-none"
             >
-              Reservar Entradas
+              {{ section.actionLabel }}
             </button>
-
           </div>
-
-        </div>
-
-        <div class="h-[2px] bg-brand-yellow w-full"></div>
+        </article>
       </div>
-    </div>
-
-
-    <header class="mb-12 mt-20">
-      <h2 class="text-4xl md:text-6xl font-extrabold uppercase tracking-tighter text-brand-purple mb-2">
-        ¿No puedes asistir?
-      </h2>
-      <p class="text-lg md:text-xl text-gray-400 font-bold uppercase tracking-wider">
-        Sé responsable y devuelve tus entradas para que otros puedan ocupar tu lugar
-      </p>
-    </header>
-
-    <div class="space-y-8">
-      <div v-for="item in devoluciones" :key="item.id" class="space-y-4">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 py-2">
-          
-          <div class="text-lg md:text-xl font-extrabold uppercase tracking-tight font-sans">
-            {{ item.name }}
-          </div>
-
-          <div class="flex items-center gap-4 sm:gap-6 self-start sm:self-center">
-            
-            <div class="flex items-center border-2 border-brand-yellow bg-black text-white px-2 py-1 shadow-[4px_4px_0_0_theme(colors.brand.blue)]">
-              <button 
-                @click="decrement(item)" 
-                class="p-1.5 hover:text-brand-yellow transition-colors cursor-pointer select-none"
-                :disabled="item.count <= 1"
-                :class="item.count <= 1 ? 'opacity-30 cursor-not-allowed' : ''"
-              >
-                <ChevronLeft :size="20" />
-              </button>
-              
-              <span class="w-8 text-center font-extrabold text-lg select-none">
-                {{ item.count }}
-              </span>
-              
-              <button 
-                @click="increment(item)" 
-                class="p-1.5 hover:text-brand-yellow transition-colors cursor-pointer select-none"
-              >
-                <ChevronRight :size="20" />
-              </button>
-            </div>
-
-            <button 
-              @click="handleDevolucion(item)"
-              class="bg-brand-yellow text-black font-extrabold text-sm md:text-base px-5 py-2.5 uppercase tracking-wider shadow-[4px_4px_0_0_theme(colors.brand.blue)] hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_theme(colors.brand.blue)] active:translate-y-0.5 active:shadow-[2px_2px_0_0_theme(colors.brand.blue)] transition-all cursor-pointer outline-none"
-            >
-              Tramitar Devolución
-            </button>
-
-          </div>
-
-        </div>
-
-        <div class="h-[2px] bg-brand-yellow w-full"></div>
-      </div>
-    </div>
-
+    </section>
   </div>
 </template>
