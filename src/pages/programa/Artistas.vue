@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
 import { FilterBar } from '@/components/ui/filter'
 import { artists } from '@/data/data'
 // IMPORTAMOS TU IMAGEN AQUÍ
 import bannermovidas from '@/assets/bannermovidas.png'
 
-const router = useRouter()
+
 
 const filteredArtists = ref<typeof artists>(artists)
 

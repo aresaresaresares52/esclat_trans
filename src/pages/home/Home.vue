@@ -12,13 +12,8 @@ import miniatura from '@/assets/miniatura.webp'
 import portada from '@/assets/portada.png'
 
 import {
-  viernesArtists,
-  sabadoArtists,
-  domingoArtists,
-  viernesTalleres,
-  sabadoTalleres,
-  domingoTalleres,
-  carouselItems
+  carouselItems,
+  diasFestival
 } from '@/data/data'
 
 
@@ -26,37 +21,7 @@ import {
 // HOME DAY STRUCTURE
 // ============================================================================
 
-interface DiasItem {
-  nombre: string
-  color: string
-  hoverColor: string
-  artistas: typeof viernesArtists
-  talleres: typeof viernesTalleres
-}
 
-const diasFestival: DiasItem[] = [
-  {
-    nombre: 'Viernes',
-    color: 'text-brand-green',
-    hoverColor: 'hover:text-brand-green',
-    artistas: viernesArtists,
-    talleres: viernesTalleres
-  },
-  {
-    nombre: 'Sábado',
-    color: 'text-brand-yellow',
-    hoverColor: 'hover:text-brand-yellow',
-    artistas: sabadoArtists,
-    talleres: sabadoTalleres
-  },
-  {
-    nombre: 'Domingo',
-    color: 'text-brand-blue',
-    hoverColor: 'hover:text-brand-blue',
-    artistas: domingoArtists,
-    talleres: domingoTalleres
-  }
-]
 const isQuienesSomosOpen = ref(false)
 
 // Control del reproductor de vídeo interactivo con estado de buffer de carga

@@ -2,15 +2,7 @@
 import maparriba from '@/assets/maparriba.jpg'
 import mapabajo from '@/assets/mapabajo.jpg'
 
-const indicaciones = [
-  'La Polivalent',
-  'Hall La Polivalent',
-  'Factoria',
-  'Visual Room',
-  'Sala de exposiciones',
-  'Patio 1',
-  'Patio 2'
-]
+import { recintoIndicaciones as indicaciones } from '@/data/data'
 </script>
 
 <template>

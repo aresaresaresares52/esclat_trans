@@ -55,7 +55,7 @@ const defaultOpenSections = computed(() => normasSeguridadSections.map(section =
                       <h3 class="font-bold text-brand-green uppercase mb-3 text-xl">Objetos permitidos</h3>
                       <ul class="space-y-2">
                         <li v-for="item in subsection.allowedItems" :key="item">
-                          &gt; {{ item }}
+                          > {{ item }}
                         </li>
                       </ul>
                     </div>
@@ -64,7 +64,7 @@ const defaultOpenSections = computed(() => normasSeguridadSections.map(section =
                       <h3 class="font-bold text-red-500 uppercase mb-3 text-xl">Objetos no permitidos</h3>
                       <ul class="space-y-1.5">
                         <li v-for="item in subsection.notAllowedItems" :key="item">
-                          &gt; {{ item }}
+                          > {{ item }}
                         </li>
                       </ul>
                     </div>

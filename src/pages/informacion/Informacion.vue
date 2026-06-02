@@ -4,9 +4,7 @@ import { basicRules, faqs } from '@/data/data'
 </script>
 
 <template>
-  <div class="min-h-screen pt-20 pb-24 px-4 md:px-8 max-w-5xl mx-auto font-sans">
-    <h1 class="text-4xl md:text-6xl font-extrabold text-brand-green mb-8 uppercase tracking-tight">Información</h1>
-    
+  <div class="min-h-screen pb-24 px-4 md:px-8 max-w-5xl mx-auto font-sans">
     <div class="space-y-16">
       <section>
         <h2 class="text-2xl font-bold text-brand-blue mb-6 flex items-center gap-2">

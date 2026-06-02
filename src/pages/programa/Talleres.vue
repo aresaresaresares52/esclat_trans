@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
 import { FilterBar } from '@/components/ui/filter'
 import { workshops } from '@/data/data'
 import bannermovidas from '@/assets/bannermovidas.png'
 
-const router = useRouter()
+
 
 const filteredTalleres = ref(workshops)
 

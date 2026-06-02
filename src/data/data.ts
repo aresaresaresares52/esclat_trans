@@ -631,3 +631,231 @@ export const carouselItems: (Omit<CarouselItem, 'to' | 'action'> & { to?: string
     action: () => window.open('https://open.spotify.com/playlist/2u7BSywQFZc1RFYALxf4bw', '_blank')
   }
 ]
+
+
+// ============================================================================
+// PASARELA DATA
+// ============================================================================
+
+export const pasarelaDefaults = {
+  tipo: 'compra',
+  ticketName: 'Pase Festival',
+  ticketQty: 1
+}
+
+export const pasarelaPersonalFields = [
+  {
+    name: 'nombre',
+    label: 'Nombre',
+    type: 'text',
+    placeholder: 'Nombre',
+    className: ''
+  },
+  {
+    name: 'apellidos',
+    label: 'Apellidos',
+    type: 'text',
+    placeholder: 'Apellidos',
+    className: ''
+  },
+  {
+    name: 'ciudad',
+    label: 'Ciudad',
+    type: 'text',
+    placeholder: 'Ciudad',
+    className: 'md:col-span-2'
+  },
+  {
+    name: 'codigoPostal',
+    label: 'Cód. Postal',
+    type: 'text',
+    placeholder: 'Cód. Postal',
+    className: ''
+  },
+  {
+    name: 'telefono',
+    label: 'Teléfono',
+    type: 'tel',
+    placeholder: 'Teléfono',
+    className: 'md:col-span-3'
+  },
+  {
+    name: 'email',
+    label: 'Gmail / Email',
+    type: 'email',
+    placeholder: 'Gmail / Email',
+    className: 'md:col-span-3'
+  },
+  {
+    name: 'confirmEmail',
+    label: 'Confirmar Gmail / Email',
+    type: 'email',
+    placeholder: 'Confirmar Gmail / Email',
+    className: 'md:col-span-3'
+  }
+] as const
+
+export const pasarelaConsentTexts = {
+  terminos: 'Acepto los términos y condiciones y doy mi consentimiento para el acceso gratuito al festival.',
+  serviciosAdaptados: 'Soy una persona con discapacidad y necesito servicios adaptados.'
+}
+
+export const pasarelaMessages = {
+  missingPersonalData: 'Por favor, rellena todos los datos personales.',
+  emailMismatch: 'Los correos electrónicos no coinciden.',
+  invalidCaptcha: 'La verificación humana (captcha) es incorrecta.',
+  missingTerms: 'Debes aceptar los términos y condiciones del festival.',
+  successPurchase: '¡Entradas reservadas con éxito!',
+  missingReturnEmail: 'Por favor, introduce tu dirección de correo electrónico.',
+  returnCodeSent: 'Te hemos enviado un código de 6 dígitos a tu email.',
+  invalidReturnCode: 'El código debe tener exactamente 6 dígitos.',
+  successReturn: 'Devolución procesada correctamente.'
+}
+// ============================================================================
+// MORE EMBEDDED DATA (HOME, ENTRADAS, RECINTO)
+// ============================================================================
+
+export interface DiasItem {
+  nombre: string
+  color: string
+  hoverColor: string
+  artistas: HomeArtist[]
+  talleres: HomeWorkshop[]
+}
+
+export const diasFestival: DiasItem[] = [
+  {
+    nombre: 'Viernes',
+    color: 'text-brand-green',
+    hoverColor: 'hover:text-brand-green',
+    artistas: viernesArtists,
+    talleres: viernesTalleres
+  },
+  {
+    nombre: 'Sábado',
+    color: 'text-brand-yellow',
+    hoverColor: 'hover:text-brand-yellow',
+    artistas: sabadoArtists,
+    talleres: sabadoTalleres
+  },
+  {
+    nombre: 'Domingo',
+    color: 'text-brand-blue',
+    hoverColor: 'hover:text-brand-blue',
+    artistas: domingoArtists,
+    talleres: domingoTalleres
+  }
+]
+
+export type EntradaItem = {
+  id: string
+  name: string
+  count: number
+  cardClass: string
+  textClass: string
+}
+
+export const initialReservas: EntradaItem[] = [
+  { id: '23', name: 'Pase para el d�a 23 de Octubre', count: 1, cardClass: 'bg-brand-green', textClass: 'text-white' },
+  { id: '24', name: 'Pase para el d�a 24 de Octubre', count: 1, cardClass: 'bg-[#F9851F]', textClass: 'text-white' },
+  { id: '25', name: 'Pase para el d�a 25 de Octubre', count: 1, cardClass: 'bg-brand-blue', textClass: 'text-white' },
+  { id: 'abono', name: 'Abono Completo 3 D�as', count: 1, cardClass: 'bg-brand-purple', textClass: 'text-white' }
+]
+
+export const initialDevoluciones: EntradaItem[] = [
+  { id: '23', name: 'Devolver Pase para el d�a 23 de Octubre', count: 1, cardClass: 'bg-brand-green', textClass: 'text-white' },
+  { id: '24', name: 'Devolver Pase para el d�a 24 de Octubre', count: 1, cardClass: 'bg-[#F9851F]', textClass: 'text-white' },
+  { id: '25', name: 'Devolver Pase para el d�a 25 de Octubre', count: 1, cardClass: 'bg-brand-blue', textClass: 'text-white' },
+  { id: 'abono', name: 'Devolver Abono Completo 3 D�as', count: 1, cardClass: 'bg-brand-purple', textClass: 'text-white' }
+]
+
+export const recintoIndicaciones = [
+  'La Polivalent',
+  'Hall La Polivalent',
+  'Factoria',
+  'Visual Room',
+  'Sala de exposiciones',
+  'Patio 1',
+  'Patio 2'
+]
+
+// ============================================================================
+// FAQS ACCORDION DATA
+// ============================================================================
+
+export const faqEntradas = [
+  {
+    question: '�Habr�n entradas en taquilla?',
+    answer: 'Recomendamos reservar tu entrada en la web oficial de ESCLAT, donde estar�n disponibles hasta completar aforo. En caso de que no se complete, dispondremos de taquilla en la entrada principal durante el horario de apertura del festival; de lo contrario, no podemos garantizar la validez de su entrada.'
+  },
+  {
+    question: 'No he recibido ning�n correo electr�nico con mi ticket. �Qu� pasa?',
+    answer: 'Tu entrada puede tardar un m�ximo de 24 horas en llegar; en caso de que no haya ocurrido, por favor compruebe los siguientes pasos:\\n- Revisa la carpeta de SPAM/promociones en tu buz�n. Tu enlace de activaci�n llega desde la siguiente direcci�n de correo electr�nico: esclatfestival@gmail.com\\n- Comprueba en tu cuenta bancaria que se te haya realizado el cobro.\\n- Si tras 24 horas tus entradas siguen sin aparecer en tu bandeja de entrada, por favor, escribe un correo electr�nico a la direcci�n esclatproblemas@gmail.com'
+  },
+  {
+    question: 'Lo que necesitas saber sobre tu entrada de un d�a.',
+    answer: 'Puedes estar en el recinto del festival 1 hora antes del primer evento y hasta media hora despu�s de que termine el �ltimo.'
+  },
+  {
+    question: '�Qu� necesitas para entrar en el festival?',
+    answer: 'Un DNI/pasaporte v�lido para identificaci�n, el QR de tu entrada de ESCLAT (consejo: a��delo a tu cartera online en cuanto llegue a tu bandeja de entrada) y, por supuesto, t�.'
+  },
+  {
+    question: '�Necesitan los ni�os entradas?',
+    answer: '�Los clientes m�s peque�os tambi�n son bienvenidos a ESCLAT! Los ni�os menores de 12 a�os pueden entrar obligatoriamente acompa�ados de un adulto. Se debe traer al evento un documento escrito facilitando el contacto telef�nico de la persona responsable y el nombre del ni�o o ni�os. Por favor, trae tambi�n un documento de identidad v�lido para el ni�o. Los menores de 18 a�os solo pueden entrar en el recinto con un adulto o una autorizaci�n firmada por su correspondiente.'
+  },
+  {
+    question: 'Soy un cliente con discapacidad. �Hay alg�n billete espec�fico que deber�a comprar? �De qu� deber�a estar consciente?',
+    answer: 'No, deber�s guardar el �nico tipo de entrada disponible. Pero deber�s marcar el recuadro indicado para personas con discapacidad. Contamos con los siguientes servicios adaptados: Servicios internos como ba�os para discapacitados, Neveras para medicinas, Electricidad para cargar sillas de ruedas electr�nicas, Ubicaciones dedicadas para ver los conciertos, Servicios de transporte, Alquiler de silla de ruedas, Asistencia a personas con discapacidad visual, Solicitudes disponibles para int�rpretes internacionales y de lenguas de signos.'
+  },
+  {
+    question: '�C�mo funciona el sistema de check-in en las entradas?',
+    answer: 'Para garantizar la seguridad de todos los asistentes, ESCLAT cuenta con un sistema de control fotogr�fico y de identidad en los accesos. Al entrar, el personal de seguridad verificar� que el c�digo QR corresponda con el nombre de tu DNI o pasaporte. El proceso es r�pido, pero te recomendamos llegar con antelaci�n y tener tu documentaci�n a mano.'
+  },
+  {
+    question: 'Tengo mi entrada y finalmente no puedo asistir. �Qu� hago con mi entrada?',
+    answer: 'S� responsable y devu�lvela, en la seccion de entradas tenemos un apartado de devolucion donde solo deberas introducir el gmail con el que las compraste, te enviaremos un codigo para verificar que es tu gmail y lo demas lo solucionamos nosotros.'
+  },
+  {
+    question: 'No puedo ir, �le puedo dar mi entrada a un amigo?',
+    answer: 'Si escr�benos un gmail a esclatproblemas@gmail.com indicando tu nombre apellidos y gmail y el de la persona a la que quieres transferirselas y gestionaremos el cambio, el mismo qr seguira siendo valido.'
+  }
+]
+
+export const faqComidaBebida = [
+  {
+    question: '�Habr� agua gratis?',
+    answer: 'S�, en ESCLAT nos comprometemos con las personas, el recinto dispondr� de dos fuentes, una en cada patio, en las que podr�s beber o rellenar tu cantimplora.'
+  },
+  {
+    question: '�Habr� bar o barra?',
+    answer: '�S�! Las naves cuentan con una cafeter�a en el primer piso, que sirve todo tipo de bebidas y comida. Adem�s, montaremos una barra en el patio 2, accesible para todo el mundo.'
+  },
+  {
+    question: '�Se puede pagar con tarjeta?',
+    answer: 'S�, se aceptar�n pagos con tarjeta en todos los puntos de venta del festival para tu comodidad.'
+  },
+  {
+    question: '�Se puede comer all�?',
+    answer: 'S�, en la cafeter�a situada en la primera planta dispondr�s de un espacio c�modo habilitado para consumir alimentos.'
+  },
+  {
+    question: '�Me puedo traer mi propia comida y bebida?',
+    answer: 'S�, se puede llevar una botella con un m�ximo de 2 litros de agua embotellada. Por favor, no tires envases al suelo, ESCLAT est� concienciado con el medio ambiente y dispone de m�ltiples papeleras por todo el recinto. Puedes traer comida en cantidades no comerciales. Si superas los l�mites, los productos restantes deben entregarse al servicio de seguridad en la entrada.'
+  }
+]
+
+export const faqUtil = [
+  {
+    question: '�Se puede entrar y salir del recinto a voluntad?',
+    answer: 'S�, pidiendo en recepci�n una pulsera identificatoria. Este servicio tiene un precio de 2 euros.'
+  },
+  {
+    question: '�Est� permitido fumar?',
+    answer: 'Est� prohibido fumar dentro del recinto, incluido patios. Para poder entrar y salir con libertad tendr�s que pedir una pulsera de 2 euros en recepci�n.'
+  },
+  {
+    question: '�Puedo llevar a mi mascota?',
+    answer: 'Adem�s de los perros de asistencia seg�n lo definido por la ley, los perros gu�a y los perros polic�a, no est� permitido llevar mascotas al festival por su propio bien, ya que no es un ambiente adecuado dado el alto nivel de ruido y la gran cantidad de gente que podr�n encontrar.'
+  }
+]

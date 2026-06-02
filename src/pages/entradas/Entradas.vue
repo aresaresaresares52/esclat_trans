@@ -1,70 +1,17 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { computed } from 'vue'
 import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
-import { toast } from 'vue-sonner'
 
-type EntradaItem = {
-  id: string
-  name: string
-  count: number
-  cardClass: string
-  textClass: string
-}
+import { useEntradas } from '@/composables/useEntradas'
 
-const router = useRouter()
-
-const reservas = ref<EntradaItem[]>([
-  { id: '23', name: 'Pase para el día 23 de Octubre', count: 1, cardClass: 'bg-brand-green', textClass: 'text-white' },
-  { id: '24', name: 'Pase para el día 24 de Octubre', count: 1, cardClass: 'bg-[#F9851F]', textClass: 'text-white' },
-  { id: '25', name: 'Pase para el día 25 de Octubre', count: 1, cardClass: 'bg-brand-blue', textClass: 'text-white' },
-  { id: 'abono', name: 'Abono Completo 3 Días', count: 1, cardClass: 'bg-brand-purple', textClass: 'text-white' }
-])
-
-const devoluciones = ref<EntradaItem[]>([
-  { id: '23', name: 'Devolver Pase para el día 23 de Octubre', count: 1, cardClass: 'bg-brand-green', textClass: 'text-white' },
-  { id: '24', name: 'Devolver Pase para el día 24 de Octubre', count: 1, cardClass: 'bg-[#F9851F]', textClass: 'text-white' },
-  { id: '25', name: 'Devolver Pase para el día 25 de Octubre', count: 1, cardClass: 'bg-brand-blue', textClass: 'text-white' },
-  { id: 'abono', name: 'Devolver Abono Completo 3 Días', count: 1, cardClass: 'bg-brand-purple', textClass: 'text-white' }
-])
-
-const increment = (item: EntradaItem) => {
-  if (item.count >= 4) {
-    toast.error('Máximo 4 entradas por usuario')
-  } else {
-    item.count++
-  }
-}
-
-const decrement = (item: EntradaItem) => {
-  if (item.count > 1) {
-    item.count--
-  }
-}
-
-const handleReserva = (item: EntradaItem) => {
-  const routeData = router.resolve({
-    name: 'entradas-pasarela',
-    query: {
-      tipo: 'compra',
-      nombre: item.name,
-      cantidad: item.count
-    }
-  })
-  window.open(routeData.href, '_blank')
-}
-
-const handleDevolucion = (item: EntradaItem) => {
-  const routeData = router.resolve({
-    name: 'entradas-pasarela',
-    query: {
-      tipo: 'devolucion',
-      nombre: item.name,
-      cantidad: item.count
-    }
-  })
-  window.open(routeData.href, '_blank')
-}
+const {
+  reservas,
+  devoluciones,
+  increment,
+  decrement,
+  handleReserva,
+  handleDevolucion
+} = useEntradas()
 
 const entradaSections = computed(() => [
   {

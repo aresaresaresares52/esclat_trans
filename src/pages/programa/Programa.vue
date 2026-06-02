@@ -3,9 +3,7 @@ import { artists, specialEvents, programSchedule } from '@/data/data'
 </script>
 
 <template>
-  <div class="min-h-screen pt-20 pb-24 px-4 md:px-8 max-w-5xl mx-auto font-sans">
-    <h1 class="text-4xl md:text-6xl font-extrabold text-brand-purple mb-8 uppercase tracking-tight">Programa</h1>
-    
+  <div class="min-h-screen pb-24 px-4 md:px-8 max-w-5xl mx-auto font-sans">
     <section class="mb-16">
       <h2 class="text-2xl font-bold text-brand-blue mb-6">Artistas</h2>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">

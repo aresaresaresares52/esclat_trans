@@ -3,7 +3,7 @@ import { useRoute } from 'vue-router'
 import { ref, computed } from 'vue'
 import { Ticket, CheckCircle2, RotateCcw } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
-import { pasarelaConsentTexts, pasarelaDefaults, pasarelaMessages, pasarelaPersonalFields } from '@/data'
+import { pasarelaDefaults, pasarelaPersonalFields, pasarelaConsentTexts, pasarelaMessages } from '@/data/data'
 import LogoHorizontal from '@/components/LogoHorizontal.vue'
 
 const route = useRoute()

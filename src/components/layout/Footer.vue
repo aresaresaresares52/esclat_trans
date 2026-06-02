@@ -24,16 +24,14 @@ const legalLinks = [
   <footer class="border-t border-white/5 bg-background">
     <div class="container mx-auto px-4 py-8">
       <!-- Parte superior -->
-      <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-        <div class="flex flex-col gap-4 md:flex-row md:items-end md:gap-6">
-          <LogoHorizontal class="h-8 w-auto shrink-0" />
+      <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+        <LogoHorizontal class="h-8 w-auto shrink-0 md:flex-shrink-0" />
 
-          <p class="text-sm font-light text-white/60">
-            ven como eres, participa como quieras
-          </p>
-        </div>
+        <p class="text-sm md:text-md font-light text-center text-white/80 flex-1 px-4">
+          Ven como eres, participa como quieras.
+        </p>
 
-        <div class="flex items-center gap-5">
+        <div class="flex items-center justify-center gap-5 md:flex-shrink-0">
           <Tooltip v-for="link in socialLinks" :key="link.name">
             <TooltipTrigger as-child>
               <a
@@ -59,22 +57,22 @@ const legalLinks = [
       <div class="my-6 border-t border-white/5"></div>
 
       <!-- Parte inferior -->
-      <div class="flex items-center gap-3 text-[11px] text-white/45 md:justify-start ">
-        <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
+      <div class="flex flex-col gap-4 text-[11px] text-white/45 md:flex-row md:items-center md:justify-between">
+        <div class="flex items-center gap-2 md:flex-shrink-0">
+          <Copyright :size="13" />
+          <span class="uppercase tracking-widest">Esclat</span>
+          <span>{{ currentYear }}</span>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 md:justify-end flex-1 md:flex-1">
           <a
             v-for="link in legalLinks"
             :key="link.name"
             :href="link.href"
-            class="transition-colors hover:text-white/75"
+            class="transition-colors hover:text-white/75 text-center"
           >
             {{ link.name }}
           </a>
-        </div>
-
-        <div class="flex flex-col justify-start gap-2 md:flex-row md:items-center md:justify-between">
-          <Copyright :size="13" />
-          <span class="uppercase tracking-widest">Esclat</span>
-          <span>{{ currentYear }}</span>
         </div>
       </div>
     </div>

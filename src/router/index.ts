@@ -16,6 +16,10 @@ import Normas from "@/pages/informacion/Normas.vue";
 import PreguntasFrecuentes from "@/pages/informacion/PreguntasFrecuentes.vue";
 import Recinto from "@/pages/informacion/Recinto.vue";
 
+// Layouts para Nested Routes
+import ProgramaLayout from "@/pages/programa/ProgramaLayout.vue";
+import InformacionLayout from "@/pages/informacion/InformacionLayout.vue";
+
 export const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   scrollBehavior(to) {
@@ -51,6 +55,8 @@ export const router = createRouter({
     // Programa - Nested Routes
     {
       path: '/programa',
+      component: ProgramaLayout,
+      redirect: '/programa/artistas',
       children: [
         {
           path: 'artistas',
@@ -84,6 +90,8 @@ export const router = createRouter({
     // Información - Nested Routes
     {
       path: '/informacion',
+      component: InformacionLayout,
+      redirect: '/informacion/normas',
       children: [
         {
           path: 'normas',
