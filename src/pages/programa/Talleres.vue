@@ -9,9 +9,12 @@ const router = useRouter()
 
 const filteredTalleres = ref(workshops)
 
+const dayOrder = ['viernes', 'sábado', 'domingo']
+
 const filterOptions = computed(() => {
-  const days = new Set(workshops.map(t => t.day))
-  return Array.from(days).map(day => ({
+  const days = Array.from(new Set(workshops.map(t => t.day)))
+  const orderedDays = dayOrder.filter(day => days.includes(day)).concat(days.filter(day => !dayOrder.includes(day)))
+  return orderedDays.map(day => ({
     label: day,
     value: day
   }))

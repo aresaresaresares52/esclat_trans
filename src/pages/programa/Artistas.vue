@@ -10,9 +10,12 @@ const router = useRouter()
 
 const filteredArtists = ref<typeof artists>(artists)
 
+const dayOrder = ['viernes', 'sábado', 'domingo']
+
 const filterOptions = computed(() => {
-  const days = new Set(artists.map(a => a.day))
-  return Array.from(days).map(day => ({
+  const days = Array.from(new Set(artists.map(a => a.day)))
+  const orderedDays = dayOrder.filter(day => days.includes(day)).concat(days.filter(day => !dayOrder.includes(day)))
+  return orderedDays.map(day => ({
     label: day,
     value: day
   }))

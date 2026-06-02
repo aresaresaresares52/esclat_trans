@@ -9,7 +9,6 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel'
 import { ArrowRight, Play, ChevronDown } from 'lucide-vue-next'
-import LogoHorizontal from '@/components/LogoHorizontal.vue'
 import miniatura from '@/assets/miniatura.webp'
 import portada from '@/assets/portada.png'
 import charlabox from '@/assets/charlabox.png'
@@ -51,17 +50,36 @@ const navigateToEntradas = () => {
   router.push('/entradas')
 }
 
-const artistas = [
-  { name: 'Repion', slug: 'repion', size: 'text-6xl md:text-7xl mb-4', breakAfter: true },
-  { name: 'Bum Motion Club', slug: 'bum-motion-club', size: 'text-5xl md:text-6xl' },
-  { name: 'Diamante Negro', slug: 'diamante-negro', size: 'text-5xl md:text-6xl', breakAfter: true },
-  
-  { name: 'Garbi', slug: 'garbi', size: 'text-3xl md:text-[45px] mt-2' },
-  { name: 'Nuevos Vicios', slug: 'nuevos-vicios', size: 'text-3xl md:text-[45px] mt-2', breakAfter: true },
-  
-  { name: 'TranquiloRayo', slug: 'tranquilorayo', size: 'text-lg md:text-3xl mt-3' },
+const viernesArtists = [
   { name: 'Luna Valle', slug: 'luna-valle', size: 'text-lg md:text-3xl mt-3' },
-  { name: 'Mr.Kennedy', slug: 'mr-kennedy', size: 'text-lg md:text-3xl mt-3' }
+  { name: 'Diamante Negro', slug: 'diamante-negro', size: 'text-5xl md:text-6xl' }
+]
+
+const sabadoArtists = [
+  { name: 'TranquiloRayo', slug: 'tranquilorayo', size: 'text-lg md:text-3xl mt-3' },
+  { name: 'Garbi', slug: 'garbi', size: 'text-3xl md:text-[45px] mt-2' },
+  { name: 'Repion', slug: 'repion', size: 'text-6xl md:text-7xl mb-4' }
+]
+
+const domingoArtists = [
+  { name: 'Mr.Kennedy', slug: 'mr-kennedy', size: 'text-lg md:text-3xl mt-3' },
+  { name: 'Nuevos Vicios', slug: 'nuevos-vicios', size: 'text-3xl md:text-[45px] mt-2' },
+  { name: 'Bum Motion Club', slug: 'bum-motion-club', size: 'text-5xl md:text-6xl' }
+]
+
+const viernesTalleres = [
+  { title: 'Debate sobre arte', id: 'charla-arte' },
+  { title: 'Competición de videojuegos', id: 'nostalgia-juego' }
+]
+
+const sabadoTalleres = [
+  { title: 'Taller de Japónés', id: 'shodo' },
+  { title: 'Performance Drag', id: 'ultra-show' }
+]
+
+const domingoTalleres = [
+  { title: 'Charla sobre la vivienda', id: 'charla-vivienda' },
+  { title: 'Mercadillo', id: 'mercadillo' }
 ]
 
 const talleres = [
@@ -115,24 +133,20 @@ const noTeLopierdas = [
 </script>
 
 <template>
-  <div class="min-h-screen font-sans bg-[#111111] text-white pb-32 overflow-x-hidden w-full">
+  <div class="min-h-screen font-sans bg-[#111111] text-white pb-32 pt-12 overflow-x-hidden w-full">
     
 <section class="relative w-full flex flex-col items-center justify-center text-center px-4" :style="{ backgroundImage: `url(${portada})`, backgroundSize: '100% 100%', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', aspectRatio: '1920/1080' }">
 
-  <div class="relative z-10 pt-0 pb-32 flex flex-col items-center justify-center">
-    <LogoHorizontal class="w-72 sm:w-96 md:w-[470px] lg:w-[550px] object-contain mb-8 max-w-full" />
-    <p class="text-[10px] md:text-2xl text-gray-200 mb-10 font-medium">
-      Festival de Música, Cultura y Pensamiento Crítico
-    </p>
+  <div class="relative z-10 pt-50 pb-32 flex flex-col items-center justify-center">
     <button 
       @click="navigateToEntradas"
-      class="bg-brand-yellow text-black font-bold text-xl md:text-2xl py-4 px-10 rounded-none uppercase transition-transform hover:scale-105 shadow-[4px_4px_0_0_theme(colors.brand.purple)] hover:shadow-[6px_6px_0_0_theme(colors.brand.purple)] cursor-pointer"
+      class="bg-brand-yellow text-black font-bold text-xl md:text-2xl py-4 px-10 rounded-none uppercase transition-transform hover:scale-105 cursor-pointer"
     >
       Consigue tu entrada
     </button>
   </div>
 </section>
-    <section class="max-w-7xl mx-auto px-4 md:px-8 pt-0 pb-20 mb-32 w-full bg-[#111111]">
+    <section class="max-w-7xl mx-auto px-4 md:px-8 pt-20 pb-20 mb-32 w-full bg-[#111111]">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 items-start relative">
         
         <svg 
@@ -219,31 +233,77 @@ const noTeLopierdas = [
     <section class="max-w-7xl mx-auto px-4 md:px-8 py-10 mb-20 w-full bg-[#111111]">
       <h2 class="text-5xl md:text-7xl font-sans2 font-regular text-center text-white mb-16">Prepárate para</h2>
       
-      <div id="home-artistas" class="relative max-w-5xl mx-auto bg-brand-blue p-6 md:p-12 mb-16 shadow-[16px_16px_0_0_theme(colors.brand.yellow)] transform -rotate-1 min-h-[450px] flex items-center justify-center overflow-hidden scroll-mt-24">
-        <img :src="forma1" alt="" class="pointer-events-none absolute right-0 top-0 w-24 md:w-36 lg:w-44 z-0" aria-hidden="true" />
-        <img :src="forma2" alt="" class="pointer-events-none absolute left-0 top-1/2 w-20 md:w-32 lg:w-40 -translate-y-1/2 z-0" aria-hidden="true" />
-
-        <div class="relative z-10 text-black font-extrabold uppercase text-center space-x-2 md:space-x-6 space-y-2">
-          <template v-for="artista in artistas" :key="artista.slug">
-            <span 
-              @click="() => router.push(`/programa/artistas/${artista.slug}`)" 
-              :class="[artista.size, 'inline-block hover:scale-110 transition-transform cursor-pointer hover:text-white']"
-            >
-              {{ artista.name }}
-            </span>
-            <br v-if="artista.breakAfter" />
-          </template>
+      <div id="home-artistas" class="relative max-w-7xl mx-auto mb-16 grid gap-8 md:grid-cols-3 scroll-mt-24">
+        <div class="bg-black p-8 rounded-3xl min-h-[450px] text-left text-white">
+          <h3 class="text-[81px] font-black text-brand-green leading-none">Viernes</h3>
+          <div class="space-y-4 mt-6">
+            <template v-for="artist in viernesArtists" :key="artist.slug">
+              <span
+                @click="() => router.push(`/programa/artistas/${artist.slug}`)"
+                :class="[artist.size, 'block hover:scale-110 transition-transform cursor-pointer hover:text-white']"
+              >
+                {{ artist.name }}
+              </span>
+            </template>
+          </div>
+          <div class="space-y-3 mt-8">
+            <template v-for="taller in viernesTalleres" :key="taller.id">
+              <button
+                @click="navigateToTaller(taller.id)"
+                class="text-left text-white text-xl font-semibold hover:text-emerald-300 transition-colors"
+              >
+                {{ taller.title }}
+              </button>
+            </template>
+          </div>
         </div>
-      </div>
 
-      <div id="home-talleres" class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 scroll-mt-24">
-        <div 
-          v-for="taller in talleres" 
-          :key="taller.id"
-          @click="navigateToTaller(taller.id)"
-          class="aspect-square cursor-pointer overflow-hidden transition-all duration-300 hover:brightness-125"
-        >
-          <img :src="tallerImages[taller.id]" :alt="taller.title" class="w-full h-full object-cover" />
+        <div class="bg-black p-8 rounded-3xl min-h-[450px] text-left text-white">
+          <h3 class="text-[60px] font-black text-brand-yellow leading-none">Sábado</h3>
+          <div class="space-y-4 mt-6">
+            <template v-for="artist in sabadoArtists" :key="artist.slug">
+              <span
+                @click="() => router.push(`/programa/artistas/${artist.slug}`)"
+                :class="[artist.size, 'block hover:scale-110 transition-transform cursor-pointer hover:text-white']"
+              >
+                {{ artist.name }}
+              </span>
+            </template>
+          </div>
+          <div class="space-y-3 mt-8">
+            <template v-for="taller in sabadoTalleres" :key="taller.id">
+              <button
+                @click="navigateToTaller(taller.id)"
+                class="text-left text-white text-xl font-semibold hover:text-yellow-300 transition-colors"
+              >
+                {{ taller.title }}
+              </button>
+            </template>
+          </div>
+        </div>
+
+        <div class="bg-black p-8 rounded-3xl min-h-[450px] text-left text-white">
+          <h3 class="text-[60px] font-black text-brand-blue leading-none">Domingo</h3>
+          <div class="space-y-4 mt-6">
+            <template v-for="artist in domingoArtists" :key="artist.slug">
+              <span
+                @click="() => router.push(`/programa/artistas/${artist.slug}`)"
+                :class="[artist.size, 'block hover:scale-110 transition-transform cursor-pointer hover:text-white']"
+              >
+                {{ artist.name }}
+              </span>
+            </template>
+          </div>
+          <div class="space-y-3 mt-8">
+            <template v-for="taller in domingoTalleres" :key="taller.id">
+              <button
+                @click="navigateToTaller(taller.id)"
+                class="text-left text-white text-xl font-semibold hover:text-sky-300 transition-colors"
+              >
+                {{ taller.title }}
+              </button>
+            </template>
+          </div>
         </div>
       </div>
     </section>
