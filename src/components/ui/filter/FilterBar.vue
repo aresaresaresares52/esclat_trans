@@ -52,7 +52,7 @@ const updateFilters = () => {
 </script>
 
 <template>
-  <div class="filter-bar flex flex-col md:flex-row gap-6 mb-12 items-start md:items-center md:justify-between w-full max-w-6xl mx-auto bg-black">
+  <div class="filter-bar flex flex-col md:flex-row gap-6 mb-12 items-start md:items-center md:justify-between w-full max-w-6xl mx-auto bg-background">
     
     <div class="flex flex-wrap items-center gap-3">
       <button
@@ -89,7 +89,7 @@ const updateFilters = () => {
         placeholder="Buscar..."
         :value="searchQuery"
         @input="handleSearch"
-        class="w-full pl-4 pr-11 py-[11px] bg-black border-2 border-brand-yellow text-brand-yellow placeholder-brand-yellow/50 font-medium uppercase focus:outline-none transition-colors rounded-none text-sm"
+        class="w-full pl-4 pr-11 py-[11px] bg-background border-2 border-brand-yellow text-brand-yellow placeholder-brand-yellow/50 font-medium uppercase focus:outline-none transition-colors rounded-none text-sm"
       />
     </div>
 

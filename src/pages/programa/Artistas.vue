@@ -25,9 +25,7 @@ const handleFilter = (filtered: typeof artists) => {
   filteredArtists.value = filtered
 }
 
-const navigateToArtist = (id: string) => {
-  router.push(`/programa/artistas/${id}`)
-}
+ 
 </script>
 
 <template>
@@ -61,19 +59,19 @@ const navigateToArtist = (id: string) => {
       </div>
 
       <div v-if="filteredArtists.length > 0" class="flex flex-wrap gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-8">
-        <div 
-          v-for="artist in filteredArtists" 
+        <router-link
+          v-for="artist in filteredArtists"
           :key="artist.id"
-          @click="navigateToArtist(artist.id)"
-          class="w-[calc(50%-0.5rem)] sm:w-auto aspect-square bg-gray-900 shadow-[8px_8px_0_0_theme(colors.brand.blue)] hover:shadow-[12px_12px_0_0_theme(colors.brand.blue)] hover:translate-x-[4px] hover:translate-y-[4px] transition-all cursor-pointer relative group overflow-hidden"
+          :to="`/programa/artistas/${artist.id}`"
+          class="w-[calc(50%-0.5rem)] sm:w-auto aspect-square bg-gray-900 shadow-[8px_8px_0_0_theme(colors.brand.blue)] hover:shadow-[12px_12px_0_0_theme(colors.brand.blue)] hover:translate-x-[4px] hover:translate-y-[4px] transition-all cursor-pointer relative group overflow-hidden block"
         >
           <img :src="artist.img" :alt="artist.name" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
           
-          <div class="absolute bottom-0 left-0 right-0 p-4 bg-black/80 backdrop-blur-sm border-t-2 border-brand-blue translate-y-full group-hover:translate-y-0 transition-transform">
+          <div class="absolute bottom-0 left-0 right-0 p-4 bg-background/80 backdrop-blur-sm border-t-2 border-brand-blue translate-y-full group-hover:translate-y-0 transition-transform">
             <h3 class="text-xl font-bold uppercase text-white">{{ artist.name }}</h3>
             <p class="text-brand-blue font-regular">{{ artist.day }}</p>
           </div>
-        </div>
+        </router-link>
       </div>
 
       <div v-else class="text-center py-20">

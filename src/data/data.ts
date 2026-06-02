@@ -549,3 +549,85 @@ export const programSchedule: DaySchedule[] = [
     ]
   }
 ]
+
+// ============================================================================
+// HOME SECTION DATA
+// ============================================================================
+
+export interface HomeArtist {
+  name: string
+  slug: string
+  size: string
+}
+
+export interface HomeWorkshop {
+  title: string
+  id: string
+}
+
+export interface CarouselItem {
+  id: string
+  title: string
+  color: string
+  to?: string
+  action?: () => void
+}
+
+export const viernesArtists: HomeArtist[] = [
+  { name: 'Luna Valle', slug: 'luna-valle', size: 'text-2xl md:text-4xl mt-3' },
+  { name: 'Diamante Negro', slug: 'diamante-negro', size: 'text-3xl md:text-4xl mt-3' }
+]
+
+export const sabadoArtists: HomeArtist[] = [
+  { name: 'TranquiloRayo', slug: 'tranquilorayo', size: 'text-2xl md:text-4xl mt-3' },
+  { name: 'Garbi', slug: 'garbi', size: 'text-2xl md:text-4xl mt-3' },
+  { name: 'Repion', slug: 'repion', size: 'text-3xl md:text-4xl mt-3' }
+]
+
+export const domingoArtists: HomeArtist[] = [
+  { name: 'Mr.Kennedy', slug: 'mr-kennedy', size: 'text-2xl md:text-4xl mt-3' },
+  { name: 'Nuevos Vicios', slug: 'nuevos-vicios', size: 'text-3xl md:text-4xl mt-3' },
+  { name: 'Bum Motion Club', slug: 'bum-motion-club', size: 'text-3xl md:text-4xl mt-3' }
+]
+
+export const viernesTalleres: HomeWorkshop[] = [
+  { title: 'Debate sobre arte', id: 'charla-arte' },
+  { title: 'Competición de videojuegos', id: 'nostalgia-juego' }
+]
+
+export const sabadoTalleres: HomeWorkshop[] = [
+  { title: 'Taller de Japónés', id: 'shodo' },
+  { title: 'Performance Drag', id: 'ultra-show' }
+]
+
+export const domingoTalleres: HomeWorkshop[] = [
+  { title: 'Charla sobre la vivienda', id: 'charla-vivienda' },
+  { title: 'Mercadillo', id: 'mercadillo' }
+]
+
+export const carouselItems: (Omit<CarouselItem, 'to' | 'action'> & { to?: string; action?: () => void })[] = [
+  {
+    id: 'artistas',
+    title: 'Descubre más de nuestros artistas',
+    color: '#29abe2',
+    to: '/programa/artistas'
+  },
+  {
+    id: 'talleres',
+    title: 'Apúntate a nuestros talleres',
+    color: '#7b2fbf',
+    to: '/programa/talleres'
+  },
+  {
+    id: 'informacion',
+    title: 'Accede a información útil',
+    color: '#58b61f',
+    to: '/informacion/preguntas-frecuentes'
+  },
+  {
+    id: 'playlist',
+    title: 'Descubre nuestra playlist',
+    color: '#f2dd20',
+    action: () => window.open('https://open.spotify.com/playlist/2u7BSywQFZc1RFYALxf4bw', '_blank')
+  }
+]

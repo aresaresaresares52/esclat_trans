@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 import {
   Carousel,
   CarouselContent,
@@ -11,18 +10,53 @@ import {
 import { ArrowRight, Play, ChevronDown } from 'lucide-vue-next'
 import miniatura from '@/assets/miniatura.webp'
 import portada from '@/assets/portada.png'
-import charlabox from '@/assets/charlabox.png'
-import mercadillobox from '@/assets/mercadillobox.png'
-import shodobox from '@/assets/shodobox.png'
-import competibox from '@/assets/competibox.png'
-import debatebox from '@/assets/debatebox.png'
-import dragbox from '@/assets/dragbox.png'
-import forma1 from '@/assets/forma1.png'
-import forma2 from '@/assets/forma2.png'
 
-const router = useRouter()
+import {
+  viernesArtists,
+  sabadoArtists,
+  domingoArtists,
+  viernesTalleres,
+  sabadoTalleres,
+  domingoTalleres,
+  carouselItems
+} from '@/data/data'
 
-// Control del desplegable de "¿Quiénes somos?"
+
+// ============================================================================
+// HOME DAY STRUCTURE
+// ============================================================================
+
+interface DiasItem {
+  nombre: string
+  color: string
+  hoverColor: string
+  artistas: typeof viernesArtists
+  talleres: typeof viernesTalleres
+}
+
+const diasFestival: DiasItem[] = [
+  {
+    nombre: 'Viernes',
+    color: 'text-brand-green',
+    hoverColor: 'hover:text-brand-green',
+    artistas: viernesArtists,
+    talleres: viernesTalleres
+  },
+  {
+    nombre: 'Sábado',
+    color: 'text-brand-yellow',
+    hoverColor: 'hover:text-brand-yellow',
+    artistas: sabadoArtists,
+    talleres: sabadoTalleres
+  },
+  {
+    nombre: 'Domingo',
+    color: 'text-brand-blue',
+    hoverColor: 'hover:text-brand-blue',
+    artistas: domingoArtists,
+    talleres: domingoTalleres
+  }
+]
 const isQuienesSomosOpen = ref(false)
 
 // Control del reproductor de vídeo interactivo con estado de buffer de carga
@@ -46,90 +80,6 @@ const playVideo = () => {
   })
 }
 
-const navigateToEntradas = () => {
-  router.push('/entradas')
-}
-
-const viernesArtists = [
-  { name: 'Luna Valle', slug: 'luna-valle', size: 'text-lg md:text-3xl mt-3' },
-  { name: 'Diamante Negro', slug: 'diamante-negro', size: 'text-5xl md:text-6xl' }
-]
-
-const sabadoArtists = [
-  { name: 'TranquiloRayo', slug: 'tranquilorayo', size: 'text-lg md:text-3xl mt-3' },
-  { name: 'Garbi', slug: 'garbi', size: 'text-3xl md:text-[45px] mt-2' },
-  { name: 'Repion', slug: 'repion', size: 'text-6xl md:text-7xl mb-4' }
-]
-
-const domingoArtists = [
-  { name: 'Mr.Kennedy', slug: 'mr-kennedy', size: 'text-lg md:text-3xl mt-3' },
-  { name: 'Nuevos Vicios', slug: 'nuevos-vicios', size: 'text-3xl md:text-[45px] mt-2' },
-  { name: 'Bum Motion Club', slug: 'bum-motion-club', size: 'text-5xl md:text-6xl' }
-]
-
-const viernesTalleres = [
-  { title: 'Debate sobre arte', id: 'charla-arte' },
-  { title: 'Competición de videojuegos', id: 'nostalgia-juego' }
-]
-
-const sabadoTalleres = [
-  { title: 'Taller de Japónés', id: 'shodo' },
-  { title: 'Performance Drag', id: 'ultra-show' }
-]
-
-const domingoTalleres = [
-  { title: 'Charla sobre la vivienda', id: 'charla-vivienda' },
-  { title: 'Mercadillo', id: 'mercadillo' }
-]
-
-const talleres = [
-  { title: 'Charla sobre la vivienda', id: 'charla-vivienda' },
-  { title: 'Mercadillo', id: 'mercadillo' },
-  { title: 'Taller de Japónés', id: 'shodo' },
-  { title: 'Competición de videojuegos', id: 'nostalgia-juego' },
-  { title: 'Debate sobre arte', id: 'charla-arte' },
-  { title: 'Performance Drag', id: 'ultra-show' }
-]
-
-const tallerImages: Record<string, string> = {
-  'charla-vivienda': charlabox,
-  mercadillo: mercadillobox,
-  shodo: shodobox,
-  'nostalgia-juego': competibox,
-  'charla-arte': debatebox,
-  'ultra-show': dragbox
-}
-
-const navigateToTaller = (tallerId: string) => {
-  router.push(`/programa/talleres/${tallerId}`)
-}
-
-const noTeLopierdas = [
-  {
-    id: 'artistas',
-    title: 'Descubre más de nuestros artistas',
-    color: '#29abe2',
-    action: () => router.push('/programa/artistas')
-  },
-  {
-    id: 'talleres',
-    title: 'Apúntate a nuestros talleres',
-    color: '#7b2fbf',
-    action: () => router.push('/programa/talleres')
-  },
-  {
-    id: 'informacion',
-    title: 'Accede a información útil',
-    color: '#58b61f',
-    action: () => router.push('/informacion/preguntas-frecuentes')
-  },
-  {
-    id: 'playlist',
-    title: 'Descubre nuestra playlist',
-    color: '#f2dd20',
-    action: () => window.open('https://open.spotify.com/playlist/2u7BSywQFZc1RFYALxf4bw', '_blank')
-  }
-]
 </script>
 
 <template>
@@ -138,15 +88,12 @@ const noTeLopierdas = [
 <section class="relative w-full flex flex-col items-center justify-center text-center px-4" :style="{ backgroundImage: `url(${portada})`, backgroundSize: '100% 100%', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', aspectRatio: '1920/1080' }">
 
   <div class="relative z-10 pt-50 pb-32 flex flex-col items-center justify-center">
-    <button 
-      @click="navigateToEntradas"
-      class="bg-brand-yellow text-black font-bold text-xl md:text-2xl py-4 px-10 rounded-none uppercase transition-transform hover:scale-105 cursor-pointer"
-    >
+    <router-link to="/entradas" class="bg-brand-yellow text-black font-bold text-xl md:text-2xl py-4 px-10 rounded-none uppercase transition-transform hover:scale-105 cursor-pointer inline-block text-center">
       Consigue tu entrada
-    </button>
+    </router-link>
   </div>
 </section>
-    <section class="max-w-7xl mx-auto px-4 md:px-8 pt-20 pb-20 mb-32 w-full bg-[#111111]">
+    <section class="max-w-7xl mx-auto px-4 md:px-8 pt-40 pb-20 mb-5 w-full bg-[#111111]">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 items-start relative">
         
         <svg 
@@ -186,10 +133,10 @@ const noTeLopierdas = [
         </div>
 
         <div class="w-full md:col-span-2 relative z-10">
-          <div class="w-full aspect-video bg-black relative border-4 border-black overflow-hidden">
+          <div class="w-full aspect-video bg-background relative border-4 border-black overflow-hidden">
             <div v-if="!isVideoPlaying" class="absolute inset-0 w-full h-full flex items-center justify-center z-10 bg-neutral-900 group">
               <img :src="miniatura" class="absolute inset-0 w-full h-full object-cover z-0" alt="Miniatura Esclat" />
-              <div class="absolute inset-0 bg-black/40 z-0" />
+              <div class="absolute inset-0 bg-background/40 z-0" />
               <button 
                 v-if="!isVideoLoading"
                 @click="playVideo"
@@ -230,111 +177,71 @@ const noTeLopierdas = [
       </div>
     </section>
 
-    <section class="max-w-7xl mx-auto px-4 md:px-8 py-10 mb-20 w-full bg-[#111111]">
+    <section class="max-w-7xl mx-auto px-4 md:px-8 pt-20 pb-0 mb-5 w-full bg-[#111111]">
       <h2 class="text-5xl md:text-7xl font-sans2 font-regular text-center text-white mb-16">Prepárate para</h2>
       
       <div id="home-artistas" class="relative max-w-7xl mx-auto mb-16 grid gap-8 md:grid-cols-3 scroll-mt-24">
-        <div class="bg-black p-8 rounded-3xl min-h-[450px] text-left text-white">
-          <h3 class="text-[81px] font-black text-brand-green leading-none">Viernes</h3>
-          <div class="space-y-4 mt-6">
-            <template v-for="artist in viernesArtists" :key="artist.slug">
-              <span
-                @click="() => router.push(`/programa/artistas/${artist.slug}`)"
-                :class="[artist.size, 'block hover:scale-110 transition-transform cursor-pointer hover:text-white']"
-              >
-                {{ artist.name }}
-              </span>
-            </template>
+        <template v-for="dia in diasFestival" :key="dia.nombre">
+          <div class="bg-background p-8 rounded-3xl min-h-[450px] text-left text-white">
+            <h3 :class="`text-[50px] font-black ${dia.color} leading-none`">{{ dia.nombre }}</h3>
+            <div class="space-y-6 mt-12">
+              <template v-for="artist in dia.artistas" :key="artist.slug">
+                <router-link :to="`/programa/artistas/${artist.slug}`" class="block">
+                  <span :class="[artist.size, 'uppercase block hover:scale-140 transition-transform cursor-pointer hover:text-white']">
+                    {{ artist.name }}
+                  </span>
+                </router-link>
+              </template>
+            </div>
+            <div class="space-y-6 mt-12">
+              <template v-for="taller in dia.talleres" :key="taller.id">
+                <router-link :to="`/programa/talleres/${taller.id}`" :class="`uppercase text-left text-white text-4xl font-medium transition-colors block ${dia.hoverColor}`">
+                  {{ taller.title }}
+                </router-link>
+              </template>
+            </div>
           </div>
-          <div class="space-y-3 mt-8">
-            <template v-for="taller in viernesTalleres" :key="taller.id">
-              <button
-                @click="navigateToTaller(taller.id)"
-                class="text-left text-white text-xl font-semibold hover:text-emerald-300 transition-colors"
-              >
-                {{ taller.title }}
-              </button>
-            </template>
-          </div>
-        </div>
-
-        <div class="bg-black p-8 rounded-3xl min-h-[450px] text-left text-white">
-          <h3 class="text-[60px] font-black text-brand-yellow leading-none">Sábado</h3>
-          <div class="space-y-4 mt-6">
-            <template v-for="artist in sabadoArtists" :key="artist.slug">
-              <span
-                @click="() => router.push(`/programa/artistas/${artist.slug}`)"
-                :class="[artist.size, 'block hover:scale-110 transition-transform cursor-pointer hover:text-white']"
-              >
-                {{ artist.name }}
-              </span>
-            </template>
-          </div>
-          <div class="space-y-3 mt-8">
-            <template v-for="taller in sabadoTalleres" :key="taller.id">
-              <button
-                @click="navigateToTaller(taller.id)"
-                class="text-left text-white text-xl font-semibold hover:text-yellow-300 transition-colors"
-              >
-                {{ taller.title }}
-              </button>
-            </template>
-          </div>
-        </div>
-
-        <div class="bg-black p-8 rounded-3xl min-h-[450px] text-left text-white">
-          <h3 class="text-[60px] font-black text-brand-blue leading-none">Domingo</h3>
-          <div class="space-y-4 mt-6">
-            <template v-for="artist in domingoArtists" :key="artist.slug">
-              <span
-                @click="() => router.push(`/programa/artistas/${artist.slug}`)"
-                :class="[artist.size, 'block hover:scale-110 transition-transform cursor-pointer hover:text-white']"
-              >
-                {{ artist.name }}
-              </span>
-            </template>
-          </div>
-          <div class="space-y-3 mt-8">
-            <template v-for="taller in domingoTalleres" :key="taller.id">
-              <button
-                @click="navigateToTaller(taller.id)"
-                class="text-left text-white text-xl font-semibold hover:text-sky-300 transition-colors"
-              >
-                {{ taller.title }}
-              </button>
-            </template>
-          </div>
-        </div>
+        </template>
       </div>
     </section>
 
-    <section class="max-w-7xl mx-auto px-4 md:px-8 py-20 w-full bg-[#111111]">
-      <h2 class="text-5xl md:text-6xl font-sans2 font-regular text-white  mb-16 text-center">No te lo pierdas</h2>
+    <section class="max-w-7xl mx-auto px-4 md:px-8 py-20 w-full bg-background">
+      <h2 class="text-5xl md:text-7xl font-sans2 font-regular text-white  mb-16 text-center">No te lo pierdas</h2>
       
       <Carousel class="w-full max-w-6xl mx-auto px-12">
         <CarouselContent class="-ml-6 pb-12 pt-6">
-          <CarouselItem v-for="item in noTeLopierdas" :key="item.id" class="basis-full sm:basis-1/2 md:basis-1/3 pl-6">
-            
-            <div 
-              @click="item.action"
-              :style="{ 
-                boxShadow: `0px 10px 0px 0px ${item.color}, 10px 0px 0px 0px ${item.color}, -10px 0px 0px 0px ${item.color}, 10px 10px 0px 0px ${item.color}, -10px 10px 0px 0px ${item.color}`,
-                '--hover-color': item.color 
-              }"
-              class="aspect-square w-[calc(100%-15px)] mx-auto bg-white text-black p-6 md:p-8 flex flex-col justify-between cursor-pointer hover:-translate-y-2 hover:scale-[1.01] transition-all duration-300 group"
-            >
-              <h3 class="text-3xl md:text-4xl font-extrabold uppercase leading-tight transition-colors duration-300 group-hover:text-[var(--hover-color)]">
-                {{ item.title }}
-              </h3>
-              <div class="flex justify-end mt-auto">
-                <div 
-                  :style="{ backgroundColor: item.color, color: 'white' }"
-                  class="rounded-full p-3 flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-                >
-                  <ArrowRight class="w-6 h-6" />
+          <CarouselItem v-for="item in carouselItems" :key="item.id" class="basis-full sm:basis-1/2 md:basis-1/3 pl-6">
+            <template v-if="item.to">
+              <router-link :to="item.to" :style="{ boxShadow: `0px 10px 0px 0px ${item.color}, 10px 0px 0px 0px ${item.color}, -10px 0px 0px 0px ${item.color}, 10px 10px 0px 0px ${item.color}, -10px 10px 0px 0px ${item.color}`, '--hover-color': item.color }" class="aspect-square w-[calc(100%-15px)] mx-auto bg-background text-white p-6 md:p-8 flex flex-col justify-between cursor-pointer hover:-translate-y-2 hover:scale-[1.01] transition-all duration-300 group">
+                <h3 class="text-3xl md:text-4xl text-white font-bold uppercase leading-tight transition-colors duration-300 group-hover:text-[var(--hover-color)]">
+                  {{ item.title }}
+                </h3>
+                <div class="flex justify-end mt-auto">
+                  <div :style="{ backgroundColor: item.color, color: 'white' }" class="rounded-full p-3 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                    <ArrowRight class="w-6 h-6" />
+                  </div>
+                </div>
+              </router-link>
+            </template>
+            <template v-else>
+              <div 
+                @click="item.action"
+                :style="{ 
+                  boxShadow: `0px 10px 0px 0px ${item.color}, 10px 0px 0px 0px ${item.color}, -10px 0px 0px 0px ${item.color}, 10px 10px 0px 0px ${item.color}, -10px 10px 0px 0px ${item.color}`,
+                  '--hover-color': item.color 
+                }"
+                class="aspect-square w-[calc(100%-15px)] mx-auto bg-background p-6 md:p-8 flex flex-col justify-between cursor-pointer hover:-translate-y-2 hover:scale-[1.01] transition-all duration-300 group"
+              >
+                <h3 class="text-3xl md:text-4xl text-white font-bold uppercase leading-tight transition-colors duration-300 group-hover:text-[var(--hover-color)]">
+                  {{ item.title }}
+                </h3>
+                <div class="flex justify-end mt-auto">
+                  <div :style="{ backgroundColor: item.color, color: 'white' }" class="rounded-full p-3 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                    <ArrowRight class="w-6 h-6" />
+                  </div>
                 </div>
               </div>
-            </div>
+            </template>
 
           </CarouselItem>
         </CarouselContent>

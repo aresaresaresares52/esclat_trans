@@ -37,7 +37,7 @@ const isActive = (path: string) => {
         <router-link 
           to="/"
           class="h-full flex items-center justify-center px-4 text-[13px] font-bold uppercase transition-all duration-300 ease-in-out border-x border-white/5 -ml-[1px]"
-          :class="isActive('/') ? 'bg-black text-brand-blue' : 'bg-black text-white hover:text-brand-yellow hover:-translate-y-0.5'"
+          :class="isActive('/') ? 'bg-background text-brand-blue' : 'bg-background text-white hover:text-brand-yellow hover:-translate-y-0.5'"
         >
           Home
         </router-link>
@@ -45,7 +45,7 @@ const isActive = (path: string) => {
         <router-link 
           to="/entradas"
           class="h-full flex items-center justify-center px-4 text-[13px] font-bold uppercase transition-all duration-300 ease-in-out border-r border-white/5"
-          :class="isActive('/entradas') ? 'bg-black text-brand-blue' : 'bg-black text-white hover:text-brand-yellow hover:-translate-y-0.5'"
+          :class="isActive('/entradas') ? 'bg-background text-brand-blue' : 'bg-background text-white hover:text-brand-yellow hover:-translate-y-0.5'"
         >
           Entradas
         </router-link>
@@ -54,14 +54,14 @@ const isActive = (path: string) => {
         <div class="h-full group relative border-r border-white/5">
           <button 
             class="h-full flex items-center justify-center px-4 text-[13px] font-bold uppercase transition-all duration-300 ease-in-out outline-none"
-            :class="isActive('/programa') ? 'bg-black text-brand-blue' : 'bg-black text-white group-hover:text-brand-yellow'"
+            :class="isActive('/programa') ? 'bg-background text-brand-blue' : 'bg-background text-white group-hover:text-brand-yellow'"
           >
             Programa
             <ChevronDown class="ml-1 w-4 h-4 transition-transform group-hover:rotate-180" />
           </button>
           
           <!-- Menu flotante -->
-          <div class="absolute top-full left-0 hidden group-hover:flex flex-col bg-black border border-white/10 min-w-[150px] shadow-lg">
+          <div class="absolute top-full left-0 hidden group-hover:flex flex-col bg-background border border-white/10 min-w-[150px] shadow-lg">
             <router-link to="/programa/artistas" class="px-4 py-3 text-[13px] font-bold uppercase text-white hover:text-brand-blue hover:bg-white/5 border-b border-white/5">Artistas</router-link>
             <router-link to="/programa/talleres" class="px-4 py-3 text-[13px] font-bold uppercase text-white hover:text-brand-blue hover:bg-white/5 border-b border-white/5">Talleres</router-link>
             <router-link to="/programa/horarios" class="px-4 py-3 text-[13px] font-bold uppercase text-white hover:text-brand-blue hover:bg-white/5">Horarios</router-link>
@@ -71,7 +71,7 @@ const isActive = (path: string) => {
         <router-link 
           to="/como-llegar"
           class="h-full flex items-center justify-center px-4 text-[13px] font-bold uppercase transition-all duration-300 ease-in-out border-r border-white/5"
-          :class="isActive('/como-llegar') ? 'bg-black text-brand-blue' : 'bg-black text-white hover:text-brand-yellow hover:-translate-y-0.5'"
+          :class="isActive('/como-llegar') ? 'bg-background text-brand-blue' : 'bg-background text-white hover:text-brand-yellow hover:-translate-y-0.5'"
         >
           Cómo llegar
         </router-link>
@@ -80,14 +80,14 @@ const isActive = (path: string) => {
         <div class="h-full group relative border-r border-white/5">
           <button 
             class="h-full flex items-center justify-center px-4 text-[13px] font-bold uppercase transition-all duration-300 ease-in-out outline-none"
-            :class="isActive('/informacion') ? 'bg-black text-brand-blue' : 'bg-black text-white group-hover:text-brand-yellow'"
+            :class="isActive('/informacion') ? 'bg-background text-brand-blue' : 'bg-background text-white group-hover:text-brand-yellow'"
           >
             Información
             <ChevronDown class="ml-1 w-4 h-4 transition-transform group-hover:rotate-180" />
           </button>
           
           <!-- Menu flotante -->
-          <div class="absolute top-full right-0 hidden group-hover:flex flex-col bg-black border border-white/10 min-w-[200px] shadow-lg">
+          <div class="absolute top-full right-0 hidden group-hover:flex flex-col bg-background border border-white/10 min-w-[200px] shadow-lg">
             <router-link to="/informacion/normas" class="px-4 py-3 text-[13px] font-bold uppercase text-white hover:text-brand-blue hover:bg-white/5 border-b border-white/5">Normas</router-link>
             <router-link to="/informacion/preguntas-frecuentes" class="px-4 py-3 text-[13px] font-bold uppercase text-white hover:text-brand-blue hover:bg-white/5 border-b border-white/5">Preguntas Frecuentes</router-link>
             <router-link to="/informacion/recinto" class="px-4 py-3 text-[13px] font-bold uppercase text-white hover:text-brand-blue hover:bg-white/5">Recinto</router-link>
@@ -118,7 +118,7 @@ const isActive = (path: string) => {
       leave-from-class="translate-x-0"
       leave-to-class="translate-x-full"
     >
-      <div v-if="isMobileMenuOpen" class="lg:hidden fixed inset-0 bg-black z-[60] flex flex-col pt-24 px-8 overflow-y-auto">
+      <div v-if="isMobileMenuOpen" class="lg:hidden fixed inset-0 bg-background z-[60] flex flex-col pt-24 px-8 overflow-y-auto">
         <button @click="isMobileMenuOpen = false" class="absolute top-5 right-5 text-white p-2">
             <X :size="32" />
         </button>

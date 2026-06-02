@@ -24,8 +24,8 @@ const legalLinks = [
   <footer class="border-t border-white/5 bg-background">
     <div class="container mx-auto px-4 py-8">
       <!-- Parte superior -->
-      <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div class="flex flex-col gap-4 md:flex-row md:items-center md:gap-6">
+      <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div class="flex flex-col gap-4 md:flex-row md:items-end md:gap-6">
           <LogoHorizontal class="h-8 w-auto shrink-0" />
 
           <p class="text-sm font-light text-white/60">
@@ -59,7 +59,7 @@ const legalLinks = [
       <div class="my-6 border-t border-white/5"></div>
 
       <!-- Parte inferior -->
-      <div class="flex items-center gap-3 text-[11px] text-white/45 md:justify-end ">
+      <div class="flex items-center gap-3 text-[11px] text-white/45 md:justify-start ">
         <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
           <a
             v-for="link in legalLinks"
