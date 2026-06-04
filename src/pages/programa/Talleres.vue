@@ -8,7 +8,7 @@ import bannermovidas from '@/assets/bannermovidas.png'
 
 const filteredTalleres = ref(workshops)
 
-const dayOrder = ['viernes', 'sábado', 'domingo']
+const dayOrder = ['Viernes 23', 'Sábado 24', 'Domingo 25']
 
 const filterOptions = computed(() => {
   const days = Array.from(new Set(workshops.map(t => t.day)))
@@ -27,7 +27,7 @@ const handleFilter = (filtered: typeof workshops) => {
 </script>
 
 <template>
-  <div class="min-h-screen font-sans bg-background text-white pb-32 w-full pt-13.5 px-0">
+  <div class="min-h-screen font-sans bg-background text-white pb-32 w-full pt-13.5 px-4 sm:px-6 md:px-0">
     
     <div class="w-full relative block">
   <img
@@ -43,7 +43,7 @@ const handleFilter = (filtered: typeof workshops) => {
   </div>
 </div>
 
-    <div class="max-w-7xl mx-auto px-4 md:px-8 mt-12 w-full">
+    <div class="max-w-7xl mx-auto px-6 md:px-8 mt-12 w-full">
       
       <div class="mb-16">
         <FilterBar

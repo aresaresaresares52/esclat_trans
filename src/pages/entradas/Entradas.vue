@@ -45,7 +45,7 @@ const entradaSections = computed(() => [
         >
           {{ section.title }}
         </h1>
-        <p class="text-xl md:text-2xl text-white/65 font-semibold tracking-wider">
+        <p class="text-xl md:text-2xl text-white/65 font-medium tracking-wider">
           {{ section.subtitle }}
         </p>
       </header>

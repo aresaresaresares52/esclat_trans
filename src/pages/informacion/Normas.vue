@@ -18,7 +18,7 @@ const defaultOpenSections = computed(() => normasSeguridadSections.map(section =
   <div class="font-sans bg-[#111111] text-white">
     <div class="text-center mb-16 px-4">
       <h1 class="text-5xl md:text-7xl font-sans2 font-medium text-white">
-        Normas y <span class="text-brand-yellow">seguridad</span>
+        Normas y seguridad
       </h1>
     </div>
 

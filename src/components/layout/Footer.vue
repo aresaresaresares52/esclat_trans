@@ -24,10 +24,10 @@ const legalLinks = [
   <footer class="border-t border-white/5 bg-background">
     <div class="container mx-auto px-4 py-8">
       <!-- Parte superior -->
-      <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <LogoHorizontal class="h-8 w-auto shrink-0 md:flex-shrink-0" />
+      <div class="flex flex-col gap-6 items-center text-center md:flex-row md:items-center md:justify-between md:text-left">
+        <LogoHorizontal class="h-8 w-auto max-w-[240px] shrink-0 md:flex-shrink-0 mx-auto md:mx-0" />
 
-        <p class="text-sm md:text-md font-light text-center text-white/80 flex-1 px-4">
+        <p class="text-sm md:text-md font-light text-center text-white/80 max-w-xl px-4">
           Ven como eres, participa como quieras.
         </p>
 
@@ -57,7 +57,7 @@ const legalLinks = [
       <div class="my-6 border-t border-white/5"></div>
 
       <!-- Parte inferior -->
-      <div class="flex flex-col gap-4 text-[11px] text-white/45 md:flex-row md:items-center md:justify-between">
+      <div class="flex flex-col gap-4 text-[11px] text-white/45 items-center justify-center md:flex-row md:items-center md:justify-between">
         <div class="flex items-center gap-2 md:flex-shrink-0">
           <Copyright :size="13" />
           <span class="uppercase tracking-widest">Esclat</span>

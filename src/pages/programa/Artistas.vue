@@ -9,7 +9,7 @@ import bannermovidas from '@/assets/bannermovidas.png'
 
 const filteredArtists = ref<typeof artists>(artists)
 
-const dayOrder = ['viernes', 'sábado', 'domingo']
+const dayOrder = ['Viernes 23', 'Sábado 24', 'Domingo 25']
 
 const filterOptions = computed(() => {
   const days = Array.from(new Set(artists.map(a => a.day)))
@@ -28,7 +28,7 @@ const handleFilter = (filtered: typeof artists) => {
 </script>
 
 <template>
-  <div class="min-h-screen font-sans bg-[#111111] text-black pb-32 w-full pt-13.5 px-0">
+  <div class="min-h-screen font-sans bg-[#111111] text-black pb-32 w-full pt-13.5 px-4 sm:px-6 md:px-0">
     
     <div class="w-full relative  block">
       <img 
@@ -45,7 +45,7 @@ const handleFilter = (filtered: typeof artists) => {
       </div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-4 md:px-8 mt-12 w-full">
+    <div class="max-w-7xl mx-auto px-6 md:px-8 mt-12 w-full">
       
       <div class="mb-16">
         <FilterBar

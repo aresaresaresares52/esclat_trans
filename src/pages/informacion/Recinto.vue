@@ -10,7 +10,7 @@ import { recintoIndicaciones as indicaciones } from '@/data/data'
     <div class="space-y-10">
       <h1 class="text-5xl md:text-7xl font-sans2 font-medium text-brand-blue">Mapa del recinto</h1>
 
-      <div class="grid gap-10 lg:grid-cols-[1.4fr_0.9fr] items-start">
+      <div class="grid gap-8 lg:grid-cols-[1.4fr_0.9fr] items-start">
         <!-- Columna izquierda -->
         <div class="space-y-10">
           <div class="space-y-4">
@@ -33,7 +33,7 @@ import { recintoIndicaciones as indicaciones } from '@/data/data'
         </div>
 
         <!-- Columna derecha -->
-        <ol class="mt-50 space-y-5 text-lg md:text-xl">
+        <ol class="mt-10 space-y-5 text-lg md:text-xl">
           <li
             v-for="(indicacion, index) in indicaciones"
             :key="indicacion"

@@ -52,13 +52,13 @@ const updateFilters = () => {
 </script>
 
 <template>
-  <div class="filter-bar flex flex-col md:flex-row gap-6 mb-12 items-start md:items-center md:justify-between w-full max-w-6xl mx-auto bg-background">
+  <div class="filter-bar flex flex-col gap-4 mb-12 items-center justify-center w-full max-w-6xl mx-auto bg-background md:flex-row md:items-center md:justify-between">
     
-    <div class="flex flex-wrap items-center gap-3">
+    <div class="flex flex-wrap items-center justify-center gap-2 md:gap-3">
       <button
         @click="selectButtonFilter('')"
         :class="[
-          'border-2 px-[21px] py-[13px] font-semibold uppercase text-sm tracking-tight transition-all rounded-none',
+          'border-2 px-3 py-2 text-xs sm:px-4 sm:py-2.5 sm:text-sm font-semibold uppercase tracking-tight transition-all rounded-none',
           selectedFilter === '' 
             ? 'bg-brand-yellow text-black border-brand-yellow' 
             : 'border-brand-yellow text-brand-yellow hover:bg-brand-yellow hover:text-black'
@@ -72,7 +72,7 @@ const updateFilters = () => {
         :key="option.value"
         @click="selectButtonFilter(option.value)"
         :class="[
-          'border-2 px-[21px] py-[13px] font-semibold uppercase text-sm tracking-tight transition-all rounded-none',
+          'border-2 px-3 py-2 text-xs sm:px-4 sm:py-2.5 sm:text-sm font-semibold uppercase tracking-tight transition-all rounded-none',
           selectedFilter === String(option.value) 
             ? 'bg-brand-yellow text-black border-brand-yellow' 
             : 'border-brand-yellow text-brand-yellow hover:bg-brand-yellow hover:text-black'

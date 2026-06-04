@@ -50,7 +50,7 @@ const playVideo = () => {
 <template>
   <div class="min-h-screen font-sans bg-[#111111] text-white pb-32 pt-12 overflow-x-hidden w-full">
     
-<section class="relative w-full flex flex-col items-center justify-center text-center px-4" :style="{ backgroundImage: `url(${portada})`, backgroundSize: '100% 100%', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', aspectRatio: '1920/1080' }">
+<section class="relative w-full flex flex-col items-center justify-center text-center px-4 overflow-hidden" :style="{ backgroundImage: `url(${portada})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', minHeight: '60vh' }">
 
   <div class="relative z-10 pt-50 pb-32 flex flex-col items-center justify-center">
     <router-link to="/entradas" class="bg-brand-yellow text-black font-bold text-xl md:text-2xl py-4 px-10 rounded-none uppercase transition-transform hover:scale-105 cursor-pointer inline-block text-center">
@@ -148,11 +148,11 @@ const playVideo = () => {
       <div id="home-artistas" class="relative max-w-7xl mx-auto mb-16 grid gap-8 md:grid-cols-3 scroll-mt-24">
         <template v-for="dia in diasFestival" :key="dia.nombre">
           <div class="bg-background p-8 rounded-3xl min-h-[450px] text-left text-white">
-            <h3 :class="`text-[50px] font-black ${dia.color} leading-none`">{{ dia.nombre }}</h3>
+            <h3 :class="`text-[50px] font-extrabold ${dia.color} leading-none`">{{ dia.nombre }}</h3>
             <div class="space-y-6 mt-12">
               <template v-for="artist in dia.artistas" :key="artist.slug">
                 <router-link :to="`/programa/artistas/${artist.slug}`" class="block">
-                  <span :class="[artist.size, 'uppercase block hover:scale-140 transition-transform cursor-pointer hover:text-white']">
+                  <span class="uppercase block text-3xl md:text-4xl font-regular transition-transform cursor-pointer hover:scale-140 hover:text-white">
                     {{ artist.name }}
                   </span>
                 </router-link>
@@ -160,7 +160,7 @@ const playVideo = () => {
             </div>
             <div class="space-y-6 mt-12">
               <template v-for="taller in dia.talleres" :key="taller.id">
-                <router-link :to="`/programa/talleres/${taller.id}`" :class="`uppercase text-left text-white text-4xl font-medium transition-colors block ${dia.hoverColor}`">
+                <router-link :to="`/programa/talleres/${taller.id}`" :class="`uppercase text-left text-white text-3xl md:text-4xl font-regular transition-colors block ${dia.hoverColor}`">
                   {{ taller.title }}
                 </router-link>
               </template>

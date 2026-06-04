@@ -123,17 +123,17 @@ const isActive = (path: string) => {
             <X :size="32" />
         </button>
         <div class="flex flex-col gap-2 pb-8">
-            <router-link to="/" @click="isMobileMenuOpen = false" class="px-4 py-4 text-[20px] font-sans uppercase text-white hover:text-brand-yellow">Home</router-link>
-            <router-link to="/entradas" @click="isMobileMenuOpen = false" class="px-4 py-4 text-[20px] font-sans uppercase text-white hover:text-brand-yellow">Entradas</router-link>
+            <router-link to="/" @click="isMobileMenuOpen = false" class="px-4 py-4 font-medium text-[20px] font-sans uppercase text-white hover:text-brand-yellow">Home</router-link>
+            <router-link to="/entradas" @click="isMobileMenuOpen = false" class="px-4 py-4 font-medium text-[20px] font-sans uppercase text-white hover:text-brand-yellow">Entradas</router-link>
 
-            <div class="px-4 py-4 text-[20px] font-sans uppercase text-brand-blue border-b border-white/10">Programa</div>
+            <div class="px-4 py-4 font-medium text-[20px] font-sans uppercase text-brand-blue border-b border-white/10">Programa</div>
             <router-link to="/programa/artistas" @click="isMobileMenuOpen = false" class="px-8 py-3 text-[16px] font-sans uppercase text-gray-300 hover:text-white">Artistas</router-link>
             <router-link to="/programa/talleres" @click="isMobileMenuOpen = false" class="px-8 py-3 text-[16px] font-sans uppercase text-gray-300 hover:text-white">Talleres</router-link>
             <router-link to="/programa/horarios" @click="isMobileMenuOpen = false" class="px-8 py-3 text-[16px] font-sans uppercase text-gray-300 hover:text-white">Horarios</router-link>
 
-            <router-link to="/como-llegar" @click="isMobileMenuOpen = false" class="px-4 py-4 text-[20px] font-sans uppercase text-white hover:text-brand-yellow">Cómo llegar</router-link>
+            <router-link to="/como-llegar" @click="isMobileMenuOpen = false" class="px-4 py-4 font-medium text-[20px] font-sans uppercase text-white hover:text-brand-yellow">Cómo llegar</router-link>
 
-            <div class="px-4 py-4 text-[20px] font-sans uppercase text-brand-blue border-b border-white/10">Información</div>
+            <div class="px-4 py-4 font-medium text-[20px] font-sans uppercase text-brand-blue border-b border-white/10">Información</div>
             <router-link to="/informacion/normas" @click="isMobileMenuOpen = false" class="px-8 py-3 text-[16px] font-sans uppercase text-gray-300 hover:text-white">Normas</router-link>
             <router-link to="/informacion/preguntas-frecuentes" @click="isMobileMenuOpen = false" class="px-8 py-3 text-[16px] font-sans uppercase text-gray-300 hover:text-white">Preguntas Frecuentes</router-link>
             <router-link to="/informacion/recinto" @click="isMobileMenuOpen = false" class="px-8 py-3 text-[16px] font-sans uppercase text-gray-300 hover:text-white">Recinto</router-link>
