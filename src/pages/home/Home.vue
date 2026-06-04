@@ -8,7 +8,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel'
 import { ArrowRight, Play, ChevronDown } from 'lucide-vue-next'
-import miniatura from '@/assets/miniatura.webp'
+import miniatura from '@/assets/miniatura.jpg'
 import portada from '@/assets/portada.png'
 
 import {
@@ -27,7 +27,7 @@ const isQuienesSomosOpen = ref(false)
 // Control del reproductor de vídeo interactivo con estado de buffer de carga
 const isVideoPlaying = ref(false)
 const isVideoLoading = ref(false)
-const youtubeVideoId = 'v52rSr6FrdY'
+const youtubeVideoId = 'hJ5EbrW8G0w'
 
 const playVideo = () => {
   isVideoLoading.value = true
@@ -50,7 +50,7 @@ const playVideo = () => {
 <template>
   <div class="min-h-screen font-sans bg-[#111111] text-white pb-32 pt-12 overflow-x-hidden w-full">
     
-<section class="relative w-full flex flex-col items-center justify-center text-center px-4 overflow-hidden" :style="{ backgroundImage: `url(${portada})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', minHeight: '60vh' }">
+<section class="relative w-full flex flex-col items-center justify-center text-center px-4 overflow-hidden min-h-[60vh] md:min-h-0 md:aspect-[16/9] bg-cover md:bg-[length:100%_100%] bg-center bg-no-repeat" :style="{ backgroundImage: `url(${portada})` }">
 
   <div class="relative z-10 pt-50 pb-32 flex flex-col items-center justify-center">
     <router-link to="/entradas" class="bg-brand-yellow text-black font-bold text-xl md:text-2xl py-4 px-10 rounded-none uppercase transition-transform hover:scale-105 cursor-pointer inline-block text-center">
@@ -109,7 +109,7 @@ const playVideo = () => {
               >
                 <Play class="w-8 h-8 fill-white stroke-3 ml-1" /> 
               </button>
-              <span v-else class="z-10 text-brand-purple tracking-wider animate-pulse">
+              <span v-else class="z-10 text-white font-sans tracking-wider animate-pulse">
                 Cargando vídeo...
               </span>
             </div>

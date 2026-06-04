@@ -264,26 +264,27 @@ const closeWindow = () => {
       <div v-else>
         
         <!-- Éxito Devolución -->
-        <div v-if="returnSubmitted" class="text-center py-6 space-y-6">
-          <div class="inline-flex items-center justify-center bg-brand-purple border-4 border-black p-4 rounded-none -rotate-1">
-            <RotateCcw :size="48" class="text-white" />
-          </div>
-          <h2 class="text-3xl font-black uppercase text-brand-purple">DEVOLUCIÓN TRAMITADA</h2>
-          <div class="bg-gray-100 border-4 border-black p-6 text-left space-y-3 font-mono shadow-[6px_6px_0_0_theme(colors.brand.blue)]">
-            <p class="font-bold">
-              Las plazas para <span class="text-brand-purple font-black">{{ ticketName }}</span> han sido liberadas con éxito.
-            </p>
-            <p class="text-sm">
-              Email registrado: <span class="font-bold">{{ returnForm.email }}</span>
-            </p>
-            <div class="text-xs text-black/60 pt-4 border-t border-black/20">
-              ¡Muchas gracias por actuar de forma responsable! Tu plaza ahora podrá ser aprovechada por otro asistente del festival.
+        <div v-if="returnSubmitted" class="text-center font-sans">
+          <h2 class="flex items-center justify-center gap-3 text-3xl font-extrabold uppercase text-brand-purple">
+            <CheckCircle2 :size="34" class="text-background shrink-0" />
+            ¡DEVOLUCIÓN TRAMITADA!
+          </h2>
+          <div class="mt-8 bg-brand-purple p-6 text-white text-left space-y-3 font-sans">
+            <div class="flex justify-between font-bold border-b border-white/20 pb-2">
+              <span>ENTRADA:</span>
+              <span class="text-lg">{{ ticketName }}</span>
+            </div>
+            <div>
+              <span class="font-bold">EMAIL REGISTRADO:</span> {{ returnForm.email }}
+            </div>
+            <div class="text-xs text-white/60 pt-4 border-t border-white/20">
+              * Las plazas han sido liberadas con éxito. Gracias por actuar de forma responsable.
             </div>
           </div>
           
           <button 
             @click="closeWindow" 
-            class="w-full bg-background text-white font-extrabold text-xl py-4 uppercase border-4 border-black hover:bg-brand-purple hover:text-white transition-colors shadow-[6px_6px_0_0_theme(colors.brand.yellow)]"
+            class="mt-8 w-full bg-background text-white font-bold text-xl py-4 uppercase hover:bg-brand-purple hover:text-white transition-colors"
           >
             Finalizar y Cerrar
           </button>
@@ -291,7 +292,7 @@ const closeWindow = () => {
 
         <!-- Flujo de Devolución -->
         <div v-else class="space-y-6">
-          <div class="bg-brand-purple/10 border-2 border-black p-4 mb-4">
+          <div class="bg-brand-purple/10 border-2 border-black p-4 mb-6">
             <div class="flex items-center gap-3">
               <RotateCcw :size="24" class="text-brand-purple shrink-0" />
               <div>
@@ -301,18 +302,18 @@ const closeWindow = () => {
             </div>
           </div>
 
-          <h2 class="text-2xl font-black uppercase text-brand-purple border-b-2 border-black pb-2 mb-4">
+          <h2 class="text-2xl font-bold uppercase text-black border-b-2 border-black pb-1 mb-5">
             Datos de Verificación
           </h2>
 
           <!-- Paso 1: Introducir Email -->
           <div v-if="returnStep === 1" class="space-y-4">
             <div>
-              <label class="block text-xs font-black uppercase tracking-wider mb-1">Gmail / Email del Titular</label>
+              <label class="block text-s font-semibold tracking-wider mb-1">Email del Titular</label>
               <input 
                 v-model="returnForm.email" 
                 type="email" 
-                class="w-full border-2 border-black p-2.5 font-bold focus:bg-brand-purple/10 focus:outline-none" 
+                class="w-full border-2 border-black p-2.5 font-medium focus:bg-brand-purple/10 focus:outline-none" 
                 placeholder="Ej: laura.garcia@gmail.com"
                 required
               />
@@ -320,42 +321,39 @@ const closeWindow = () => {
             
             <button 
               @click="handleReturnEmailSubmit" 
-              class="w-full bg-brand-purple text-white font-extrabold text-xl py-4 uppercase border-4 border-black hover:bg-background hover:text-brand-purple transition-all shadow-[6px_6px_0_0_theme(colors.brand.yellow)] hover:shadow-[3px_3px_0_0_theme(colors.brand.yellow)] hover:translate-x-[3px] hover:translate-y-[3px] cursor-pointer"
+              class="w-full bg-brand-purple text-white font-bold text-xl py-4 uppercase border-4 border-black hover:bg-background hover:text-brand-purple transition-all hover:translate-x-[3px] hover:translate-y-[3px] cursor-pointer"
             >
-              Enviar código de verificación
+              Enviar Código de Verificación
             </button>
           </div>
 
           <!-- Paso 2: Introducir Código de 6 dígitos -->
           <div v-else class="space-y-4">
-            <div class="bg-brand-yellow/10 border-2 border-black p-4 text-xs font-bold uppercase text-brand-purple">
-              Introduce el código de 6 dígitos enviado a <span class="underline text-black">{{ returnForm.email }}</span>.
-            </div>
-            
-            <div>
-              <label class="block text-xs font-black uppercase tracking-wider mb-1">Código de 6 dígitos</label>
-              <input 
-                v-model="returnForm.codigo" 
-                type="text" 
+            <div class="space-y-4">
+              <label class="block text-s font-semibold tracking-wider mb-1 text-black">Código de 6 dígitos</label>
+              <input
+                v-model="returnForm.codigo"
+                type="text"
                 maxlength="6"
-                class="w-full border-2 border-black p-2.5 font-mono font-extrabold text-center text-2xl tracking-widest focus:bg-brand-purple/10 focus:outline-none" 
+                class="w-full md:w-40 border-2 border-black p-2.5 font-sans font-medium text-center focus:bg-brand-purple/10 focus:outline-none"
                 placeholder="------"
                 required
               />
+              <p class="text-sm text-light text-black/60">Código enviado a {{ returnForm.email }}</p>
             </div>
             
             <button 
               @click="handleReturnCodeSubmit" 
-              class="w-full bg-brand-yellow text-black font-extrabold text-xl py-4 uppercase border-4 border-black hover:bg-brand-purple hover:text-white transition-all shadow-[6px_6px_0_0_theme(colors.brand.blue)] hover:shadow-[3px_3px_0_0_theme(colors.brand.blue)] hover:translate-x-[3px] hover:translate-y-[3px] cursor-pointer"
+              class="w-full bg-brand-purple text-white font-bold text-xl py-4 uppercase border-4 border-black hover:bg-brand-yellow hover:text-black transition-all hover:translate-x-[3px] hover:translate-y-[3px] cursor-pointer mt-4"
             >
-              Tramitar devolución
+              Tramitar Devolución
             </button>
 
             <button 
               @click="returnStep = 1" 
               class="w-full bg-transparent text-black font-bold text-sm py-2 uppercase underline hover:text-brand-purple transition-colors"
             >
-              Cambiar correo electrónico
+              Cambiar Correo Electrónico
             </button>
           </div>
         </div>

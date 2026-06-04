@@ -187,7 +187,7 @@ export const workshops: Workshop[] = [
     day: 'Sábado 24',
     horario: '18:00 - 19:00',
     lugar: 'Sala Factoría',
-    aforo: 30,
+    aforo: 20,
     duracion: '1h',
     img: new URL('@/assets/shodo.jpg', import.meta.url).href
   },
@@ -199,7 +199,7 @@ export const workshops: Workshop[] = [
     day: 'Viernes 23',
     horario: '18:00 - 19:00',
     lugar: 'Sala Factoría',
-    aforo: 100,
+    aforo: 20,
     duracion: '1h',
     img: new URL('@/assets/lunavalletaller.png', import.meta.url).href
   },
@@ -221,10 +221,10 @@ export const workshops: Workshop[] = [
     subtitle: 'Competición de videojuegos de la WII: Mario Kart, Wii Sports, Super Smash Bros Brawl y más.',
     description: 'Vuelve la nostalgia en forma de competición. Una batalla divertida con los juegos clásicos de la Wii pensada para pasarlo en grande: piques sanos, risas aseguradas y mucha emoción en cada partida.\n\nMario Kart Wii, Wii Sports, Super Smash Bros Brawl y otros títulos míticos serán los protagonistas de un espacio donde lo importante no es solo ganar, sino disfrutar, revivir recuerdos y compartir el juego como antes.\n\nJugar, competir y volver a sentir la magia de los clásicos… ¡como si el tiempo no hubiera pasado!',
     day: 'Viernes 23',
-    horario: '19:30 - 21:00',
+    horario: '20:30 - 23:30',
     lugar: 'Sala la Polivalent',
-    aforo: 40,
-    duracion: '2h',
+    aforo: 50,
+    duracion: '3h',
     img: new URL('@/assets/mariokart.jpg', import.meta.url).href
   },
   {
@@ -235,8 +235,8 @@ export const workshops: Workshop[] = [
     day: 'Sábado 24',
     horario: '19:45 - 20:45',
     lugar: 'Sala la Mutant',
-    aforo: 500,
-    duracion: '1',
+    aforo: 585,
+    duracion: '1h',
     img: new URL('@/assets/drag.jpg', import.meta.url).href
   },
   {

@@ -84,13 +84,13 @@ const goHome = () => {
           </div>
         </div>
 
-        <div class="w-full space-y-8">
-          <div class="text-gray-300 leading-relaxed text-lg whitespace-pre-wrap">
+        <div class="w-full space-y-6">
+          <div class="text-gray-300 text-lg leading-7 whitespace-pre-wrap">
             {{ taller.description }}
           </div>
 
           <div class="border border-brand-yellow p-6 rounded-none">
-            <p class="text-gray-300 text-sm">
+            <p class="text-gray-300 text-lg leading-7">
               <span class="font-regular text-brand-yellow">Reservas:</span> Las reservas para acceder y participar en los talleres se gestionarán dentro del recinto 1h antes del comienzo de estos hasta completar aforo.
             </p>
           </div>

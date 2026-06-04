@@ -52,7 +52,7 @@ const defaultOpenSections = computed(() => normasSeguridadSections.map(section =
                 <AccordionContent class="p-4 bg-[#1a1a1a] border-t border-black text-lg leading-relaxed text-gray-300">
                   <div v-if="subsection.allowedItems || subsection.notAllowedItems" class="space-y-6">
                     <div v-if="subsection.allowedItems">
-                      <h3 class="font-bold text-brand-green uppercase mb-3 text-xl">Objetos permitidos</h3>
+                      <h3 class="font-semibold text-white uppercase mb-3 text-xl">Objetos permitidos</h3>
                       <ul class="space-y-2">
                         <li v-for="item in subsection.allowedItems" :key="item">
                           > {{ item }}
@@ -61,7 +61,7 @@ const defaultOpenSections = computed(() => normasSeguridadSections.map(section =
                     </div>
 
                     <div v-if="subsection.notAllowedItems" class="pt-4 border-t border-white/10">
-                      <h3 class="font-bold text-red-500 uppercase mb-3 text-xl">Objetos no permitidos</h3>
+                      <h3 class="font-semibold text-white uppercase mb-3 text-xl">Objetos no permitidos</h3>
                       <ul class="space-y-1.5">
                         <li v-for="item in subsection.notAllowedItems" :key="item">
                           > {{ item }}
@@ -71,7 +71,7 @@ const defaultOpenSections = computed(() => normasSeguridadSections.map(section =
                   </div>
 
                   <template v-else>
-                    <p v-if="subsection.highlight" class="font-bold text-red-400 uppercase mb-2">
+                    <p v-if="subsection.highlight" class="font-semibold text-white uppercase mb-2">
                       {{ subsection.highlight }}
                     </p>
                     <p v-for="paragraph in subsection.content" :key="paragraph">
